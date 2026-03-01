@@ -138,8 +138,6 @@ public class StudentPortalController {
             GradeReportRequestDTO request = new GradeReportRequestDTO();
             request.setStudentIds(java.util.List.of(studentId));
 
-            System.out.println("The request reached here for student ID: " + studentId + " and \nthe request: " + request);
-            
             GradeReportResponseDTO response = gradeReportService.generateGradeReports(request);
             return ResponseEntity.ok(response);
             

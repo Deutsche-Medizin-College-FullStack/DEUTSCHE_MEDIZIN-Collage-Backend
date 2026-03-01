@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "attritionCause": "Military Service"
+  },
+  {
+    "id": "2",
+    "attritionCause": "Health Reasons"
+  },
+  {
+    "id": "3",
+    "attritionCause": "Employment"
+  },
+  {
+    "id": "4",
+    "attritionCause": "Academic Dismissal"
+  },
+  {
+    "id": "5",
+    "attritionCause": "Family Commitment"
+  },
+  {
+    "id": "6",
+    "attritionCause": "Disciplinary Dismissal"
+  },
+  {
+    "id": "7",
+    "attritionCause": "Withdrawal"
+  },
+  {
+    "id": "8",
+    "attritionCause": "Dropout"
+  },
+  {
+    "id": "9",
+    "attritionCause": "Death"
+  },
+  {
+    "id": "10",
+    "attritionCause": "Other"
+  }
+]

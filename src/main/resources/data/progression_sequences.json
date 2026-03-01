@@ -1,0 +1,148 @@
+[
+  {
+    "departmentId": null,
+    "classYearId": 1,
+    "semesterId": "S1",
+    "sequenceNumber": 1,
+    "description": "Year 1 Semester 1 - Standard"
+  },
+  {
+    "departmentId": null,
+    "classYearId": 1,
+    "semesterId": "S2",
+    "sequenceNumber": 2,
+    "description": "Year 1 Semester 2 - Standard"
+  },
+
+  {
+    "departmentId": null,
+    "classYearId": 2,
+    "semesterId": "S1",
+    "sequenceNumber": 3,
+    "description": "Year 2 Semester 1 - Standard"
+  },
+  {
+    "departmentId": null,
+    "classYearId": 2,
+    "semesterId": "S2",
+    "sequenceNumber": 4,
+    "description": "Year 2 Semester 2 - Standard"
+  },
+  {
+    "departmentId": null,
+    "classYearId": 3,
+    "semesterId": "S1",
+    "sequenceNumber": 5,
+    "description": "Year 3 Semester 1 - Standard"
+  },
+  {
+    "departmentId": null,
+    "classYearId": 3,
+    "semesterId": "S2",
+    "sequenceNumber": 6,
+    "description": "Year 3 Semester 2 - Standard"
+  },
+  {
+    "departmentId": null,
+    "classYearId": 4,
+    "semesterId": "S1",
+    "sequenceNumber": 7,
+    "description": "Year 4 Semester 1 - Standard"
+  },
+  {
+    "departmentId": null,
+    "classYearId": 4,
+    "semesterId": "S2",
+    "sequenceNumber": 8,
+    "description": "Year 4 Semester 2 - Standard"
+  },
+  {
+    "departmentId": null,
+    "classYearId": 5,
+    "semesterId": "S1",
+    "sequenceNumber": 9,
+    "description": "Year 5 Semester 1 - Standard"
+  },
+  {
+    "departmentId": null,
+    "classYearId": 5,
+    "semesterId": "S2",
+    "sequenceNumber": 10,
+    "description": "Year 5 Semester 2 - Standard"
+  },
+  {
+    "departmentId": null,
+    "classYearId": 6,
+    "semesterId": "S1",
+    "sequenceNumber": 11,
+    "description": "Year 6 Semester 1 - Standard"
+  },
+  {
+    "departmentId": null,
+    "classYearId": 6,
+    "semesterId": "S2",
+    "sequenceNumber": 12,
+    "description": "Year 6 Semester 2 - Standard"
+  },
+
+
+
+  {
+    "departmentId": 2,
+    "classYearId": 1,
+    "semesterId": "S1",
+    "sequenceNumber": 1,
+    "description": "Medicine Year 1 Semester 1"
+  },
+  {
+    "departmentId": 2,
+    "classYearId": 1,
+    "semesterId": "S2",
+    "sequenceNumber": 2,
+    "description": "Medicine Year 1 Semester 2"
+  },
+  {
+    "departmentId": 2,
+    "classYearId": 1,
+    "semesterId": "S3",
+    "sequenceNumber": 3,
+    "description": "Medicine Year 1 Semester 3"
+  },
+
+  {
+    "departmentId": 2,
+    "classYearId": 7,
+    "semesterId": "FS",
+    "sequenceNumber": 4,
+    "description": "Medicine Pre-Clinical 1 Full Year"
+  },
+  {
+    "departmentId": 2,
+    "classYearId": 8,
+    "semesterId": "FS",
+    "sequenceNumber": 5,
+    "description": "Medicine Pre-Clinical 2 Full Year"
+  },
+
+  {
+    "departmentId": 2,
+    "classYearId": 9,
+    "semesterId": "FS",
+    "sequenceNumber": 6,
+    "description": "Medicine Clinical 1 Full Year"
+  },
+  {
+    "departmentId": 2,
+    "classYearId": 10,
+    "semesterId": "FS",
+    "sequenceNumber": 7,
+    "description": "Medicine Clinical 2 Full Year"
+  },
+  {
+    "departmentId": 2,
+    "classYearId": 11,
+    "semesterId": "FS",
+    "sequenceNumber": 8,
+    "description": "Medicine Clinical 3 Full Year"
+  }
+]

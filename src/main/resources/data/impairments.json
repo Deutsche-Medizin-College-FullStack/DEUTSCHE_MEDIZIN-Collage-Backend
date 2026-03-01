@@ -1,0 +1,30 @@
+[
+  {
+    "impairmentCode": "BLD",
+    "impairment": "Blind"
+  },
+  {
+    "impairmentCode": "DEF",
+    "impairment": "Deaf"
+  },
+  {
+    "impairmentCode": "DMT",
+    "impairment": "Deaf&Mute"
+  },
+  {
+    "impairmentCode": "MRD",
+    "impairment": "Mentally retarded"
+  },
+  {
+    "impairmentCode": "MUT",
+    "impairment": "Mute"
+  },
+  {
+    "impairmentCode": "OTH",
+    "impairment": "Others"
+  },
+  {
+    "impairmentCode": "PHH",
+    "impairment": "Physically handicapped"
+  }
+]

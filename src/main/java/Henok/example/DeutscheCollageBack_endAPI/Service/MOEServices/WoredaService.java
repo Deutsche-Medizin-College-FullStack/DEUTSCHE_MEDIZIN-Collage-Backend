@@ -120,7 +120,7 @@ public class WoredaService {
     }
 
     // Map WoredaDTO to Woreda entity
-    private Woreda mapToEntity(WoredaDTO dto, Zone zone) {
+    public Woreda mapToEntity(WoredaDTO dto, Zone zone) {
         Woreda woreda = new Woreda();
         woreda.setWoredaCode(dto.getWoredaCode());
         woreda.setWoreda(dto.getWoreda());

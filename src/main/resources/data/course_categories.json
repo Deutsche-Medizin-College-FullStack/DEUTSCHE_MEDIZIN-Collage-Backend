@@ -1,0 +1,18 @@
+[
+  {
+    "catId": "1",
+    "catName": "Major Course"
+  },
+  {
+    "catId": "2",
+    "catName": "Minor Course"
+  },
+  {
+    "catId": "3",
+    "catName": "Common Course"
+  },
+  {
+    "catId": "4",
+    "catName": "Supportive Course"
+  }
+]

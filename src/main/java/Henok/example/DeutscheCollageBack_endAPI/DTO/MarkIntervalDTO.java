@@ -15,5 +15,4 @@ public class MarkIntervalDTO {
     private double max;
     private double givenValue;
     private String gradeLetter;
-
 }

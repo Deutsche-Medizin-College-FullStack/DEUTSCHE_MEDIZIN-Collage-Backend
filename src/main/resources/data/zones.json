@@ -1,0 +1,632 @@
+[
+  {
+    "zoneCode": "AKK",
+    "zone": "AKAKI KALITI",
+    "regionCode": "ADD"
+  },
+  {
+    "zoneCode": "ARA",
+    "zone": "ARADA",
+    "regionCode": "ADD"
+  },
+  {
+    "zoneCode": "BOL",
+    "zone": "BOLE",
+    "regionCode": "ADD"
+  },
+  {
+    "zoneCode": "GUL",
+    "zone": "GULELLE",
+    "regionCode": "ADD"
+  },
+  {
+    "zoneCode": "KOL",
+    "zone": "KOLFE",
+    "regionCode": "ADD"
+  },
+  {
+    "zoneCode": "NES",
+    "zone": "NEFAS SILK",
+    "regionCode": "ADD"
+  },
+  {
+    "zoneCode": "ADK",
+    "zone": "ADDIS KETEMA",
+    "regionCode": "ADD"
+  },
+  {
+    "zoneCode": "LED",
+    "zone": "LEDETA",
+    "regionCode": "ADD"
+  },
+  {
+    "zoneCode": "YEK",
+    "zone": "YEKA",
+    "regionCode": "ADD"
+  },
+  {
+    "zoneCode": "KIR",
+    "zone": "KIRKOS",
+    "regionCode": "ADD"
+  },
+  {
+    "zoneCode": "LEK",
+    "zone": "LEMI KURA",
+    "regionCode": "ADD"
+  },
+  {
+    "zoneCode": "TWO",
+    "zone": "TWO",
+    "regionCode": "AFA"
+  },
+  {
+    "zoneCode": "ONE",
+    "zone": "ONE",
+    "regionCode": "AFA"
+  },
+  {
+    "zoneCode": "THREE",
+    "zone": "THREE",
+    "regionCode": "AFA"
+  },
+  {
+    "zoneCode": "FIVE",
+    "zone": "FIVE",
+    "regionCode": "AFA"
+  },
+  {
+    "zoneCode": "FOUR",
+    "zone": "FOUR",
+    "regionCode": "AFA"
+  },
+  {
+    "zoneCode": "GOW",
+    "zone": "GONDER WEST",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "ORO",
+    "zone": "OROMIA (AMHARA)",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "WAG",
+    "zone": "WAGHEMERA",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "GON",
+    "zone": "GONDER NORTH",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "WOS",
+    "zone": "WOLLO SOUTH",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "GOC",
+    "zone": "GONDAR CENTRAL",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "SHNA",
+    "zone": "SHOA NORTH(AMHARA)",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "GOS",
+    "zone": "GONDER SOUTH",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "GOE",
+    "zone": "GOJJAM EAST",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "WON",
+    "zone": "WOLLO NORTH",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "AWI",
+    "zone": "AWI",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "BAD",
+    "zone": "BAHIR DAR",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "GJW",
+    "zone": "GOJJAM WEST",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "DET",
+    "zone": "DESSIE TOWN",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "GOT",
+    "zone": "GONDER TOWN",
+    "regionCode": "AMH"
+  },
+  {
+    "zoneCode": "ASOT",
+    "zone": "ASSOSA TOWN",
+    "regionCode": "BEN"
+  },
+  {
+    "zoneCode": "ASS",
+    "zone": "ASSOSA",
+    "regionCode": "BEN"
+  },
+  {
+    "zoneCode": "MET",
+    "zone": "METEKEL",
+    "regionCode": "BEN"
+  },
+  {
+    "zoneCode": "KAM",
+    "zone": "KAMASH",
+    "regionCode": "BEN"
+  },
+  {
+    "zoneCode": "MAK",
+    "zone": "MAO KOMO",
+    "regionCode": "BEN"
+  },
+  {
+    "zoneCode": "DIR",
+    "zone": "DIRE DAWA",
+    "regionCode": "DIR"
+  },
+  {
+    "zoneCode": "SHB",
+    "zone": "SHEBELE",
+    "regionCode": "SOM"
+  },
+  {
+    "zoneCode": "SIT",
+    "zone": "SITI",
+    "regionCode": "SOM"
+  },
+  {
+    "zoneCode": "JAR",
+    "zone": "JARAR",
+    "regionCode": "SOM"
+  },
+  {
+    "zoneCode": "FAA",
+    "zone": "FAAFAN",
+    "regionCode": "SOM"
+  },
+  {
+    "zoneCode": "AFD",
+    "zone": "AFDER",
+    "regionCode": "SOM"
+  },
+  {
+    "zoneCode": "DOO",
+    "zone": "DOOLLO",
+    "regionCode": "SOM"
+  },
+  {
+    "zoneCode": "LII",
+    "zone": "LIIBAN",
+    "regionCode": "SOM"
+  },
+  {
+    "zoneCode": "QOR",
+    "zone": "QORAXEY",
+    "regionCode": "SOM"
+  },
+  {
+    "zoneCode": "NOG",
+    "zone": "NOGOB",
+    "regionCode": "SOM"
+  },
+  {
+    "zoneCode": "ERE",
+    "zone": "ERER",
+    "regionCode": "SOM"
+  },
+  {
+    "zoneCode": "DWA",
+    "zone": "DAWA",
+    "regionCode": "SOM"
+  },
+  {
+    "zoneCode": "QKD",
+    "zone": "QORAXEY (KEBDI DAHAR)",
+    "regionCode": "SOM"
+  },
+  {
+    "zoneCode": "AGN",
+    "zone": "AGNUWA",
+    "regionCode": "GAM"
+  },
+  {
+    "zoneCode": "NUE",
+    "zone": "NUER",
+    "regionCode": "GAM"
+  },
+  {
+    "zoneCode": "GAB",
+    "zone": "GAMBELLA",
+    "regionCode": "GAM"
+  },
+  {
+    "zoneCode": "MEZ",
+    "zone": "MEZHENGER",
+    "regionCode": "GAM"
+  },
+  {
+    "zoneCode": "ITA",
+    "zone": "ITANG",
+    "regionCode": "GAM"
+  },
+  {
+    "zoneCode": "HAR",
+    "zone": "HARARI",
+    "regionCode": "HAR"
+  },
+  {
+    "zoneCode": "GUW",
+    "zone": "WEST GUJI",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "HOG",
+    "zone": "HORO GUDURU",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "SHNO",
+    "zone": "SHOA NORTH(OROMIA)",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "SHW",
+    "zone": "SHOA WEST",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "ARW",
+    "zone": "ARSI WEST",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "SHE",
+    "zone": "SHOA EAST",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "ADT",
+    "zone": "ADAMA TOWN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "GUJ",
+    "zone": "GUJI",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "BAL",
+    "zone": "BALE",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "JIM",
+    "zone": "JIMMA",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "FIZ",
+    "zone": "FINFINE ZURIYA",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "ILL",
+    "zone": "ILLUABABOR",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "AMT",
+    "zone": "AMBO TOWN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "SSW",
+    "zone": "SHOA SOUTH WEST",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "ARE",
+    "zone": "ARSI EAST",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "HAW",
+    "zone": "HARARGIE WEST",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "KEW",
+    "zone": "KELEM WELLEGA",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "BOR",
+    "zone": "BORENA",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "ASET",
+    "zone": "ASSELA TOWN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "HAE",
+    "zone": "HARARGIE EAST",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "WEW",
+    "zone": "WELLEGA WEST",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "BAT",
+    "zone": "BATU TOWN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "BUB",
+    "zone": "BUNO BEDELE",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "BIG",
+    "zone": "BISHAN GURACHA",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "BIT",
+    "zone": "BISHOFTU TOWN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "WEE",
+    "zone": "WELLEGA EAST",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "BUR",
+    "zone": "BURAYU (FINFINE)",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "EAB",
+    "zone": "EAST BALE",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "DUK",
+    "zone": "DUKEM TOWN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "GEL",
+    "zone": "GELAN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "HOT",
+    "zone": "HOLETA TOWN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "JIT",
+    "zone": "JIMMA TOWN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "LEG",
+    "zone": "LEGETAFO",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "MOT",
+    "zone": "MOJO TOWN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "NET",
+    "zone": "NEKEMTE TOWN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "RTA",
+    "zone": "ROBE TOWN ADM.",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "SEB",
+    "zone": "SEBETA",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "SHT",
+    "zone": "SHASHEMENE TOWN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "SUL",
+    "zone": "SULULTA",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "WOT",
+    "zone": "WOLISO TOWN",
+    "regionCode": "ORO"
+  },
+  {
+    "zoneCode": "SID",
+    "zone": "SIDAMA",
+    "regionCode": "SID"
+  },
+  {
+    "zoneCode": "HAT",
+    "zone": "HAWASSA TOWN",
+    "regionCode": "SID"
+  },
+  {
+    "zoneCode": "SIL",
+    "zone": "SILTI",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "GAM",
+    "zone": "GAMMO",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "WEL",
+    "zone": "WELAYITA",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "GUR",
+    "zone": "GURAGE",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "KET",
+    "zone": "KEMBATA & TEMBARO",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "KAF",
+    "zone": "KAFA",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "ESP",
+    "zone": "ELIE SP.WEREDA",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "AMA",
+    "zone": "AMARO",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "HAD",
+    "zone": "HADEYA",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "KOT",
+    "zone": "KONTA",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "SHK",
+    "zone": "SHEKA",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "HAL",
+    "zone": "HALABA",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "BES",
+    "zone": "BENCH SHEKO",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "BAS",
+    "zone": "BASKETO",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "OMS",
+    "zone": "OMO SOUTH",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "OMW",
+    "zone": "WEST OMO",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "GED",
+    "zone": "GEDEO",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "GOF",
+    "zone": "GOFFA",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "DSP",
+    "zone": "DHERASHE SP.WEREDA",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "DWR",
+    "zone": "DAWRO",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "YEM",
+    "zone": "YEM",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "KOS",
+    "zone": "KONSO",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "BSP",
+    "zone": "BURJI SP.WEREDA",
+    "regionCode": "SNNP"
+  },
+  {
+    "zoneCode": "CEN",
+    "zone": "CENTERAL",
+    "regionCode": "TIG"
+  },
+  {
+    "zoneCode": "SOU",
+    "zone": "SOUTHERN",
+    "regionCode": "TIG"
+  },
+  {
+    "zoneCode": "WES",
+    "zone": "WESTERN",
+    "regionCode": "TIG"
+  },
+  {
+    "zoneCode": "NWE",
+    "zone": "N.WESTERN",
+    "regionCode": "TIG"
+  },
+  {
+    "zoneCode": "EAS",
+    "zone": "EASTERN",
+    "regionCode": "TIG"
+  },
+  {
+    "zoneCode": "MES",
+    "zone": "MEKELE SPECIAL",
+    "regionCode": "TIG"
+  }
+]

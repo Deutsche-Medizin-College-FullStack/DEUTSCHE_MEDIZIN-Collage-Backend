@@ -1,0 +1,26 @@
+[
+  {
+    "deptId": "1",
+    "departmentCode": "MRT",
+    "deptName": "Medical Radiotechnology",
+    "totalCrHr": " ",
+    "programLevelCode": "BCH",
+    "modalityCode": "RG"
+  },
+  {
+    "deptId": "2",
+    "departmentCode": "MED",
+    "deptName": "Medicine",
+    "totalCrHr": "",
+    "programLevelCode": "BCH",
+    "modalityCode": "RG"
+  },
+  {
+    "deptId": "3",
+    "departmentCode": "NUR",
+    "deptName": "Nursing",
+    "totalCrHr": "",
+    "programLevelCode": "BCH",
+    "modalityCode": "RG"
+  }
+]

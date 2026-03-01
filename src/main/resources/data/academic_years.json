@@ -1,0 +1,47 @@
+[
+  {
+    "yearCode": "201617",
+    "academicYearGC": "2016-2017",
+    "academicYearEC": "2009"
+  },
+  {
+    "yearCode": "201718",
+    "academicYearGC": "2017-2018",
+    "academicYearEC": "2010"
+  },
+  {
+    "yearCode": "201819",
+    "academicYearGC": "2018-2019",
+    "academicYearEC": "2011"
+  },
+  {
+    "yearCode": "201920",
+    "academicYearGC": "2019-2020",
+    "academicYearEC": "2012"
+  },
+  {
+    "yearCode": "202021",
+    "academicYearGC": "2020-2021",
+    "academicYearEC": "2013"
+  },
+  {
+    "yearCode": "202122",
+    "academicYearGC": "2021-2022",
+    "academicYearEC": "2014"
+  },
+  {
+    "yearCode": "202223",
+    "academicYearGC": "2022-2023",
+    "academicYearEC": "2015"
+  },
+  {
+    "yearCode": "202324",
+    "academicYearGC": "2023-2024",
+    "academicYearEC": "2016"
+  },
+  {
+    "yearCode": "202425",
+    "academicYearGC": "2024-2025",
+    "academicYearEC": "2017"
+  }
+]

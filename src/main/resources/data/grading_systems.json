@@ -1,0 +1,192 @@
+[
+  {
+    "id": 1,
+    "versionName": "Original, default",
+    "departmentId": null,
+    "departmentName": null,
+    "remark": "This is the version that was being applied when this softwere was developed",
+    "intervals": [
+      {
+        "id": 1,
+        "description": "Excellent",
+        "min": 90.0,
+        "max": 100.0,
+        "givenValue": 4.0,
+        "gradeLetter": "A+"
+      },
+      {
+        "id": 2,
+        "description": "Excellent",
+        "min": 85.0,
+        "max": 89.999,
+        "givenValue": 4.0,
+        "gradeLetter": "A"
+      },
+      {
+        "id": 3,
+        "description": "Very Good",
+        "min": 80.0,
+        "max": 84.999,
+        "givenValue": 3.5,
+        "gradeLetter": "B+"
+      },
+      {
+        "id": 4,
+        "description": "Good",
+        "min": 70.0,
+        "max": 79.999,
+        "givenValue": 3.0,
+        "gradeLetter": "B"
+      },
+      {
+        "id": 5,
+        "description": "Good Minus",
+        "min": 65.0,
+        "max": 69.999,
+        "givenValue": 2.5,
+        "gradeLetter": "C+"
+      },
+      {
+        "id": 6,
+        "description": "Satisfactory",
+        "min": 50.0,
+        "max": 64.999,
+        "givenValue": 2.0,
+        "gradeLetter": "C"
+      },
+      {
+        "id": 7,
+        "description": "Unsatisfactory",
+        "min": 45.0,
+        "max": 49.999,
+        "givenValue": 1.75,
+        "gradeLetter": "D"
+      },
+      {
+        "id": 8,
+        "description": "Fail",
+        "min": 0.0,
+        "max": 44.999,
+        "givenValue": 0.0,
+        "gradeLetter": "F"
+      }
+    ],
+    "active": true
+  },
+  {
+    "id": 2,
+    "versionName": "2026 Revised",
+    "departmentId": 2,
+    "departmentName": "Medicine",
+    "remark": "This is for medicine",
+    "intervals": [
+      {
+        "id": 9,
+        "description": "Fail",
+        "min": 0.0,
+        "max": 49.999,
+        "givenValue": 0.0,
+        "gradeLetter": "F"
+      },
+      {
+        "id": 10,
+        "description": "Below Pass Mark",
+        "min": 50.0,
+        "max": 59.999,
+        "givenValue": 1.0,
+        "gradeLetter": "D"
+      },
+      {
+        "id": 11,
+        "description": "Fair",
+        "min": 60.0,
+        "max": 64.999,
+        "givenValue": 2.0,
+        "gradeLetter": "C"
+      },
+      {
+        "id": 12,
+        "description": "Satisfactory",
+        "min": 65.0,
+        "max": 69.999,
+        "givenValue": 2.5,
+        "gradeLetter": "C+"
+      },
+      {
+        "id": 13,
+        "description": "Good",
+        "min": 70.0,
+        "max": 79.999,
+        "givenValue": 3.0,
+        "gradeLetter": "B"
+      },
+      {
+        "id": 14,
+        "description": "Very Good",
+        "min": 80.0,
+        "max": 84.999,
+        "givenValue": 3.5,
+        "gradeLetter": "B+"
+      },
+      {
+        "id": 15,
+        "description": "Excellent",
+        "min": 85.0,
+        "max": 89.999,
+        "givenValue": 4.0,
+        "gradeLetter": "A"
+      },
+      {
+        "id": 16,
+        "description": "Excellent",
+        "min": 90.0,
+        "max": 100.0,
+        "givenValue": 4.0,
+        "gradeLetter": "A+"
+      }
+    ],
+    "active": true
+  },
+  {
+    "id": 6,
+    "versionName": "kenya",
+    "departmentId": null,
+    "departmentName": null,
+    "remark": "",
+    "intervals": [
+      {
+        "id": 30,
+        "description": "bad",
+        "min": 0.0,
+        "max": 69.99,
+        "givenValue": 0.0,
+        "gradeLetter": "F"
+      },
+      {
+        "id": 31,
+        "description": "good",
+        "min": 70.0,
+        "max": 79.99,
+        "givenValue": 4.0,
+        "gradeLetter": "C-"
+      },
+      {
+        "id": 32,
+        "description": "excellent ",
+        "min": 80.0,
+        "max": 89.99,
+        "givenValue": 4.0,
+        "gradeLetter": "A"
+      },
+      {
+        "id": 33,
+        "description": "excellent",
+        "min": 90.0,
+        "max": 100.0,
+        "givenValue": 4.0,
+        "gradeLetter": "A+"
+      }
+    ],
+    "active": false
+  }
+]

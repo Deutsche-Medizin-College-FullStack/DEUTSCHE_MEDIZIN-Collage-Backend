@@ -6,6 +6,7 @@ import Henok.example.DeutscheCollageBack_endAPI.Entity.MOE_Data.ProgramModality;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DepartmentRepo extends JpaRepository<Department, Long> {
     boolean existsByDepartmentCode(String departmentCode);
@@ -19,4 +20,6 @@ public interface DepartmentRepo extends JpaRepository<Department, Long> {
     boolean existsByProgramLevel(ProgramLevel level);
 
     boolean existsByProgramModality(ProgramModality modality);
+
+    Optional<Department> findByDepartmentCode(String deptCode);
 }

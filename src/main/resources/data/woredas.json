@@ -1,0 +1,5462 @@
+[
+  {
+    "woredaCode": "1000",
+    "woreda": "1(AKAKI KALITI)",
+    "zoneCode": "AKK"
+  },
+  {
+    "woredaCode": "1001",
+    "woreda": "1(ARADA)",
+    "zoneCode": "ARA"
+  },
+  {
+    "woredaCode": "1002",
+    "woreda": "1(BOLE)",
+    "zoneCode": "BOL"
+  },
+  {
+    "woredaCode": "1003",
+    "woreda": "1(GULELLE)",
+    "zoneCode": "GUL"
+  },
+  {
+    "woredaCode": "1004",
+    "woreda": "1(KOLFE)",
+    "zoneCode": "KOL"
+  },
+  {
+    "woredaCode": "1005",
+    "woreda": "1(NIFAS SILK LAFTO)",
+    "zoneCode": "NES"
+  },
+  {
+    "woredaCode": "1006",
+    "woreda": "10(ADDIS KETEMA)",
+    "zoneCode": "ADK"
+  },
+  {
+    "woredaCode": "1007",
+    "woreda": "10(GULELLE)",
+    "zoneCode": "GUL"
+  },
+  {
+    "woredaCode": "1008",
+    "woreda": "10(LEDETA)",
+    "zoneCode": "LED"
+  },
+  {
+    "woredaCode": "1009",
+    "woreda": "10(YEKA)",
+    "zoneCode": "YEK"
+  },
+  {
+    "woredaCode": "1010",
+    "woreda": "11(KIRKOS)",
+    "zoneCode": "KIR"
+  },
+  {
+    "woredaCode": "1011",
+    "woreda": "11(YEKA)",
+    "zoneCode": "YEK"
+  },
+  {
+    "woredaCode": "1012",
+    "woreda": "12(AKAKI KALITI)",
+    "zoneCode": "AKK"
+  },
+  {
+    "woredaCode": "1013",
+    "woreda": "12(BOLE)",
+    "zoneCode": "BOL"
+  },
+  {
+    "woredaCode": "1014",
+    "woreda": "12(KOLFE)",
+    "zoneCode": "KOL"
+  },
+  {
+    "woredaCode": "1015",
+    "woreda": "12(NIFAS SILK LAFTO)",
+    "zoneCode": "NES"
+  },
+  {
+    "woredaCode": "1016",
+    "woreda": "12(YEKA)",
+    "zoneCode": "YEK"
+  },
+  {
+    "woredaCode": "1017",
+    "woreda": "13(AKAKI KALITI)",
+    "zoneCode": "AKK"
+  },
+  {
+    "woredaCode": "1018",
+    "woreda": "13(BOLE)",
+    "zoneCode": "BOL"
+  },
+  {
+    "woredaCode": "1019",
+    "woreda": "13(KOLFE)",
+    "zoneCode": "KOL"
+  },
+  {
+    "woredaCode": "1020",
+    "woreda": "13(LEMI KURA)",
+    "zoneCode": "LEK"
+  },
+  {
+    "woredaCode": "1021",
+    "woreda": "13(NIFAS SILK LAFTO)",
+    "zoneCode": "NES"
+  },
+  {
+    "woredaCode": "1022",
+    "woreda": "14(BOLE)",
+    "zoneCode": "BOL"
+  },
+  {
+    "woredaCode": "1023",
+    "woreda": "14(KOLFE)",
+    "zoneCode": "KOL"
+  },
+  {
+    "woredaCode": "1024",
+    "woreda": "14(LEMI KURA)",
+    "zoneCode": "LEK"
+  },
+  {
+    "woredaCode": "1025",
+    "woreda": "15(KOLFE)",
+    "zoneCode": "KOL"
+  },
+  {
+    "woredaCode": "1026",
+    "woreda": "2(ARADA)",
+    "zoneCode": "ARA"
+  },
+  {
+    "woredaCode": "1027",
+    "woreda": "2(BOLE)",
+    "zoneCode": "BOL"
+  },
+  {
+    "woredaCode": "1028",
+    "woreda": "2(GULELLE)",
+    "zoneCode": "GUL"
+  },
+  {
+    "woredaCode": "1029",
+    "woreda": "2(KIRKOS)",
+    "zoneCode": "KIR"
+  },
+  {
+    "woredaCode": "1030",
+    "woreda": "2(KOLFE)",
+    "zoneCode": "KOL"
+  },
+  {
+    "woredaCode": "1031",
+    "woreda": "2(LEMI KURA)",
+    "zoneCode": "LEK"
+  },
+  {
+    "woredaCode": "1032",
+    "woreda": "2(NIFAS SILK LAFTO)",
+    "zoneCode": "NES"
+  },
+  {
+    "woredaCode": "1033",
+    "woreda": "2(YEKA)",
+    "zoneCode": "YEK"
+  },
+  {
+    "woredaCode": "1034",
+    "woreda": "3(ADDIS KETEMA)",
+    "zoneCode": "ADK"
+  },
+  {
+    "woredaCode": "1035",
+    "woreda": "3(AKAKI KALITI)",
+    "zoneCode": "AKK"
+  },
+  {
+    "woredaCode": "1036",
+    "woreda": "3(ARADA)",
+    "zoneCode": "ARA"
+  },
+  {
+    "woredaCode": "1037",
+    "woreda": "3(BOLE)",
+    "zoneCode": "BOL"
+  },
+  {
+    "woredaCode": "1038",
+    "woreda": "3(KIRKOS)",
+    "zoneCode": "KIR"
+  },
+  {
+    "woredaCode": "1039",
+    "woreda": "3(KOLFE)",
+    "zoneCode": "KOL"
+  },
+  {
+    "woredaCode": "1040",
+    "woreda": "3(NIFAS SILK LAFTO)",
+    "zoneCode": "NES"
+  },
+  {
+    "woredaCode": "1041",
+    "woreda": "4(AKAKI KALITI)",
+    "zoneCode": "AKK"
+  },
+  {
+    "woredaCode": "1042",
+    "woreda": "4(ARADA)",
+    "zoneCode": "ARA"
+  },
+  {
+    "woredaCode": "1043",
+    "woreda": "4(BOLE)",
+    "zoneCode": "BOL"
+  },
+  {
+    "woredaCode": "1044",
+    "woreda": "4(GULELLE)",
+    "zoneCode": "GUL"
+  },
+  {
+    "woredaCode": "1045",
+    "woreda": "4(KIRKOS)",
+    "zoneCode": "KIR"
+  },
+  {
+    "woredaCode": "1046",
+    "woreda": "4(KOLFE)",
+    "zoneCode": "KOL"
+  },
+  {
+    "woredaCode": "1047",
+    "woreda": "4(LEDETA)",
+    "zoneCode": "LED"
+  },
+  {
+    "woredaCode": "1048",
+    "woreda": "4(NIFAS SILK LAFTO)",
+    "zoneCode": "NES"
+  },
+  {
+    "woredaCode": "1049",
+    "woreda": "5(ADDIS KETEMA)",
+    "zoneCode": "ADK"
+  },
+  {
+    "woredaCode": "1050",
+    "woreda": "5(BOLE)",
+    "zoneCode": "BOL"
+  },
+  {
+    "woredaCode": "1051",
+    "woreda": "5(KIRKOS)",
+    "zoneCode": "KIR"
+  },
+  {
+    "woredaCode": "1052",
+    "woreda": "5(KOLFE)",
+    "zoneCode": "KOL"
+  },
+  {
+    "woredaCode": "1053",
+    "woreda": "5(LEMI KURA)",
+    "zoneCode": "LEK"
+  },
+  {
+    "woredaCode": "1054",
+    "woreda": "5(YEKA)",
+    "zoneCode": "YEK"
+  },
+  {
+    "woredaCode": "1055",
+    "woreda": "6(AKAKI KALITI)",
+    "zoneCode": "AKK"
+  },
+  {
+    "woredaCode": "1056",
+    "woreda": "6(ARADA)",
+    "zoneCode": "ARA"
+  },
+  {
+    "woredaCode": "1057",
+    "woreda": "6(BOLE)",
+    "zoneCode": "BOL"
+  },
+  {
+    "woredaCode": "1058",
+    "woreda": "6(KOLFE)",
+    "zoneCode": "KOL"
+  },
+  {
+    "woredaCode": "1059",
+    "woreda": "6(NIFAS SILK LAFTO)",
+    "zoneCode": "NES"
+  },
+  {
+    "woredaCode": "1060",
+    "woreda": "6(YEKA)",
+    "zoneCode": "YEK"
+  },
+  {
+    "woredaCode": "1061",
+    "woreda": "7(ADDIS KETEMA)",
+    "zoneCode": "ADK"
+  },
+  {
+    "woredaCode": "1062",
+    "woreda": "7(AKAKI KALITI)",
+    "zoneCode": "AKK"
+  },
+  {
+    "woredaCode": "1063",
+    "woreda": "7(ARADA)",
+    "zoneCode": "ARA"
+  },
+  {
+    "woredaCode": "1064",
+    "woreda": "7(BOLE)",
+    "zoneCode": "BOL"
+  },
+  {
+    "woredaCode": "1065",
+    "woreda": "7(GULELLE)",
+    "zoneCode": "GUL"
+  },
+  {
+    "woredaCode": "1066",
+    "woreda": "7(YEKA)",
+    "zoneCode": "YEK"
+  },
+  {
+    "woredaCode": "1067",
+    "woreda": "8(ADDIS KETEMA)",
+    "zoneCode": "ADK"
+  },
+  {
+    "woredaCode": "1068",
+    "woreda": "8(AKAKI KALITI)",
+    "zoneCode": "AKK"
+  },
+  {
+    "woredaCode": "1069",
+    "woreda": "8(ARADA)",
+    "zoneCode": "ARA"
+  },
+  {
+    "woredaCode": "1070",
+    "woreda": "8(KIRKOS)",
+    "zoneCode": "KIR"
+  },
+  {
+    "woredaCode": "1071",
+    "woreda": "8(KOLFE)",
+    "zoneCode": "KOL"
+  },
+  {
+    "woredaCode": "1072",
+    "woreda": "8(LEMI KURA)",
+    "zoneCode": "LEK"
+  },
+  {
+    "woredaCode": "1073",
+    "woreda": "8(YEKA)",
+    "zoneCode": "YEK"
+  },
+  {
+    "woredaCode": "1074",
+    "woreda": "9(ARADA)",
+    "zoneCode": "ARA"
+  },
+  {
+    "woredaCode": "1075",
+    "woreda": "9(GULELLE)",
+    "zoneCode": "GUL"
+  },
+  {
+    "woredaCode": "1076",
+    "woreda": "9(KIRKOS)",
+    "zoneCode": "KIR"
+  },
+  {
+    "woredaCode": "1077",
+    "woreda": "9(KOLFE)",
+    "zoneCode": "KOL"
+  },
+  {
+    "woredaCode": "1078",
+    "woreda": "9(LEDETA)",
+    "zoneCode": "LED"
+  },
+  {
+    "woredaCode": "1079",
+    "woreda": "9(LEMI KURA)",
+    "zoneCode": "LEK"
+  },
+  {
+    "woredaCode": "1080",
+    "woreda": "9(NIFAS SILK LAFTO)",
+    "zoneCode": "NES"
+  },
+  {
+    "woredaCode": "1081",
+    "woreda": "9(YEKA)",
+    "zoneCode": "YEK"
+  },
+  {
+    "woredaCode": "1083",
+    "woreda": "A/MINCH CITY AD.",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1084",
+    "woreda": "A/MINCH ZURIYA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1085",
+    "woreda": "ABA ALLA",
+    "zoneCode": "TWO"
+  },
+  {
+    "woredaCode": "1086",
+    "woreda": "ABAYA",
+    "zoneCode": "GUW"
+  },
+  {
+    "woredaCode": "1087",
+    "woreda": "ABDERAFI",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1088",
+    "woreda": "ABDI BORU",
+    "zoneCode": "ORO"
+  },
+  {
+    "woredaCode": "1089",
+    "woreda": "ABE DONGORO",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1090",
+    "woreda": "ABELA ABAYA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1091",
+    "woreda": "ABERGELE(WAGHEMERA)",
+    "zoneCode": "WAG"
+  },
+  {
+    "woredaCode": "1093",
+    "woreda": "ABESHIGE",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1095",
+    "woreda": "ABEYI CHOMAN",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1096",
+    "woreda": "ABICHU GNA",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "1097",
+    "woreda": "ABOBO",
+    "zoneCode": "AGN"
+  },
+  {
+    "woredaCode": "1098",
+    "woreda": "ABUNA GINDEBERET",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1099",
+    "woreda": "ADABA",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1100",
+    "woreda": "ADADLE",
+    "zoneCode": "SHB"
+  },
+  {
+    "woredaCode": "1101",
+    "woreda": "ADAGN AGER CHAQO",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1102",
+    "woreda": "ADAMA",
+    "zoneCode": "SHE"
+  },
+  {
+    "woredaCode": "1103",
+    "woreda": "ADAMA TOWN",
+    "zoneCode": "ADT"
+  },
+  {
+    "woredaCode": "1104",
+    "woreda": "ADAMI TULU",
+    "zoneCode": "SHE"
+  },
+  {
+    "woredaCode": "1106",
+    "woreda": "ADARE",
+    "zoneCode": "ONE"
+  },
+  {
+    "woredaCode": "1107",
+    "woreda": "ADARKAY",
+    "zoneCode": "GON"
+  },
+  {
+    "woredaCode": "1108",
+    "woreda": "ADEA BERGA",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1109",
+    "woreda": "ADILO",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "1110",
+    "woreda": "ADIYO",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "1111",
+    "woreda": "ADO SHAKISO",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1112",
+    "woreda": "ADOLA REDE",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1113",
+    "woreda": "ADOLA WAYU TOWN",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1114",
+    "woreda": "ADOLA WOYU",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1115",
+    "woreda": "ADWA(U)",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "1116",
+    "woreda": "AFDA ATA",
+    "zoneCode": "ONE"
+  },
+  {
+    "woredaCode": "1117",
+    "woreda": "AFDAM",
+    "zoneCode": "SIT"
+  },
+  {
+    "woredaCode": "1118",
+    "woreda": "AFDERA",
+    "zoneCode": "TWO"
+  },
+  {
+    "woredaCode": "1119",
+    "woreda": "AGA WAYU",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1120",
+    "woreda": "AGARFA",
+    "zoneCode": "BAL"
+  },
+  {
+    "woredaCode": "1121",
+    "woreda": "AGARO",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1122",
+    "woreda": "AGARO TOWN",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1123",
+    "woreda": "AJE",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1124",
+    "woreda": "AKAKI",
+    "zoneCode": "FIZ"
+  },
+  {
+    "woredaCode": "1125",
+    "woreda": "AKOBO",
+    "zoneCode": "NUE"
+  },
+  {
+    "woredaCode": "1126",
+    "woreda": "ALAMATA(U)",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "1128",
+    "woreda": "ALE",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1129",
+    "woreda": "ALEFA",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "1130",
+    "woreda": "ALELTU",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "1131",
+    "woreda": "ALEM KETEMA",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1132",
+    "woreda": "ALETA WONDO",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1133",
+    "woreda": "ALETA WONDO TOWN",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1134",
+    "woreda": "ALGE SACHI",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1135",
+    "woreda": "ALIBIKO",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1136",
+    "woreda": "ALICHO WURIRO",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "1137",
+    "woreda": "ALLE",
+    "zoneCode": "ESP"
+  },
+  {
+    "woredaCode": "1138",
+    "woreda": "AMARO",
+    "zoneCode": "AMA"
+  },
+  {
+    "woredaCode": "1139",
+    "woreda": "AMBASEL",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1140",
+    "woreda": "AMBELA WAMENA",
+    "zoneCode": "GUW"
+  },
+  {
+    "woredaCode": "1141",
+    "woreda": "AMBO TOWN",
+    "zoneCode": "AMT"
+  },
+  {
+    "woredaCode": "1142",
+    "woreda": "AMEKA",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1143",
+    "woreda": "AMEYA",
+    "zoneCode": "SSW"
+  },
+  {
+    "woredaCode": "1144",
+    "woreda": "AMEYA CITY",
+    "zoneCode": "KOT"
+  },
+  {
+    "woredaCode": "1145",
+    "woreda": "AMIBARA",
+    "zoneCode": "THREE"
+  },
+  {
+    "woredaCode": "1146",
+    "woreda": "AMIGNA",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1147",
+    "woreda": "AMURU",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1148",
+    "woreda": "ANA SORA",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1149",
+    "woreda": "ANALEMO",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1151",
+    "woreda": "ANCHER",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1152",
+    "woreda": "ANDABET",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "1153",
+    "woreda": "ANDRACHA",
+    "zoneCode": "SHK"
+  },
+  {
+    "woredaCode": "1154",
+    "woreda": "ANEDED",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1155",
+    "woreda": "ANFILO",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1156",
+    "woreda": "ANGACHA",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "1158",
+    "woreda": "ANGOT",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "1159",
+    "woreda": "ANKESHA",
+    "zoneCode": "AWI"
+  },
+  {
+    "woredaCode": "1160",
+    "woreda": "ANKOBER",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1162",
+    "woreda": "ARAARSO",
+    "zoneCode": "JAR"
+  },
+  {
+    "woredaCode": "1163",
+    "woreda": "ARBA MINCH TOWN",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1164",
+    "woreda": "ARBA MINCH ZURIA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1165",
+    "woreda": "ARBE BORDODE",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1166",
+    "woreda": "ARBEGONA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1167",
+    "woreda": "AREKA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1168",
+    "woreda": "AREKA TOWN",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1169",
+    "woreda": "ARERO",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "1170",
+    "woreda": "ARERTI",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1171",
+    "woreda": "ARGOBA(AFAR)",
+    "zoneCode": "THREE"
+  },
+  {
+    "woredaCode": "1172",
+    "woreda": "ARGOBA(WOLLO SOUTH)",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1173",
+    "woreda": "ARORESA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1174",
+    "woreda": "ARSI NEGELE",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1175",
+    "woreda": "ARTUMA FURSSI",
+    "zoneCode": "ORO"
+  },
+  {
+    "woredaCode": "1176",
+    "woreda": "ASEKO",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1177",
+    "woreda": "ASSELA TOWN",
+    "zoneCode": "ASET"
+  },
+  {
+    "woredaCode": "1178",
+    "woreda": "ASSOSA TOWN",
+    "zoneCode": "ASOT"
+  },
+  {
+    "woredaCode": "1179",
+    "woreda": "ATAYE",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1180",
+    "woreda": "ATOTIULO",
+    "zoneCode": "HAL"
+  },
+  {
+    "woredaCode": "1181",
+    "woreda": "AWABEL",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1182",
+    "woreda": "AWARE",
+    "zoneCode": "JAR"
+  },
+  {
+    "woredaCode": "1183",
+    "woreda": "AWASH FENTALE",
+    "zoneCode": "THREE"
+  },
+  {
+    "woredaCode": "1184",
+    "woreda": "AWASH KETEMA",
+    "zoneCode": "THREE"
+  },
+  {
+    "woredaCode": "1185",
+    "woreda": "AWBERRE",
+    "zoneCode": "FAA"
+  },
+  {
+    "woredaCode": "1186",
+    "woreda": "AWEDAY TOWN",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1187",
+    "woreda": "AXUM(U)",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "1188",
+    "woreda": "AYEHUGUAGUSA",
+    "zoneCode": "AWI"
+  },
+  {
+    "woredaCode": "1189",
+    "woreda": "AYIRA",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1190",
+    "woreda": "AYISHACA",
+    "zoneCode": "SIT"
+  },
+  {
+    "woredaCode": "1191",
+    "woreda": "B.MAJI CITY ADM.",
+    "zoneCode": "BES"
+  },
+  {
+    "woredaCode": "1192",
+    "woreda": "BABILE",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1193",
+    "woreda": "BABILE TOWN",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1194",
+    "woreda": "BABILE(FAFAN)",
+    "zoneCode": "FAA"
+  },
+  {
+    "woredaCode": "1195",
+    "woreda": "BABILE(HARARGIE EAST)",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1196",
+    "woreda": "BABO GEMBEL",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1197",
+    "woreda": "BACHO",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1198",
+    "woreda": "BAHIR DAR",
+    "zoneCode": "BAD"
+  },
+  {
+    "woredaCode": "1199",
+    "woreda": "BAHIR DAR ZURIYA",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1200",
+    "woreda": "BAHIR DAR(GOJJAM WEST)",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1201",
+    "woreda": "BAHR DAR ZURIA",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1202",
+    "woreda": "BAKO TIBE",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1203",
+    "woreda": "BALCHI",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1204",
+    "woreda": "BAMBASI",
+    "zoneCode": "ASS"
+  },
+  {
+    "woredaCode": "1205",
+    "woreda": "BANEJA",
+    "zoneCode": "AWI"
+  },
+  {
+    "woredaCode": "1207",
+    "woreda": "BARAK",
+    "zoneCode": "FIZ"
+  },
+  {
+    "woredaCode": "1208",
+    "woreda": "BARE",
+    "zoneCode": "AFD"
+  },
+  {
+    "woredaCode": "1209",
+    "woreda": "BASKETO",
+    "zoneCode": "BAS"
+  },
+  {
+    "woredaCode": "1210",
+    "woreda": "BASO ENA WERANA",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1211",
+    "woreda": "BASOLIBEN",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1213",
+    "woreda": "BATI TOWN",
+    "zoneCode": "ORO"
+  },
+  {
+    "woredaCode": "1214",
+    "woreda": "BATI WEREDA",
+    "zoneCode": "ORO"
+  },
+  {
+    "woredaCode": "1215",
+    "woreda": "BATU TOWN",
+    "zoneCode": "BAT"
+  },
+  {
+    "woredaCode": "1216",
+    "woreda": "BAYRA KOYSHA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1217",
+    "woreda": "BECHO(ILLUABABOR)",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1218",
+    "woreda": "BECHO(SHOA SOUTH WEST)",
+    "zoneCode": "SSW"
+  },
+  {
+    "woredaCode": "1219",
+    "woreda": "BEDELE",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "1220",
+    "woreda": "BEDELE TOWN",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "1221",
+    "woreda": "BEDELE WOREDA",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "1222",
+    "woreda": "BEDENO",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1223",
+    "woreda": "BEDESA TOWN",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1224",
+    "woreda": "BEERCAANO",
+    "zoneCode": "SHB"
+  },
+  {
+    "woredaCode": "1225",
+    "woreda": "BEGHI",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1226",
+    "woreda": "BEGI",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1227",
+    "woreda": "BEKOJI TOWN",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1228",
+    "woreda": "BELE GESKAR",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1229",
+    "woreda": "BENA-TSEMAY",
+    "zoneCode": "OMS"
+  },
+  {
+    "woredaCode": "1230",
+    "woreda": "BENSA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1231",
+    "woreda": "BER ANO",
+    "zoneCode": "SHB"
+  },
+  {
+    "woredaCode": "1232",
+    "woreda": "BERBARE",
+    "zoneCode": "BAL"
+  },
+  {
+    "woredaCode": "1233",
+    "woreda": "BEREHET",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1234",
+    "woreda": "BERHALE",
+    "zoneCode": "TWO"
+  },
+  {
+    "woredaCode": "1235",
+    "woreda": "BERO",
+    "zoneCode": "OMW"
+  },
+  {
+    "woredaCode": "1236",
+    "woreda": "BEYDA",
+    "zoneCode": "GON"
+  },
+  {
+    "woredaCode": "1237",
+    "woreda": "BIBUGN",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1238",
+    "woreda": "BIFTU AIRA",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1239",
+    "woreda": "BILATE ZURIYA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1241",
+    "woreda": "BILONOPA",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1242",
+    "woreda": "BIRBIRSA KOJOWA",
+    "zoneCode": "GUW"
+  },
+  {
+    "woredaCode": "1243",
+    "woreda": "BISHAN GURACHA",
+    "zoneCode": "BIG"
+  },
+  {
+    "woredaCode": "1244",
+    "woreda": "BISHOFTU TOWN",
+    "zoneCode": "BIT"
+  },
+  {
+    "woredaCode": "1245",
+    "woreda": "BITA",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "1246",
+    "woreda": "BODITI KETEMA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1247",
+    "woreda": "BODOTTI TOWN",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1248",
+    "woreda": "BOH",
+    "zoneCode": "DOO"
+  },
+  {
+    "woredaCode": "1249",
+    "woreda": "BOJI CHEKORSA",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1250",
+    "woreda": "BOJI CHOKORSA",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1251",
+    "woreda": "BOJI DERMEJI",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1252",
+    "woreda": "BOKE",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1253",
+    "woreda": "BOKH",
+    "zoneCode": "DOO"
+  },
+  {
+    "woredaCode": "1256",
+    "woreda": "BOLOSO BOMBIE",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1257",
+    "woreda": "BOLOSO SORE",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1258",
+    "woreda": "BONA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1259",
+    "woreda": "BONAYYAA BOSHE",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1261",
+    "woreda": "BONGA",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "1262",
+    "woreda": "BONKE",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1264",
+    "woreda": "BORA",
+    "zoneCode": "SHE"
+  },
+  {
+    "woredaCode": "1265",
+    "woreda": "BORA (OROMIA AMHARA)",
+    "zoneCode": "ORO"
+  },
+  {
+    "woredaCode": "1266",
+    "woreda": "BORE",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1267",
+    "woreda": "BORECHA",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "1268",
+    "woreda": "BOREDA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1269",
+    "woreda": "BORENA",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1270",
+    "woreda": "BORENA (WOLLO SOUTH)",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1271",
+    "woreda": "BORICHA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1272",
+    "woreda": "BOSET",
+    "zoneCode": "SHE"
+  },
+  {
+    "woredaCode": "1273",
+    "woreda": "BOTOR TOLAY",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1274",
+    "woreda": "BUGNA",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "1275",
+    "woreda": "BULE",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "1276",
+    "woreda": "BULE HORA TOWN",
+    "zoneCode": "GUW"
+  },
+  {
+    "woredaCode": "1277",
+    "woreda": "BULE(GEDEO)",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "1278",
+    "woreda": "BULEHORA",
+    "zoneCode": "GUW"
+  },
+  {
+    "woredaCode": "1279",
+    "woreda": "BULGA",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1280",
+    "woreda": "BULKI",
+    "zoneCode": "GOF"
+  },
+  {
+    "woredaCode": "1281",
+    "woreda": "BULLEN",
+    "zoneCode": "MET"
+  },
+  {
+    "woredaCode": "1282",
+    "woreda": "BURAYU (FINFINE)",
+    "zoneCode": "BUR"
+  },
+  {
+    "woredaCode": "1283",
+    "woreda": "BURE",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1286",
+    "woreda": "BUREI ZURIA",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1287",
+    "woreda": "BURIE CITY",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1288",
+    "woreda": "BURKA DINTU",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1289",
+    "woreda": "BURRA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1291",
+    "woreda": "BURUSA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1292",
+    "woreda": "BUTAJIRA",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1293",
+    "woreda": "CABBE GAMBELTU",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1294",
+    "woreda": "CADAADLEY",
+    "zoneCode": "SHB"
+  },
+  {
+    "woredaCode": "1295",
+    "woreda": "CELKARI",
+    "zoneCode": "AFD"
+  },
+  {
+    "woredaCode": "1296",
+    "woreda": "CENTERAL ARMACHOHO",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "1297",
+    "woreda": "CHACHA",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1298",
+    "woreda": "CHAGNI",
+    "zoneCode": "AWI"
+  },
+  {
+    "woredaCode": "1300",
+    "woreda": "CHEHA",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1301",
+    "woreda": "CHELIYA",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1302",
+    "woreda": "CHENA",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "1303",
+    "woreda": "CHENCHA CITY AD.",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1304",
+    "woreda": "CHENCHA ZURIA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1305",
+    "woreda": "CHETA",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "1306",
+    "woreda": "CHEWAKA",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "1307",
+    "woreda": "CHIDA CITY",
+    "zoneCode": "KOT"
+  },
+  {
+    "woredaCode": "1308",
+    "woreda": "CHIFRA",
+    "zoneCode": "ONE"
+  },
+  {
+    "woredaCode": "1309",
+    "woreda": "CHILGA NO 1",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "1310",
+    "woreda": "CHINAKSEN",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1311",
+    "woreda": "CHIRE",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1312",
+    "woreda": "CHIRO",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1313",
+    "woreda": "CHIRO TOWN",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1314",
+    "woreda": "CHIRONE",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1315",
+    "woreda": "CHOBI",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1316",
+    "woreda": "CHOLE",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1317",
+    "woreda": "CHOMEN  GUDURU",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1318",
+    "woreda": "CHORA",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "1319",
+    "woreda": "CHORA BOTOR",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1320",
+    "woreda": "CHORSO WERDA",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "1321",
+    "woreda": "CHUKO",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1322",
+    "woreda": "DABAT",
+    "zoneCode": "GON"
+  },
+  {
+    "woredaCode": "1323",
+    "woreda": "DABO HANA",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "1324",
+    "woreda": "DABUANA",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "1325",
+    "woreda": "DACHI",
+    "zoneCode": "SSW"
+  },
+  {
+    "woredaCode": "1326",
+    "woreda": "DALE SADI",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1328",
+    "woreda": "DALE WABERA",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1329",
+    "woreda": "DALI FAGE",
+    "zoneCode": "FIVE"
+  },
+  {
+    "woredaCode": "1330",
+    "woreda": "DALLOL",
+    "zoneCode": "TWO"
+  },
+  {
+    "woredaCode": "1331",
+    "woreda": "DALOCHA",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "1332",
+    "woreda": "DAMA",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1334",
+    "woreda": "DAMBOYA",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "1335",
+    "woreda": "DAMOT GALE",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1337",
+    "woreda": "DAMOT SORE",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1338",
+    "woreda": "DAMOT WOYDE",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1339",
+    "woreda": "DAMOTE PULASA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1340",
+    "woreda": "DAMOTGALE",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1342",
+    "woreda": "DANBAL",
+    "zoneCode": "SIT"
+  },
+  {
+    "woredaCode": "1343",
+    "woreda": "DANGILA",
+    "zoneCode": "AWI"
+  },
+  {
+    "woredaCode": "1344",
+    "woreda": "DANGILA TOWN",
+    "zoneCode": "AWI"
+  },
+  {
+    "woredaCode": "1345",
+    "woreda": "DANGUR",
+    "zoneCode": "MET"
+  },
+  {
+    "woredaCode": "1346",
+    "woreda": "DANNOOD",
+    "zoneCode": "DOO"
+  },
+  {
+    "woredaCode": "1347",
+    "woreda": "DANNOT",
+    "zoneCode": "DOO"
+  },
+  {
+    "woredaCode": "1348",
+    "woreda": "DANO",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1349",
+    "woreda": "DARA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1350",
+    "woreda": "DARA MALO",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1351",
+    "woreda": "DARA OTILCHO",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1352",
+    "woreda": "DARAMALO",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1353",
+    "woreda": "DARARA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1355",
+    "woreda": "DARIMUU",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1356",
+    "woreda": "DARO LEBU",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1357",
+    "woreda": "DAROOR",
+    "zoneCode": "JAR"
+  },
+  {
+    "woredaCode": "1358",
+    "woreda": "DASENCH",
+    "zoneCode": "OMS"
+  },
+  {
+    "woredaCode": "1359",
+    "woreda": "DAWE QUACHEN",
+    "zoneCode": "EAB"
+  },
+  {
+    "woredaCode": "1360",
+    "woreda": "DAWE SARAR",
+    "zoneCode": "EAB"
+  },
+  {
+    "woredaCode": "1362",
+    "woreda": "DAWO",
+    "zoneCode": "SSW"
+  },
+  {
+    "woredaCode": "1363",
+    "woreda": "DAWUNT",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "1364",
+    "woreda": "DEBARK",
+    "zoneCode": "GON"
+  },
+  {
+    "woredaCode": "1365",
+    "woreda": "DEBAY TILAT GIN",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1367",
+    "woreda": "DEBRE BIRHAN",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1368",
+    "woreda": "DEBRE ELIAS",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1369",
+    "woreda": "DEBRE LIBANOS",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "1370",
+    "woreda": "DEBRE MARKOS",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1371",
+    "woreda": "DEBRESINA",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1372",
+    "woreda": "DEBRETABOR",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "1373",
+    "woreda": "DEBUB ARI",
+    "zoneCode": "OMS"
+  },
+  {
+    "woredaCode": "1374",
+    "woreda": "DEBUB-BENCH",
+    "zoneCode": "BES"
+  },
+  {
+    "woredaCode": "1375",
+    "woreda": "DECHA",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "1376",
+    "woreda": "DEDER",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1377",
+    "woreda": "DEDER TOWN",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1378",
+    "woreda": "DEDO",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1379",
+    "woreda": "DEGA",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "1380",
+    "woreda": "DEGA DAMOT",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1381",
+    "woreda": "DEGAHMADAW",
+    "zoneCode": "JAR"
+  },
+  {
+    "woredaCode": "1382",
+    "woreda": "DEGEM",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "1383",
+    "woreda": "DEHANA(WAGEHMRA)",
+    "zoneCode": "WAG"
+  },
+  {
+    "woredaCode": "1385",
+    "woreda": "DEJEN",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1387",
+    "woreda": "DELANTA",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1388",
+    "woreda": "DELLO MENA",
+    "zoneCode": "BAL"
+  },
+  {
+    "woredaCode": "1390",
+    "woreda": "DEMBAGOFA",
+    "zoneCode": "GOF"
+  },
+  {
+    "woredaCode": "1391",
+    "woreda": "DEMBECHA",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1392",
+    "woreda": "DEMBI DOLO",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1394",
+    "woreda": "DENDI",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1395",
+    "woreda": "DENEBA",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1396",
+    "woreda": "DERA(GONDER SOUTH)",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "1397",
+    "woreda": "DERA(OROMIA)",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "1398",
+    "woreda": "DERASHE",
+    "zoneCode": "DSP"
+  },
+  {
+    "woredaCode": "1399",
+    "woreda": "DERATOLE",
+    "zoneCode": "DOO"
+  },
+  {
+    "woredaCode": "1400",
+    "woreda": "DESSIE",
+    "zoneCode": "DET"
+  },
+  {
+    "woredaCode": "1401",
+    "woreda": "DESSIE TOWN",
+    "zoneCode": "DET"
+  },
+  {
+    "woredaCode": "1402",
+    "woreda": "DESSIE ZURIA",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1403",
+    "woreda": "DEWA CHEFA",
+    "zoneCode": "ORO"
+  },
+  {
+    "woredaCode": "1404",
+    "woreda": "DEWE HAREWA",
+    "zoneCode": "ORO"
+  },
+  {
+    "woredaCode": "1405",
+    "woreda": "DEWEE",
+    "zoneCode": "FIVE"
+  },
+  {
+    "woredaCode": "1406",
+    "woreda": "DHAKASOFTU",
+    "zoneCode": "LII"
+  },
+  {
+    "woredaCode": "1407",
+    "woreda": "DHANA",
+    "zoneCode": "SHB"
+  },
+  {
+    "woredaCode": "1408",
+    "woreda": "DHAS",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "1409",
+    "woreda": "DHEGAHABOUR",
+    "zoneCode": "JAR"
+  },
+  {
+    "woredaCode": "1410",
+    "woreda": "DHOOBOWEYN",
+    "zoneCode": "QOR"
+  },
+  {
+    "woredaCode": "1411",
+    "woreda": "DIBATIE",
+    "zoneCode": "MET"
+  },
+  {
+    "woredaCode": "1412",
+    "woreda": "DIDESA",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "1413",
+    "woreda": "DIDU",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1414",
+    "woreda": "DIGA",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1415",
+    "woreda": "DIGALUNA TIJO",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1416",
+    "woreda": "DIGUNA FANGO",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1417",
+    "woreda": "DIKSIS",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1418",
+    "woreda": "DILLA CITY",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "1419",
+    "woreda": "DILLA TOWN",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "1420",
+    "woreda": "DILLA ZUIRIA",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "1421",
+    "woreda": "DILO",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "1422",
+    "woreda": "DIMMA",
+    "zoneCode": "AGN"
+  },
+  {
+    "woredaCode": "1423",
+    "woreda": "DINSHO",
+    "zoneCode": "BAL"
+  },
+  {
+    "woredaCode": "1424",
+    "woreda": "DIRE",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "1425",
+    "woreda": "DIRE DAWA",
+    "zoneCode": "DIR"
+  },
+  {
+    "woredaCode": "1427",
+    "woreda": "DIRE INCHINI",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1428",
+    "woreda": "DISA",
+    "zoneCode": "DWR"
+  },
+  {
+    "woredaCode": "1429",
+    "woreda": "DITA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1430",
+    "woreda": "DOBA",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1431",
+    "woreda": "DODOLA",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1432",
+    "woreda": "DODOLA TOWN",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1433",
+    "woreda": "DODOTA",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1434",
+    "woreda": "DOLO ADO",
+    "zoneCode": "LII"
+  },
+  {
+    "woredaCode": "1435",
+    "woreda": "DOLO CADDO",
+    "zoneCode": "LII"
+  },
+  {
+    "woredaCode": "1436",
+    "woreda": "DOLOBAY",
+    "zoneCode": "AFD"
+  },
+  {
+    "woredaCode": "1437",
+    "woreda": "DORENI",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1438",
+    "woreda": "DOTA",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1439",
+    "woreda": "DOYOGENA",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "1440",
+    "woreda": "DUBLUK",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "1441",
+    "woreda": "DUBTI",
+    "zoneCode": "ONE"
+  },
+  {
+    "woredaCode": "1442",
+    "woreda": "DUGDA",
+    "zoneCode": "SHE"
+  },
+  {
+    "woredaCode": "1443",
+    "woreda": "DUGDA DAWA",
+    "zoneCode": "GUW"
+  },
+  {
+    "woredaCode": "1445",
+    "woreda": "DUHAN",
+    "zoneCode": "NOG"
+  },
+  {
+    "woredaCode": "1446",
+    "woreda": "DUKEM TOWN",
+    "zoneCode": "DUK"
+  },
+  {
+    "woredaCode": "1447",
+    "woreda": "DULESA",
+    "zoneCode": "THREE"
+  },
+  {
+    "woredaCode": "1448",
+    "woreda": "DUNA",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1449",
+    "woreda": "DURAME",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "1450",
+    "woreda": "EAST AZE / BERBERE",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "1451",
+    "woreda": "EAST BELESA",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "1453",
+    "woreda": "EBANTU",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1454",
+    "woreda": "EBINAT",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "1456",
+    "woreda": "EJERE",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1457",
+    "woreda": "EJERSA LEFO",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1459",
+    "woreda": "ELFETA",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1460",
+    "woreda": "ELIDAR",
+    "zoneCode": "ONE"
+  },
+  {
+    "woredaCode": "1461",
+    "woreda": "ELUGELAN",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1462",
+    "woreda": "ELWAYE",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "1463",
+    "woreda": "ELWEYNE",
+    "zoneCode": "NOG"
+  },
+  {
+    "woredaCode": "1464",
+    "woreda": "EMAY BARI",
+    "zoneCode": "SHB"
+  },
+  {
+    "woredaCode": "1465",
+    "woreda": "ENARJ ENAWGA",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1466",
+    "woreda": "ENARJJ",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1467",
+    "woreda": "ENDEGAGN",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1468",
+    "woreda": "ENEBSE",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1469",
+    "woreda": "ENEBSIE SAR MIDER",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1470",
+    "woreda": "ENEMAY",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1471",
+    "woreda": "ENEMOR",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1472",
+    "woreda": "ENEMOR AND ENER",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1473",
+    "woreda": "ENEWARI",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1474",
+    "woreda": "ENJIBARA",
+    "zoneCode": "AWI"
+  },
+  {
+    "woredaCode": "1475",
+    "woreda": "ENOR ENER",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1476",
+    "woreda": "ENSARO",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1477",
+    "woreda": "EREBTI",
+    "zoneCode": "TWO"
+  },
+  {
+    "woredaCode": "1478",
+    "woreda": "ERER",
+    "zoneCode": "SIT"
+  },
+  {
+    "woredaCode": "1480",
+    "woreda": "ESSERA",
+    "zoneCode": "DWR"
+  },
+  {
+    "woredaCode": "1482",
+    "woreda": "EST DEMBYA",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "1483",
+    "woreda": "EST/BADEWACHO",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1484",
+    "woreda": "ESTIE",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "1485",
+    "woreda": "EWA",
+    "zoneCode": "FOUR"
+  },
+  {
+    "woredaCode": "1486",
+    "woreda": "EZHA",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1488",
+    "woreda": "FAGITA LEKOMA",
+    "zoneCode": "AWI"
+  },
+  {
+    "woredaCode": "1489",
+    "woreda": "FARTA",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "1490",
+    "woreda": "FEDIS",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1491",
+    "woreda": "FEERFEER",
+    "zoneCode": "SHB"
+  },
+  {
+    "woredaCode": "1492",
+    "woreda": "FENOTE SELAM",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1493",
+    "woreda": "FENTALE",
+    "zoneCode": "SHE"
+  },
+  {
+    "woredaCode": "1494",
+    "woreda": "FIK",
+    "zoneCode": "ERE"
+  },
+  {
+    "woredaCode": "1495",
+    "woreda": "FILTU",
+    "zoneCode": "LII"
+  },
+  {
+    "woredaCode": "1496",
+    "woreda": "FITCHE TOWN",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "1497",
+    "woreda": "FOFA",
+    "zoneCode": "YEM"
+  },
+  {
+    "woredaCode": "1498",
+    "woreda": "FOGERA",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "1499",
+    "woreda": "G/G/W",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1500",
+    "woreda": "G/GU/W",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1502",
+    "woreda": "GACHET",
+    "zoneCode": "OMW"
+  },
+  {
+    "woredaCode": "1503",
+    "woreda": "GACHO BABA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1504",
+    "woreda": "GALADI",
+    "zoneCode": "DOO"
+  },
+  {
+    "woredaCode": "1506",
+    "woreda": "GALHAMAR",
+    "zoneCode": "DOO"
+  },
+  {
+    "woredaCode": "1507",
+    "woreda": "GAMBELLA",
+    "zoneCode": "GAB"
+  },
+  {
+    "woredaCode": "1508",
+    "woreda": "GAMBELLA(AGNUWA)",
+    "zoneCode": "AGN"
+  },
+  {
+    "woredaCode": "1509",
+    "woreda": "GARBO",
+    "zoneCode": "NOG"
+  },
+  {
+    "woredaCode": "1510",
+    "woreda": "GARDA MARTA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1511",
+    "woreda": "GASERA",
+    "zoneCode": "BAL"
+  },
+  {
+    "woredaCode": "1512",
+    "woreda": "GASESA",
+    "zoneCode": "MET"
+  },
+  {
+    "woredaCode": "1513",
+    "woreda": "GASHAMO",
+    "zoneCode": "JAR"
+  },
+  {
+    "woredaCode": "1514",
+    "woreda": "GAWO KEBE",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1515",
+    "woreda": "GAZGIBLA",
+    "zoneCode": "WAG"
+  },
+  {
+    "woredaCode": "1516",
+    "woreda": "GAZO",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "1517",
+    "woreda": "GECHI",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "1518",
+    "woreda": "GEDEB",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "1519",
+    "woreda": "GEDEB HASASA",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1520",
+    "woreda": "GEDEB WORDA",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "1521",
+    "woreda": "GELAALO",
+    "zoneCode": "THREE"
+  },
+  {
+    "woredaCode": "1522",
+    "woreda": "GELADIN",
+    "zoneCode": "DOO"
+  },
+  {
+    "woredaCode": "1523",
+    "woreda": "GELAN",
+    "zoneCode": "GEL"
+  },
+  {
+    "woredaCode": "1524",
+    "woreda": "GELANA",
+    "zoneCode": "GUW"
+  },
+  {
+    "woredaCode": "1525",
+    "woreda": "GELEGU",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1526",
+    "woreda": "GEMECHIS",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1527",
+    "woreda": "GENA",
+    "zoneCode": "DWR"
+  },
+  {
+    "woredaCode": "1528",
+    "woreda": "GENJI",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1529",
+    "woreda": "GERA",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1530",
+    "woreda": "GERAWA",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1531",
+    "woreda": "GEREMI",
+    "zoneCode": "ONE"
+  },
+  {
+    "woredaCode": "1532",
+    "woreda": "GERESIE",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1533",
+    "woreda": "GESHA",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "1534",
+    "woreda": "GESUBA KETEMA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1535",
+    "woreda": "GETA",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1536",
+    "woreda": "GETO QUANTE",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1537",
+    "woreda": "GEWANE",
+    "zoneCode": "THREE"
+  },
+  {
+    "woredaCode": "1538",
+    "woreda": "GEWATA",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "1539",
+    "woreda": "GEZE GOFA",
+    "zoneCode": "GOF"
+  },
+  {
+    "woredaCode": "1540",
+    "woreda": "GIBE",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1541",
+    "woreda": "GIDA AYANA",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1542",
+    "woreda": "GIDAME",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1543",
+    "woreda": "GIDAMI",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1544",
+    "woreda": "GIDAN",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "1545",
+    "woreda": "GIDI-BENCH",
+    "zoneCode": "BES"
+  },
+  {
+    "woredaCode": "1546",
+    "woreda": "GIDOLE",
+    "zoneCode": "DSP"
+  },
+  {
+    "woredaCode": "1547",
+    "woreda": "GIDOLE TOWN",
+    "zoneCode": "DSP"
+  },
+  {
+    "woredaCode": "1548",
+    "woreda": "GIMBI",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1549",
+    "woreda": "GIMBI TOWN",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1550",
+    "woreda": "GIMBICHU",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1551",
+    "woreda": "GIMBO",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "1552",
+    "woreda": "GINAGER",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1553",
+    "woreda": "GINDEBERET",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1554",
+    "woreda": "GINNIR",
+    "zoneCode": "EAB"
+  },
+  {
+    "woredaCode": "1555",
+    "woreda": "GINNIR TOWN",
+    "zoneCode": "EAB"
+  },
+  {
+    "woredaCode": "1556",
+    "woreda": "GIRAR JARSO",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "1558",
+    "woreda": "GIRJA",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1559",
+    "woreda": "GISHERABEL",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1560",
+    "woreda": "GNANGATOM",
+    "zoneCode": "OMS"
+  },
+  {
+    "woredaCode": "1561",
+    "woreda": "GOBA",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "1562",
+    "woreda": "GOBA TOWN",
+    "zoneCode": "BAL"
+  },
+  {
+    "woredaCode": "1564",
+    "woreda": "GOBU SEYO",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1565",
+    "woreda": "GODERE",
+    "zoneCode": "MEZ"
+  },
+  {
+    "woredaCode": "1566",
+    "woreda": "GODEY COUNCIL",
+    "zoneCode": "SHB"
+  },
+  {
+    "woredaCode": "1567",
+    "woreda": "GODEY WOREDA",
+    "zoneCode": "SHB"
+  },
+  {
+    "woredaCode": "1568",
+    "woreda": "GOG",
+    "zoneCode": "AGN"
+  },
+  {
+    "woredaCode": "1569",
+    "woreda": "GOLE ODA",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1570",
+    "woreda": "GOLINA",
+    "zoneCode": "FOUR"
+  },
+  {
+    "woredaCode": "1571",
+    "woreda": "GOLJANO",
+    "zoneCode": "FAA"
+  },
+  {
+    "woredaCode": "1572",
+    "woreda": "GOLOCHA(ARSI EAST)",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1573",
+    "woreda": "GOLOCHA(BALE)",
+    "zoneCode": "EAB"
+  },
+  {
+    "woredaCode": "1574",
+    "woreda": "GOLOLCHA",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1576",
+    "woreda": "GOMBORA",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1577",
+    "woreda": "GOMMA",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1578",
+    "woreda": "GOMOLE",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "1580",
+    "woreda": "GONCHA",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1581",
+    "woreda": "GONCHA SISO ENESIE",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1582",
+    "woreda": "GONDER",
+    "zoneCode": "GOT"
+  },
+  {
+    "woredaCode": "1583",
+    "woreda": "GONDER ZURIYA",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "1584",
+    "woreda": "GONJ QOLELA",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1585",
+    "woreda": "GORCHE",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1586",
+    "woreda": "GORO",
+    "zoneCode": "BAL"
+  },
+  {
+    "woredaCode": "1589",
+    "woreda": "GORO MUTI",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1590",
+    "woreda": "GORODOLA",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1591",
+    "woreda": "GOROGUTU",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1592",
+    "woreda": "GOTA BIKI",
+    "zoneCode": "SIT"
+  },
+  {
+    "woredaCode": "1593",
+    "woreda": "GOZAMIN",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1594",
+    "woreda": "GUAGUSA SHIKUDAD",
+    "zoneCode": "AWI"
+  },
+  {
+    "woredaCode": "1596",
+    "woreda": "GUANEGUA",
+    "zoneCode": "AWI"
+  },
+  {
+    "woredaCode": "1597",
+    "woreda": "GUBA",
+    "zoneCode": "MET"
+  },
+  {
+    "woredaCode": "1598",
+    "woreda": "GUBA KORICHA",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1599",
+    "woreda": "GUBA LAFTO",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "1600",
+    "woreda": "GUDAYA BILA",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1601",
+    "woreda": "GUDURU",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1602",
+    "woreda": "GULISO",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1603",
+    "woreda": "GUMAY",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1604",
+    "woreda": "GUMBI BORDODE",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1605",
+    "woreda": "GUMBICHU",
+    "zoneCode": "SHE"
+  },
+  {
+    "woredaCode": "1606",
+    "woreda": "GUMER",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1607",
+    "woreda": "GUMI ELDELO",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1608",
+    "woreda": "GUNA",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1610",
+    "woreda": "GUNA BEGIEMIDR",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "1611",
+    "woreda": "GUNAGADO",
+    "zoneCode": "JAR"
+  },
+  {
+    "woredaCode": "1612",
+    "woreda": "GUNUNO  HAMUS TOWN",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1613",
+    "woreda": "GUNUNO KETEMA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1614",
+    "woreda": "GURA DAMOLE",
+    "zoneCode": "BAL"
+  },
+  {
+    "woredaCode": "1615",
+    "woreda": "GURA FERDA",
+    "zoneCode": "BES"
+  },
+  {
+    "woredaCode": "1616",
+    "woreda": "GURADAMOLE",
+    "zoneCode": "LII"
+  },
+  {
+    "woredaCode": "1618",
+    "woreda": "GURSUM",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1619",
+    "woreda": "GURSUM(FAFAN)",
+    "zoneCode": "FAA"
+  },
+  {
+    "woredaCode": "1620",
+    "woreda": "GURSUM(HARARGIE EAST)",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1621",
+    "woreda": "GUTO GIDA",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1622",
+    "woreda": "GUY",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1623",
+    "woreda": "HABABO  GUDURU",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1625",
+    "woreda": "HABRO",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1626",
+    "woreda": "HABRU",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "1627",
+    "woreda": "HADELELA",
+    "zoneCode": "FIVE"
+  },
+  {
+    "woredaCode": "1628",
+    "woreda": "HADERO",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "1629",
+    "woreda": "HADERO TUNTO",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "1630",
+    "woreda": "HADERONA TUNTO",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "1631",
+    "woreda": "HAGER MARIAM - KESEM",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1632",
+    "woreda": "HAKIM",
+    "zoneCode": "HAR"
+  },
+  {
+    "woredaCode": "1633",
+    "woreda": "HALABA",
+    "zoneCode": "HAL"
+  },
+  {
+    "woredaCode": "1634",
+    "woreda": "HALABA TOWN",
+    "zoneCode": "HAL"
+  },
+  {
+    "woredaCode": "1635",
+    "woreda": "HALU",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1636",
+    "woreda": "HAMARO",
+    "zoneCode": "ERE"
+  },
+  {
+    "woredaCode": "1637",
+    "woreda": "HAMBELA WAMENA",
+    "zoneCode": "GUW"
+  },
+  {
+    "woredaCode": "1638",
+    "woreda": "HAMMER",
+    "zoneCode": "OMS"
+  },
+  {
+    "woredaCode": "1639",
+    "woreda": "HARAMAYA",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1640",
+    "woreda": "HARAMAYA TOWN",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1641",
+    "woreda": "HARARI",
+    "zoneCode": "HAR"
+  },
+  {
+    "woredaCode": "1642",
+    "woreda": "HARAWA",
+    "zoneCode": "FAA"
+  },
+  {
+    "woredaCode": "1644",
+    "woreda": "HAREMAYA TOWN",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1645",
+    "woreda": "HARGELE",
+    "zoneCode": "AFD"
+  },
+  {
+    "woredaCode": "1646",
+    "woreda": "HARO LIMU",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1647",
+    "woreda": "HARO WALABU",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1648",
+    "woreda": "HARSHIN",
+    "zoneCode": "FAA"
+  },
+  {
+    "woredaCode": "1649",
+    "woreda": "HAWA GELAN",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1650",
+    "woreda": "HAWASSA CITY ADM.",
+    "zoneCode": "HAT"
+  },
+  {
+    "woredaCode": "1651",
+    "woreda": "HAWASSA ZURIYA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1653",
+    "woreda": "HAWI GUDINE",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1654",
+    "woreda": "HEBEN ARSI",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1655",
+    "woreda": "HERENA BULKA",
+    "zoneCode": "BAL"
+  },
+  {
+    "woredaCode": "1656",
+    "woreda": "HETOSA",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1657",
+    "woreda": "HIDEBU ABOTE",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "1658",
+    "woreda": "HOKO",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1659",
+    "woreda": "HOLETA TOWN",
+    "zoneCode": "HOT"
+  },
+  {
+    "woredaCode": "1660",
+    "woreda": "HOMA",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1661",
+    "woreda": "HOMOSHA",
+    "zoneCode": "ASS"
+  },
+  {
+    "woredaCode": "1662",
+    "woreda": "HONKOLO WABE",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1663",
+    "woreda": "HOROBULUK",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1664",
+    "woreda": "HORRO",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1665",
+    "woreda": "HORRO  BULUK",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1666",
+    "woreda": "HOSANEA",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1667",
+    "woreda": "HOSSANA TOWN",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1668",
+    "woreda": "HUDET",
+    "zoneCode": "DWA"
+  },
+  {
+    "woredaCode": "1669",
+    "woreda": "HULA WOREDA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1670",
+    "woreda": "HULBAREG",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "1671",
+    "woreda": "HULET EJU ENESIE",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1672",
+    "woreda": "HULLA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1673",
+    "woreda": "HULUBAREG",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "1674",
+    "woreda": "HUMBO",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1675",
+    "woreda": "HUMERA",
+    "zoneCode": "WES"
+  },
+  {
+    "woredaCode": "1676",
+    "woreda": "HURUMU",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1677",
+    "woreda": "IBANTU",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1678",
+    "woreda": "ILU",
+    "zoneCode": "SSW"
+  },
+  {
+    "woredaCode": "1679",
+    "woreda": "ITANG",
+    "zoneCode": "ITA"
+  },
+  {
+    "woredaCode": "1680",
+    "woreda": "JABI TAHENANE",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1681",
+    "woreda": "JAJURA",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1682",
+    "woreda": "JAMA",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1683",
+    "woreda": "JANAMORA",
+    "zoneCode": "GON"
+  },
+  {
+    "woredaCode": "1684",
+    "woreda": "JARDEGA  JARTE",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1686",
+    "woreda": "JARRETI",
+    "zoneCode": "AFD"
+  },
+  {
+    "woredaCode": "1687",
+    "woreda": "JARSO",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1688",
+    "woreda": "JARSO WOLLEGA",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1689",
+    "woreda": "JAWI",
+    "zoneCode": "AWI"
+  },
+  {
+    "woredaCode": "1690",
+    "woreda": "JEJU",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1691",
+    "woreda": "JEKOW",
+    "zoneCode": "NUE"
+  },
+  {
+    "woredaCode": "1692",
+    "woreda": "JELDU",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1693",
+    "woreda": "JIBAT",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1694",
+    "woreda": "JIDA",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "1695",
+    "woreda": "JIGJIGA",
+    "zoneCode": "FAA"
+  },
+  {
+    "woredaCode": "1696",
+    "woreda": "JIGJIGA COUNCIL",
+    "zoneCode": "FAA"
+  },
+  {
+    "woredaCode": "1697",
+    "woreda": "JILLE TIMUGA",
+    "zoneCode": "ORO"
+  },
+  {
+    "woredaCode": "1698",
+    "woreda": "JIMA  ARJO",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1702",
+    "woreda": "JIMMA BARE",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1703",
+    "woreda": "JIMMA GENCTI",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1704",
+    "woreda": "JIMMA HORO",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1705",
+    "woreda": "JIMMA TIBE",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1706",
+    "woreda": "JIMMA TOWN",
+    "zoneCode": "JIT"
+  },
+  {
+    "woredaCode": "1707",
+    "woreda": "JINKA CITY AD.",
+    "zoneCode": "OMS"
+  },
+  {
+    "woredaCode": "1708",
+    "woreda": "JINKA TOWN ADM.",
+    "zoneCode": "OMS"
+  },
+  {
+    "woredaCode": "1709",
+    "woreda": "JOR",
+    "zoneCode": "AGN"
+  },
+  {
+    "woredaCode": "1711",
+    "woreda": "KACHABIRA",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "1712",
+    "woreda": "KALU",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1713",
+    "woreda": "KAMASH",
+    "zoneCode": "KAM"
+  },
+  {
+    "woredaCode": "1714",
+    "woreda": "KAMBA ZURIA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1715",
+    "woreda": "KARAT",
+    "zoneCode": "KOS"
+  },
+  {
+    "woredaCode": "1716",
+    "woreda": "KARAT ZURIA",
+    "zoneCode": "KOS"
+  },
+  {
+    "woredaCode": "1717",
+    "woreda": "KAWO KOYSHA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1718",
+    "woreda": "KEBDIDAHAR COUNCIL",
+    "zoneCode": "QKD"
+  },
+  {
+    "woredaCode": "1719",
+    "woreda": "KEBENA",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1720",
+    "woreda": "KEBET TOWN ADM.",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "1721",
+    "woreda": "KECHI",
+    "zoneCode": "DWR"
+  },
+  {
+    "woredaCode": "1722",
+    "woreda": "KEDIDA",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "1723",
+    "woreda": "KELAFO",
+    "zoneCode": "SHB"
+  },
+  {
+    "woredaCode": "1725",
+    "woreda": "KELE",
+    "zoneCode": "AMA"
+  },
+  {
+    "woredaCode": "1726",
+    "woreda": "KELELA",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1727",
+    "woreda": "KELLE TOWN",
+    "zoneCode": "AMA"
+  },
+  {
+    "woredaCode": "1728",
+    "woreda": "KEMBA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1729",
+    "woreda": "KEMISSIE TOWN",
+    "zoneCode": "ORO"
+  },
+  {
+    "woredaCode": "1730",
+    "woreda": "KENA",
+    "zoneCode": "KOS"
+  },
+  {
+    "woredaCode": "1731",
+    "woreda": "KERCHA",
+    "zoneCode": "GUW"
+  },
+  {
+    "woredaCode": "1732",
+    "woreda": "KERSA",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1733",
+    "woreda": "KERSA MALIMA",
+    "zoneCode": "SSW"
+  },
+  {
+    "woredaCode": "1734",
+    "woreda": "KEWOT",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1735",
+    "woreda": "KILTU KARA",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1736",
+    "woreda": "KIMBIBIT",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "1737",
+    "woreda": "KIND OKOYSHA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1738",
+    "woreda": "KINDO DIDAYE",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1739",
+    "woreda": "KINDO KOYSHA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1740",
+    "woreda": "KINFAZE",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "1742",
+    "woreda": "KIREMU",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1743",
+    "woreda": "KOBO KETEMA",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "1744",
+    "woreda": "KOBOLCHA",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1745",
+    "woreda": "KOCHERE",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "1746",
+    "woreda": "KOCHORE WORDA",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "1747",
+    "woreda": "KOFELE",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1748",
+    "woreda": "KOGOTA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1749",
+    "woreda": "KOKIT",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1750",
+    "woreda": "KOKOSA",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1751",
+    "woreda": "KOMBOLCHA",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1752",
+    "woreda": "KOMBOLCHA (WOLLO)",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1753",
+    "woreda": "KONDALA",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1754",
+    "woreda": "KONEBA",
+    "zoneCode": "TWO"
+  },
+  {
+    "woredaCode": "1755",
+    "woreda": "KONTA",
+    "zoneCode": "KOT"
+  },
+  {
+    "woredaCode": "1756",
+    "woreda": "KORABAKAKSA",
+    "zoneCode": "LII"
+  },
+  {
+    "woredaCode": "1757",
+    "woreda": "KORE",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1758",
+    "woreda": "KOREM(U)",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "1759",
+    "woreda": "KUCHA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1760",
+    "woreda": "KUCHA ALIFA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1761",
+    "woreda": "KUMBI",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1763",
+    "woreda": "KURFACHELE",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1765",
+    "woreda": "KUTABER",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1766",
+    "woreda": "KUYU",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "1767",
+    "woreda": "LAHELYU'UB",
+    "zoneCode": "DOO"
+  },
+  {
+    "woredaCode": "1768",
+    "woreda": "LALIBELA KETEMA",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "1769",
+    "woreda": "LALO ASABI",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1770",
+    "woreda": "LALO KILE",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1771",
+    "woreda": "LANFURO",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "1772",
+    "woreda": "LARE",
+    "zoneCode": "NUE"
+  },
+  {
+    "woredaCode": "1773",
+    "woreda": "LASKA",
+    "zoneCode": "BAS"
+  },
+  {
+    "woredaCode": "1774",
+    "woreda": "LASTA",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "1775",
+    "woreda": "LAY ARMACHEHO",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "1776",
+    "woreda": "LAY GAYINT",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "1777",
+    "woreda": "LEGA HIDHA",
+    "zoneCode": "EAB"
+  },
+  {
+    "woredaCode": "1778",
+    "woreda": "LEGAHIDA",
+    "zoneCode": "ERE"
+  },
+  {
+    "woredaCode": "1779",
+    "woreda": "LEGAMBO",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1780",
+    "woreda": "LEGEHIDA",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1781",
+    "woreda": "LEGEHIDA (WOLLO)",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1782",
+    "woreda": "LEGETAFO",
+    "zoneCode": "LEG"
+  },
+  {
+    "woredaCode": "1783",
+    "woreda": "LEKA DULACHA",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1784",
+    "woreda": "LEKU",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1785",
+    "woreda": "LEMO",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1786",
+    "woreda": "LEMUNA BILBILO",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1787",
+    "woreda": "LIBEN",
+    "zoneCode": "SHE"
+  },
+  {
+    "woredaCode": "1788",
+    "woreda": "LIBEN JAWI",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1790",
+    "woreda": "LIBOKMEKME",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "1791",
+    "woreda": "LIMEY BARI(E.EMEY)",
+    "zoneCode": "SHB"
+  },
+  {
+    "woredaCode": "1792",
+    "woreda": "LIMEY GALBEED( W.IMEY)",
+    "zoneCode": "AFD"
+  },
+  {
+    "woredaCode": "1793",
+    "woreda": "LIMU",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1794",
+    "woreda": "LIMU KOSA",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1796",
+    "woreda": "LIMU SEKA",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1797",
+    "woreda": "LIMUNA BILBILO",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1798",
+    "woreda": "LODE HETOSA",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1799",
+    "woreda": "LOKA ABAYA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1800",
+    "woreda": "LOMA BOSA",
+    "zoneCode": "DWR"
+  },
+  {
+    "woredaCode": "1801",
+    "woreda": "LUME",
+    "zoneCode": "SHE"
+  },
+  {
+    "woredaCode": "1802",
+    "woreda": "M/AKILIL",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1803",
+    "woreda": "MACHAKEL",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1804",
+    "woreda": "MAJETE",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1805",
+    "woreda": "MAJI",
+    "zoneCode": "OMW"
+  },
+  {
+    "woredaCode": "1806",
+    "woreda": "MAKUEY",
+    "zoneCode": "NUE"
+  },
+  {
+    "woredaCode": "1807",
+    "woreda": "MALE",
+    "zoneCode": "OMS"
+  },
+  {
+    "woredaCode": "1808",
+    "woreda": "MALGA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1811",
+    "woreda": "MANA",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1812",
+    "woreda": "MANDURA",
+    "zoneCode": "MET"
+  },
+  {
+    "woredaCode": "1813",
+    "woreda": "MAO KOMO",
+    "zoneCode": "MAK"
+  },
+  {
+    "woredaCode": "1814",
+    "woreda": "MAREKA",
+    "zoneCode": "DWR"
+  },
+  {
+    "woredaCode": "1815",
+    "woreda": "MAREKO",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1816",
+    "woreda": "MARI MANSA",
+    "zoneCode": "DWR"
+  },
+  {
+    "woredaCode": "1818",
+    "woreda": "MASHA",
+    "zoneCode": "SHK"
+  },
+  {
+    "woredaCode": "1819",
+    "woreda": "MASHA TOWN",
+    "zoneCode": "SHK"
+  },
+  {
+    "woredaCode": "1821",
+    "woreda": "MAYUMULUKO",
+    "zoneCode": "ERE"
+  },
+  {
+    "woredaCode": "1822",
+    "woreda": "MEA. SORO",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1823",
+    "woreda": "MEA.BADEWACHO",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1824",
+    "woreda": "MEDA WALABU",
+    "zoneCode": "BAL"
+  },
+  {
+    "woredaCode": "1825",
+    "woreda": "MEDE WELABU",
+    "zoneCode": "BAL"
+  },
+  {
+    "woredaCode": "1826",
+    "woreda": "MEGALE",
+    "zoneCode": "TWO"
+  },
+  {
+    "woredaCode": "1827",
+    "woreda": "MEHAL MEDA",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1828",
+    "woreda": "MEHAL SAYINT",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1829",
+    "woreda": "MEINITGOLDIYA",
+    "zoneCode": "OMW"
+  },
+  {
+    "woredaCode": "1831",
+    "woreda": "MEKET",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "1832",
+    "woreda": "MEKETEWA",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "1833",
+    "woreda": "MEKIDELA",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1834",
+    "woreda": "MEKO",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "1835",
+    "woreda": "MEKOY",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1836",
+    "woreda": "MELKA BELO",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1837",
+    "woreda": "MELKA SODA",
+    "zoneCode": "GUW"
+  },
+  {
+    "woredaCode": "1838",
+    "woreda": "MELOKOZA",
+    "zoneCode": "GOF"
+  },
+  {
+    "woredaCode": "1839",
+    "woreda": "MENCHO",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1840",
+    "woreda": "MENDI",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1841",
+    "woreda": "MENDI TOWN",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1842",
+    "woreda": "MENE SIBU",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1843",
+    "woreda": "MENGESHI",
+    "zoneCode": "MEZ"
+  },
+  {
+    "woredaCode": "1844",
+    "woreda": "MENGIE",
+    "zoneCode": "ASS"
+  },
+  {
+    "woredaCode": "1845",
+    "woreda": "MENIT SHASHA",
+    "zoneCode": "OMW"
+  },
+  {
+    "woredaCode": "1846",
+    "woreda": "MENZ GERA MIDIR",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1847",
+    "woreda": "MENZ KEYA GEBRIEL",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1848",
+    "woreda": "MENZ MAMA",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1849",
+    "woreda": "MERABABAYA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1850",
+    "woreda": "MERTI",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1851",
+    "woreda": "MESIKAN",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1852",
+    "woreda": "MESKAN",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1853",
+    "woreda": "META ROBI",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1855",
+    "woreda": "META WOLKITIE",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1856",
+    "woreda": "METAROBI",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1857",
+    "woreda": "METEHAR",
+    "zoneCode": "SHE"
+  },
+  {
+    "woredaCode": "1858",
+    "woreda": "METEMA",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1860",
+    "woreda": "METTA",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1862",
+    "woreda": "METU",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1863",
+    "woreda": "METU TOWN",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1864",
+    "woreda": "MEYU",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1865",
+    "woreda": "MEZEZO",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1866",
+    "woreda": "MIDA",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1868",
+    "woreda": "MIDA WEREMO",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1869",
+    "woreda": "MIDAKEGN",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1871",
+    "woreda": "MIDEGATOLA",
+    "zoneCode": "HAE"
+  },
+  {
+    "woredaCode": "1872",
+    "woreda": "MIERAB AZERNET",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "1873",
+    "woreda": "MIESO",
+    "zoneCode": "SIT"
+  },
+  {
+    "woredaCode": "1874",
+    "woreda": "MIESSO",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1875",
+    "woreda": "MILLE",
+    "zoneCode": "ONE"
+  },
+  {
+    "woredaCode": "1876",
+    "woreda": "MINJAR SHENKORA",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1877",
+    "woreda": "MIRAB ABAYA",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1878",
+    "woreda": "MIS.BADEWA",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1879",
+    "woreda": "MISHA",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "1880",
+    "woreda": "MISRAK SIITIE",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "1881",
+    "woreda": "MITO",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "1882",
+    "woreda": "MIYO",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "1883",
+    "woreda": "MIZAN AMAN",
+    "zoneCode": "BES"
+  },
+  {
+    "woredaCode": "1884",
+    "woreda": "MOJO TOWN",
+    "zoneCode": "MOT"
+  },
+  {
+    "woredaCode": "1885",
+    "woreda": "MORET ENA JIRU",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1886",
+    "woreda": "MOTTA",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1887",
+    "woreda": "MOYALE",
+    "zoneCode": "DWA"
+  },
+  {
+    "woredaCode": "1888",
+    "woreda": "MOYALE(BORENA)",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "1889",
+    "woreda": "MOYALE(DAWA)",
+    "zoneCode": "DWA"
+  },
+  {
+    "woredaCode": "1890",
+    "woreda": "MSRAK AZRNET",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "1891",
+    "woreda": "MUBAREK",
+    "zoneCode": "DWA"
+  },
+  {
+    "woredaCode": "1892",
+    "woreda": "MUHUR AKILIL",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "1893",
+    "woreda": "MULO",
+    "zoneCode": "FIZ"
+  },
+  {
+    "woredaCode": "1894",
+    "woreda": "MUNESA",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1895",
+    "woreda": "MUSTAHIIL",
+    "zoneCode": "SHB"
+  },
+  {
+    "woredaCode": "1896",
+    "woreda": "NAGELE ARSI",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1897",
+    "woreda": "NEBARU CHILGA",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "1898",
+    "woreda": "NEGELE TOWN",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1899",
+    "woreda": "NEJO",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1900",
+    "woreda": "NEJO TOWN",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1901",
+    "woreda": "NEKEMTE TOWN",
+    "zoneCode": "NET"
+  },
+  {
+    "woredaCode": "1902",
+    "woreda": "NENESSEBO",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1903",
+    "woreda": "NENSEBO",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1904",
+    "woreda": "NOLE KABA",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1906",
+    "woreda": "NONO",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1908",
+    "woreda": "NONO BENJA",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1910",
+    "woreda": "NONOSALE",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "1911",
+    "woreda": "NORTH ACHEFER",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1912",
+    "woreda": "NORTH MECHA",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1913",
+    "woreda": "NUNU KUMBA",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1914",
+    "woreda": "ODA BULDUGLU",
+    "zoneCode": "ASS"
+  },
+  {
+    "woredaCode": "1915",
+    "woreda": "ODA BULTUM",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1916",
+    "woreda": "ODO SHAKISO",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1917",
+    "woreda": "OFA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "1918",
+    "woreda": "OFLA(RULAR)",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "1919",
+    "woreda": "OMO BEYAM",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1920",
+    "woreda": "OMO NADA",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1921",
+    "woreda": "OYDA",
+    "zoneCode": "GOF"
+  },
+  {
+    "woredaCode": "1922",
+    "woreda": "PAWI",
+    "zoneCode": "MET"
+  },
+  {
+    "woredaCode": "1923",
+    "woreda": "QABRIBAYAH",
+    "zoneCode": "FAA"
+  },
+  {
+    "woredaCode": "1924",
+    "woreda": "QADADUMA",
+    "zoneCode": "DWA"
+  },
+  {
+    "woredaCode": "1925",
+    "woreda": "QAFTA HUMERA",
+    "zoneCode": "WES"
+  },
+  {
+    "woredaCode": "1926",
+    "woreda": "QUARIT",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1927",
+    "woreda": "RAPE WORDA",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "1928",
+    "woreda": "RASO",
+    "zoneCode": "AFD"
+  },
+  {
+    "woredaCode": "1929",
+    "woreda": "RAYA ALAMATA",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "1930",
+    "woreda": "RAYA KOBO",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "1931",
+    "woreda": "RAYTU",
+    "zoneCode": "EAB"
+  },
+  {
+    "woredaCode": "1932",
+    "woreda": "ROBE",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1933",
+    "woreda": "ROBE TOWN ADM.",
+    "zoneCode": "RTA"
+  },
+  {
+    "woredaCode": "1935",
+    "woreda": "SAGAG",
+    "zoneCode": "NOG"
+  },
+  {
+    "woredaCode": "1936",
+    "woreda": "SAJA",
+    "zoneCode": "YEM"
+  },
+  {
+    "woredaCode": "1937",
+    "woreda": "SALAHAD",
+    "zoneCode": "ERE"
+  },
+  {
+    "woredaCode": "1938",
+    "woreda": "SALAMAGO",
+    "zoneCode": "OMS"
+  },
+  {
+    "woredaCode": "1939",
+    "woreda": "SANDAFA",
+    "zoneCode": "FIZ"
+  },
+  {
+    "woredaCode": "1940",
+    "woreda": "SANKURA",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "1941",
+    "woreda": "SASIGA",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "1942",
+    "woreda": "SAWLA",
+    "zoneCode": "GOF"
+  },
+  {
+    "woredaCode": "1944",
+    "woreda": "SAYINT",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "1945",
+    "woreda": "SAYLEM",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "1946",
+    "woreda": "SEBA BORU",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1947",
+    "woreda": "SEBETA",
+    "zoneCode": "FIZ"
+  },
+  {
+    "woredaCode": "1948",
+    "woreda": "SEBETA HAWAS",
+    "zoneCode": "FIZ"
+  },
+  {
+    "woredaCode": "1949",
+    "woreda": "SEBETA TOWN",
+    "zoneCode": "SEB"
+  },
+  {
+    "woredaCode": "1950",
+    "woreda": "SEDE",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1951",
+    "woreda": "SEDEN SODO",
+    "zoneCode": "SSW"
+  },
+  {
+    "woredaCode": "1952",
+    "woreda": "SEDIE MUJA",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "1953",
+    "woreda": "SEGEN CHANKA",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1954",
+    "woreda": "SEHALA",
+    "zoneCode": "WAG"
+  },
+  {
+    "woredaCode": "1956",
+    "woreda": "SEKA CHOKORSA",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1957",
+    "woreda": "SEKELA",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "1958",
+    "woreda": "SEKORU",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1959",
+    "woreda": "SELADINGAY",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1960",
+    "woreda": "SELAMBER CITY AD.",
+    "zoneCode": "GAM"
+  },
+  {
+    "woredaCode": "1961",
+    "woreda": "SEMEN ARI(OMO SOUTH)",
+    "zoneCode": "OMS"
+  },
+  {
+    "woredaCode": "1962",
+    "woreda": "SEMEN-BENCH",
+    "zoneCode": "BES"
+  },
+  {
+    "woredaCode": "1963",
+    "woreda": "SEMERA",
+    "zoneCode": "ONE"
+  },
+  {
+    "woredaCode": "1964",
+    "woreda": "SEMEROBI",
+    "zoneCode": "FIVE"
+  },
+  {
+    "woredaCode": "1965",
+    "woreda": "SENA GENJI",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1966",
+    "woreda": "SENAN",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1967",
+    "woreda": "SENDAFA",
+    "zoneCode": "FIZ"
+  },
+  {
+    "woredaCode": "1968",
+    "woreda": "SEQOTA",
+    "zoneCode": "WAG"
+  },
+  {
+    "woredaCode": "1969",
+    "woreda": "SEQOTA WOREDA",
+    "zoneCode": "WAG"
+  },
+  {
+    "woredaCode": "1970",
+    "woreda": "SEQOTA ZURYA",
+    "zoneCode": "WAG"
+  },
+  {
+    "woredaCode": "1971",
+    "woreda": "SERBO",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1972",
+    "woreda": "SERU",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1973",
+    "woreda": "SETEMA",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1974",
+    "woreda": "SEWANA",
+    "zoneCode": "EAB"
+  },
+  {
+    "woredaCode": "1975",
+    "woreda": "SEYO NOLE",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "1976",
+    "woreda": "SEYO(KELEM WELLEGA)",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "1977",
+    "woreda": "SEYO(SHOA WEST)",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "1980",
+    "woreda": "SHAFAMO",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1981",
+    "woreda": "SHAKISO TOWN",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "1982",
+    "woreda": "SHALLA",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1984",
+    "woreda": "SHAMBU TOWN",
+    "zoneCode": "HOG"
+  },
+  {
+    "woredaCode": "1985",
+    "woreda": "SHANAN KOLU",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "1986",
+    "woreda": "SHASHEGO",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "1987",
+    "woreda": "SHASHEMENE",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "1988",
+    "woreda": "SHASHEMENE TOWN",
+    "zoneCode": "SHT"
+  },
+  {
+    "woredaCode": "1990",
+    "woreda": "SHEBE SOMBO",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "1991",
+    "woreda": "SHEBEDINO",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "1992",
+    "woreda": "SHEBEL",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1993",
+    "woreda": "SHEBEL BERENTA",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "1994",
+    "woreda": "SHEKO",
+    "zoneCode": "BES"
+  },
+  {
+    "woredaCode": "1996",
+    "woreda": "SHENENEN DUGO",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "1997",
+    "woreda": "SHEWA-BENCH",
+    "zoneCode": "BES"
+  },
+  {
+    "woredaCode": "1998",
+    "woreda": "SHEWAROBIT",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "1999",
+    "woreda": "SHEY BENCH",
+    "zoneCode": "BES"
+  },
+  {
+    "woredaCode": "2000",
+    "woreda": "SHEYGOOSH",
+    "zoneCode": "QOR"
+  },
+  {
+    "woredaCode": "2001",
+    "woreda": "SHILABO",
+    "zoneCode": "QOR"
+  },
+  {
+    "woredaCode": "2002",
+    "woreda": "SHINNIILE",
+    "zoneCode": "SIT"
+  },
+  {
+    "woredaCode": "2003",
+    "woreda": "SHINSHICHO",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "2004",
+    "woreda": "SHIRKA",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "2006",
+    "woreda": "SHISHONDE",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "2007",
+    "woreda": "SHONE",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "2008",
+    "woreda": "SHONE TOWN",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "2009",
+    "woreda": "SIBU SIRE",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "2010",
+    "woreda": "SIGMO",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "2012",
+    "woreda": "SILTIE",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "2013",
+    "woreda": "SIMADA",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "2014",
+    "woreda": "SINAN",
+    "zoneCode": "GOE"
+  },
+  {
+    "woredaCode": "2015",
+    "woreda": "SINANA",
+    "zoneCode": "BAL"
+  },
+  {
+    "woredaCode": "2016",
+    "woreda": "SIRARO",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "2017",
+    "woreda": "SIRARO BADEWACHO",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "2018",
+    "woreda": "SIRE",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "2019",
+    "woreda": "SODO",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "2020",
+    "woreda": "SODO KETEMA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "2021",
+    "woreda": "SODO TOWN",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "2022",
+    "woreda": "SODO ZURIYA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "2023",
+    "woreda": "SODO(GURAGE)",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "2024",
+    "woreda": "SODO(WELAYITA)",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "2025",
+    "woreda": "SOGE",
+    "zoneCode": "KAM"
+  },
+  {
+    "woredaCode": "2026",
+    "woreda": "SORO",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "2027",
+    "woreda": "SOUTH  SODO",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "2029",
+    "woreda": "SOUTH ACHEFERE",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "2030",
+    "woreda": "SOUTH MECHA",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "2031",
+    "woreda": "SOYAMA",
+    "zoneCode": "BSP"
+  },
+  {
+    "woredaCode": "2032",
+    "woreda": "SUDE",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "2033",
+    "woreda": "SULULTA",
+    "zoneCode": "SUL"
+  },
+  {
+    "woredaCode": "2034",
+    "woreda": "SULULTA(FINFINE ZURIYA)",
+    "zoneCode": "FIZ"
+  },
+  {
+    "woredaCode": "2035",
+    "woreda": "SURO BARGUDA",
+    "zoneCode": "GUW"
+  },
+  {
+    "woredaCode": "2036",
+    "woreda": "TACH ARMACHEHO",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "2037",
+    "woreda": "TACHI GAYINT",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "2038",
+    "woreda": "TAKUSA",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "2039",
+    "woreda": "TANA",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "2040",
+    "woreda": "TARCH K/ASTE",
+    "zoneCode": "DWR"
+  },
+  {
+    "woredaCode": "2041",
+    "woreda": "TARCHA ZURIA",
+    "zoneCode": "DWR"
+  },
+  {
+    "woredaCode": "2042",
+    "woreda": "TARETA",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "2043",
+    "woreda": "TEBELA KETEMA",
+    "zoneCode": "WEL"
+  },
+  {
+    "woredaCode": "2044",
+    "woreda": "TEHULEDERIE",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "2045",
+    "woreda": "TELALAK",
+    "zoneCode": "FIVE"
+  },
+  {
+    "woredaCode": "2046",
+    "woreda": "TELETELE",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "2047",
+    "woreda": "TELO",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "2050",
+    "woreda": "TEMBARO",
+    "zoneCode": "KET"
+  },
+  {
+    "woredaCode": "2051",
+    "woreda": "TENTA",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "2052",
+    "woreda": "TEPPI",
+    "zoneCode": "SHK"
+  },
+  {
+    "woredaCode": "2053",
+    "woreda": "TERCHA",
+    "zoneCode": "DWR"
+  },
+  {
+    "woredaCode": "2054",
+    "woreda": "TERU",
+    "zoneCode": "FOUR"
+  },
+  {
+    "woredaCode": "2055",
+    "woreda": "TETICHA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "2057",
+    "woreda": "TIRO AFETA",
+    "zoneCode": "JIM"
+  },
+  {
+    "woredaCode": "2058",
+    "woreda": "TITESA",
+    "zoneCode": "BUB"
+  },
+  {
+    "woredaCode": "2059",
+    "woreda": "TIYO",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "2060",
+    "woreda": "TLEMET",
+    "zoneCode": "GON"
+  },
+  {
+    "woredaCode": "2061",
+    "woreda": "TOCHA",
+    "zoneCode": "DWR"
+  },
+  {
+    "woredaCode": "2062",
+    "woreda": "TOKE KUTAYE",
+    "zoneCode": "SHW"
+  },
+  {
+    "woredaCode": "2063",
+    "woreda": "TOLE",
+    "zoneCode": "SSW"
+  },
+  {
+    "woredaCode": "2064",
+    "woreda": "TORA TOWN ADM.",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "2065",
+    "woreda": "TSAGBJ",
+    "zoneCode": "WAG"
+  },
+  {
+    "woredaCode": "2066",
+    "woreda": "TSEGEDE(GONDAR CENTERAL)",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "2067",
+    "woreda": "TSEGEDE(WESTERN)",
+    "zoneCode": "WES"
+  },
+  {
+    "woredaCode": "2068",
+    "woreda": "TSELEMTI",
+    "zoneCode": "NWE"
+  },
+  {
+    "woredaCode": "2069",
+    "woreda": "TSETSEQA",
+    "zoneCode": "WAG"
+  },
+  {
+    "woredaCode": "2070",
+    "woreda": "TULIGUULEED",
+    "zoneCode": "FAA"
+  },
+  {
+    "woredaCode": "2071",
+    "woreda": "TULO",
+    "zoneCode": "HAW"
+  },
+  {
+    "woredaCode": "2072",
+    "woreda": "U/D/TSEHAY",
+    "zoneCode": "GOF"
+  },
+  {
+    "woredaCode": "2073",
+    "woreda": "UBADEBRETSEHAY",
+    "zoneCode": "GOF"
+  },
+  {
+    "woredaCode": "2074",
+    "woreda": "URAGA",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "2075",
+    "woreda": "WACHA TOWN",
+    "zoneCode": "KAF"
+  },
+  {
+    "woredaCode": "2076",
+    "woreda": "WACHILE",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "2077",
+    "woreda": "WADERA",
+    "zoneCode": "GUJ"
+  },
+  {
+    "woredaCode": "2078",
+    "woreda": "WADLA",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "2080",
+    "woreda": "WAMA HAGALO",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "2081",
+    "woreda": "WARDHEER",
+    "zoneCode": "DOO"
+  },
+  {
+    "woredaCode": "2082",
+    "woreda": "WAYTHOA",
+    "zoneCode": "NUE"
+  },
+  {
+    "woredaCode": "2083",
+    "woreda": "WAYU TUKA",
+    "zoneCode": "WEE"
+  },
+  {
+    "woredaCode": "2085",
+    "woreda": "WEGERE",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "2086",
+    "woreda": "WEGIDE",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "2088",
+    "woreda": "WELQAIT",
+    "zoneCode": "WES"
+  },
+  {
+    "woredaCode": "2090",
+    "woreda": "WERE JARSO",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "2091",
+    "woreda": "WEREBABO",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "2092",
+    "woreda": "WEST ARMACHEHO",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "2093",
+    "woreda": "WEST AZE / BERBERE",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "2094",
+    "woreda": "WEST BELESA",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "2096",
+    "woreda": "WEST DEMBYA",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "2097",
+    "woreda": "WEST SORO",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "2098",
+    "woreda": "WOBA ARI",
+    "zoneCode": "OMS"
+  },
+  {
+    "woredaCode": "2099",
+    "woreda": "WOGERA",
+    "zoneCode": "GOC"
+  },
+  {
+    "woredaCode": "2100",
+    "woreda": "WOLANGO",
+    "zoneCode": "ESP"
+  },
+  {
+    "woredaCode": "2101",
+    "woreda": "WOLDIA KETEMA",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "2102",
+    "woreda": "WOLDIYA KETEMA",
+    "zoneCode": "WON"
+  },
+  {
+    "woredaCode": "2104",
+    "woreda": "WOLISO",
+    "zoneCode": "SSW"
+  },
+  {
+    "woredaCode": "2105",
+    "woreda": "WOLISO TOWN",
+    "zoneCode": "WOT"
+  },
+  {
+    "woredaCode": "2106",
+    "woreda": "WOLKITE",
+    "zoneCode": "GUR"
+  },
+  {
+    "woredaCode": "2107",
+    "woreda": "WOLMERA",
+    "zoneCode": "FIZ"
+  },
+  {
+    "woredaCode": "2108",
+    "woreda": "WOMBERA",
+    "zoneCode": "MET"
+  },
+  {
+    "woredaCode": "2109",
+    "woreda": "WONAGO",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "2111",
+    "woreda": "WONBERMA",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "2112",
+    "woreda": "WONCHI",
+    "zoneCode": "SSW"
+  },
+  {
+    "woredaCode": "2113",
+    "woreda": "WONDO",
+    "zoneCode": "ARW"
+  },
+  {
+    "woredaCode": "2114",
+    "woreda": "WONDO GENET",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "2115",
+    "woreda": "WONDO GENET TOWN",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "2116",
+    "woreda": "WORABE TOWN",
+    "zoneCode": "SIL"
+  },
+  {
+    "woredaCode": "2117",
+    "woreda": "WOREILU",
+    "zoneCode": "WOS"
+  },
+  {
+    "woredaCode": "2118",
+    "woreda": "WORETA",
+    "zoneCode": "GOS"
+  },
+  {
+    "woredaCode": "2119",
+    "woreda": "WOYRA",
+    "zoneCode": "HAL"
+  },
+  {
+    "woredaCode": "2120",
+    "woreda": "WOYRA DIJO",
+    "zoneCode": "HAL"
+  },
+  {
+    "woredaCode": "2121",
+    "woreda": "WST/ BADEWACHO",
+    "zoneCode": "HAD"
+  },
+  {
+    "woredaCode": "2122",
+    "woreda": "WUCHALE",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "2123",
+    "woreda": "YABELLO",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "2124",
+    "woreda": "YABELO TOWN",
+    "zoneCode": "BOR"
+  },
+  {
+    "woredaCode": "2125",
+    "woreda": "YALLO",
+    "zoneCode": "FOUR"
+  },
+  {
+    "woredaCode": "2126",
+    "woreda": "YAMALAGI WALAL",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "2127",
+    "woreda": "YAYA GULALE",
+    "zoneCode": "SHNO"
+  },
+  {
+    "woredaCode": "2128",
+    "woreda": "YAYO",
+    "zoneCode": "ILL"
+  },
+  {
+    "woredaCode": "2129",
+    "woreda": "YEKI",
+    "zoneCode": "SHK"
+  },
+  {
+    "woredaCode": "2130",
+    "woreda": "YELMANA DANSA",
+    "zoneCode": "GOW"
+  },
+  {
+    "woredaCode": "2131",
+    "woreda": "YEMALOG WOLEL",
+    "zoneCode": "KEW"
+  },
+  {
+    "woredaCode": "2132",
+    "woreda": "YIRGA CHEFIE CITY",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "2133",
+    "woreda": "YIRGACHAF WORDA",
+    "zoneCode": "GED"
+  },
+  {
+    "woredaCode": "2134",
+    "woreda": "YIRGALEM",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "2135",
+    "woreda": "YIRGALEM KETEMA",
+    "zoneCode": "SID"
+  },
+  {
+    "woredaCode": "2136",
+    "woreda": "YOOCAALE",
+    "zoneCode": "JAR"
+  },
+  {
+    "woredaCode": "2138",
+    "woreda": "YUBDO",
+    "zoneCode": "WEW"
+  },
+  {
+    "woredaCode": "2139",
+    "woreda": "ZABA GAZO",
+    "zoneCode": "DWR"
+  },
+  {
+    "woredaCode": "2140",
+    "woreda": "ZALA",
+    "zoneCode": "GOF"
+  },
+  {
+    "woredaCode": "2141",
+    "woreda": "ZEMERO",
+    "zoneCode": "SHNA"
+  },
+  {
+    "woredaCode": "2142",
+    "woreda": "ZIGEM",
+    "zoneCode": "AWI"
+  },
+  {
+    "woredaCode": "2143",
+    "woreda": "ZIQUALA",
+    "zoneCode": "WAG"
+  },
+  {
+    "woredaCode": "2144",
+    "woreda": "ZIWAY DUGDA",
+    "zoneCode": "ARE"
+  },
+  {
+    "woredaCode": "2145",
+    "woreda": "Abi Adi Town",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2146",
+    "woreda": "Adwa",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2147",
+    "woreda": "Adwa Town",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2148",
+    "woreda": "Ahiferom",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2149",
+    "woreda": "Axum Town",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2150",
+    "woreda": "Dega Temben",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2151",
+    "woreda": "Kola Temben",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2152",
+    "woreda": "Laelay Maychew",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2153",
+    "woreda": "Mereb Lehe",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2154",
+    "woreda": "Nader Adet",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2155",
+    "woreda": "Tahtay Maychew",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2156",
+    "woreda": "Tanqua Abergele",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2157",
+    "woreda": "Were Lehe",
+    "zoneCode": "CEN"
+  },
+  {
+    "woredaCode": "2158",
+    "woreda": "Adigrat Town",
+    "zoneCode": "EAS"
+  },
+  {
+    "woredaCode": "2159",
+    "woreda": "Atsbi Wonberta",
+    "zoneCode": "EAS"
+  },
+  {
+    "woredaCode": "2160",
+    "woreda": "Erob",
+    "zoneCode": "EAS"
+  },
+  {
+    "woredaCode": "2161",
+    "woreda": "Ganta Afeshum",
+    "zoneCode": "EAS"
+  },
+  {
+    "woredaCode": "2162",
+    "woreda": "Gulo Meheda",
+    "zoneCode": "EAS"
+  },
+  {
+    "woredaCode": "2163",
+    "woreda": "Hawuzen",
+    "zoneCode": "EAS"
+  },
+  {
+    "woredaCode": "2164",
+    "woreda": "Kilte Awlalo",
+    "zoneCode": "EAS"
+  },
+  {
+    "woredaCode": "2165",
+    "woreda": "Saesi Tsadamba",
+    "zoneCode": "EAS"
+  },
+  {
+    "woredaCode": "2166",
+    "woreda": "Wukro Town",
+    "zoneCode": "EAS"
+  },
+  {
+    "woredaCode": "2167",
+    "woreda": "Debub",
+    "zoneCode": "MES"
+  },
+  {
+    "woredaCode": "2168",
+    "woreda": "Semen",
+    "zoneCode": "MES"
+  },
+  {
+    "woredaCode": "2169",
+    "woreda": "Asegede Tsimbila",
+    "zoneCode": "NWE"
+  },
+  {
+    "woredaCode": "2170",
+    "woreda": "Laelay Adiyabo",
+    "zoneCode": "NWE"
+  },
+  {
+    "woredaCode": "2171",
+    "woreda": "Medebay Zana",
+    "zoneCode": "NWE"
+  },
+  {
+    "woredaCode": "2172",
+    "woreda": "Shere Endasilasie Town",
+    "zoneCode": "NWE"
+  },
+  {
+    "woredaCode": "2173",
+    "woreda": "Shiraro Town",
+    "zoneCode": "NWE"
+  },
+  {
+    "woredaCode": "2174",
+    "woreda": "Tahtay Adiyabo",
+    "zoneCode": "NWE"
+  },
+  {
+    "woredaCode": "2175",
+    "woreda": "Tahtay Koraro",
+    "zoneCode": "NWE"
+  },
+  {
+    "woredaCode": "2176",
+    "woreda": "Alaje",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "2177",
+    "woreda": "Alamata",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "2178",
+    "woreda": "Alamata Town",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "2179",
+    "woreda": "Endamehoni",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "2180",
+    "woreda": "Enderta",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "2181",
+    "woreda": "Hintalo Wajirat",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "2182",
+    "woreda": "Korem Town",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "2183",
+    "woreda": "Maychew Town",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "2184",
+    "woreda": "Ofla",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "2185",
+    "woreda": "Raya Azebo",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "2186",
+    "woreda": "Seharti Samre",
+    "zoneCode": "SOU"
+  },
+  {
+    "woredaCode": "2187",
+    "woreda": "Humera Town",
+    "zoneCode": "WES"
+  },
+  {
+    "woredaCode": "2188",
+    "woreda": "Kafta Humera",
+    "zoneCode": "WES"
+  },
+  {
+    "woredaCode": "2189",
+    "woreda": "Welkayit",
+    "zoneCode": "WES"
+  }
+]

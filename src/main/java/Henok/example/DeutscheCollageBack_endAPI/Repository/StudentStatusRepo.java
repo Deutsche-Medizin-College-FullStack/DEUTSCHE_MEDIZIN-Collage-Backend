@@ -9,4 +9,6 @@ public interface StudentStatusRepo extends JpaRepository<StudentStatus, Long> {
     boolean existsByStatusName(String statusName);
 
     Optional<StudentStatus> findByStatusName(String active);
+
+    boolean existsByStatusNameIgnoreCase(String statusName);
 }

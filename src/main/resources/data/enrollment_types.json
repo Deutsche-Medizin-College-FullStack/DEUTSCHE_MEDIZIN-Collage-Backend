@@ -1,0 +1,34 @@
+[
+  {
+    "enrollmentTypeCode": "AR",
+    "enrollmentTypeName": "Academic Readmission"
+  },
+  {
+    "enrollmentTypeCode": "AS",
+    "enrollmentTypeName": "Advanced Standing"
+  },
+  {
+    "enrollmentTypeCode": "CN",
+    "enrollmentTypeName": "Continuing"
+  },
+  {
+    "enrollmentTypeCode": "EX",
+    "enrollmentTypeName": "Exchange "
+  },
+  {
+    "enrollmentTypeCode": "ITR",
+    "enrollmentTypeName": "Internal Transfer"
+  },
+  {
+    "enrollmentTypeCode": "NW",
+    "enrollmentTypeName": "New Student"
+  },
+  {
+    "enrollmentTypeCode": "PR",
+    "enrollmentTypeName": "Personal Readmission "
+  },
+  {
+    "enrollmentTypeCode": "TR",
+    "enrollmentTypeName": "Transfer"
+  }
+]

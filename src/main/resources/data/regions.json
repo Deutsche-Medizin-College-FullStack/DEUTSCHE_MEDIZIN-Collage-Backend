@@ -1,0 +1,67 @@
+[
+  {
+    "regionCode": "ADD",
+    "region": "Addis Ababa ",
+    "regionType": "NE"
+  },
+  {
+    "regionCode": "AFA",
+    "region": "Afar",
+    "regionType": "EM"
+  },
+  {
+    "regionCode": "AMH",
+    "region": "Amhara",
+    "regionType": "NE"
+  },
+  {
+    "regionCode": "BEN",
+    "region": "Benishangul-Gumuz",
+    "regionType": "EM"
+  },
+  {
+    "regionCode": "DIR",
+    "region": "Dire Dawa",
+    "regionType": "NE"
+  },
+  {
+    "regionCode": "GAM",
+    "region": "Gambela",
+    "regionType": "EM"
+  },
+  {
+    "regionCode": "HAR",
+    "region": "Harari",
+    "regionType": "NE"
+  },
+  {
+    "regionCode": "ORO",
+    "region": "Oromia",
+    "regionType": "NE"
+  },
+  {
+    "regionCode": "SID",
+    "region": "Sidama",
+    "regionType": "NE"
+  },
+  {
+    "regionCode": "SNNP",
+    "region": "SNNPR",
+    "regionType": "NE"
+  },
+  {
+    "regionCode": "SOM",
+    "region": "Ethio Somali",
+    "regionType": "EM"
+  },
+  {
+    "regionCode": "SWER",
+    "region": "South West Ethiopia",
+    "regionType": "NE"
+  },
+  {
+    "regionCode": "TIG",
+    "region": "Tigray",
+    "regionType": "NE"
+  }
+]

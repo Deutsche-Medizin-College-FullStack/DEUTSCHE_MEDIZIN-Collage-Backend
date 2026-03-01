@@ -105,7 +105,7 @@ public class ZoneService {
     }
 
     // Map ZoneDTO to Zone entity
-    private Zone mapToEntity(ZoneDTO dto, Region region) {
+    public Zone mapToEntity(ZoneDTO dto, Region region) {
         Zone zone = new Zone();
         zone.setZoneCode(dto.getZoneCode());
         zone.setZone(dto.getZone());

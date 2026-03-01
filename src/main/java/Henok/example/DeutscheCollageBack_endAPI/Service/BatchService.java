@@ -75,9 +75,9 @@ public class BatchService {
 
     public List<BatchDTO> getAllBatches() {
         List<Batch> batches = batchRepository.findAll();
-        if (batches.isEmpty()) {
-            throw new ResourceNotFoundException("No batches found");
-        }
+//        if (batches.isEmpty()) {
+//            throw new ResourceNotFoundException("No batches found");
+//        }
         return batches.stream()
                 .map(batch -> {
                     BatchDTO dto = new BatchDTO();

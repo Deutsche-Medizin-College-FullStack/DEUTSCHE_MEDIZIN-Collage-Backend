@@ -1,0 +1,22 @@
+[
+  {
+    "academicPeriodCode": "FS",
+    "academicPeriod": "Full Year  Semester"
+  },
+  {
+    "academicPeriodCode": "NO",
+    "academicPeriod": "no-longer-learning"
+  },
+  {
+    "academicPeriodCode": "S1",
+    "academicPeriod": "First Semester"
+  },
+  {
+    "academicPeriodCode": "S2",
+    "academicPeriod": "Second Semester"
+  },
+  {
+    "academicPeriodCode": "S3",
+    "academicPeriod": "Third Semester"
+  }
+]

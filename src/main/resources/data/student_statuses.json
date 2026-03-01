@@ -1,0 +1,38 @@
+[
+  {
+    "statusName": "Academically_Dismissed"
+  },
+  {
+    "statusName": "Active"
+  },
+  {
+    "statusName": "Cancelled"
+  },
+  {
+    "statusName": "Completely_Dismissed"
+  },
+  {
+    "statusName": "Drop_Out"
+  },
+  {
+    "statusName": "Forced_Withdrawal"
+  },
+  {
+    "statusName": "Probation"
+  },
+  {
+    "statusName": "Transfer_Out"
+  },
+  {
+    "statusName": "Withdraw"
+  },
+  {
+    "statusName": "Class Completed"
+  },
+  {
+    "statusName": "Incomplete"
+  },
+  {
+    "statusName": "Repeat"
+  }
+]
