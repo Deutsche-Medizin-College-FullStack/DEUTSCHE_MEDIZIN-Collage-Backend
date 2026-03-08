@@ -1,5 +1,6 @@
 package Henok.example.DeutscheCollageBack_endAPI.DTO.Students;
 
+import Henok.example.DeutscheCollageBack_endAPI.Enums.ExitExamPassStatus;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -60,6 +61,7 @@ public class StudentDetailsDTO {
     // Emergency Contact
     private String contactPersonFirstNameAMH;
     private String contactPersonFirstNameENG;
+    private String contactPersonFullNameENG;
     private String contactPersonLastNameAMH;
     private String contactPersonLastNameENG;
     private String contactPersonPhoneNumber;
@@ -78,6 +80,9 @@ public class StudentDetailsDTO {
     private Long departmentEnrolledId;
     private String departmentEnrolledName;     // e.g., "Computer Science"
 
+    private Long batchId;
+    private String batchName;
+
     private String programModalityCode;
     private String programModalityName;        // e.g., "Regular", "Extension"
 
@@ -92,6 +97,13 @@ public class StudentDetailsDTO {
     private Boolean isTransfer;
     private String exitExamUserID;
     private Double exitExamScore;
-    private Boolean isStudentPassExitExam;
+    private ExitExamPassStatus isStudentPassExitExam;
     private Double grade12Result;
+
+    private String yearOfExamG12;
+    private String nationalexamIdG12;
+    private LocalDate dateClassEndGC;
+    private LocalDate dateGraduated;
+    private String entryYearGC;
+    private String entryYearEC;
 }

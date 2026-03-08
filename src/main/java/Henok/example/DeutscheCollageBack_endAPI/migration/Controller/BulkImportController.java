@@ -32,22 +32,22 @@ public class BulkImportController {
     //               Receives a list of StudentImportDTO (no files, no photos/documents).
     //               Skips invalid records, continues with valid ones.
     //               Secured for admin only (adjust @PreAuthorize as needed).
-//    @PostMapping("/students/bulk")
-//    public ResponseEntity<Map<String, Object>> bulkImportStudents(@RequestBody List<StudentImportDTO> dtos) {
-//        if (dtos == null || dtos.isEmpty()) {
-//            throw new BadRequestException("Request body cannot be empty");
-//        }
-//
-//        BulkImportStudentResult result = bulkStudentImportService.importStudents(dtos);
-//
-//        Map<String, Object> response = new HashMap<>();
-//        response.put("successCount", result.getSuccessCount());
-//        response.put("failedCount", result.getFailedCount());
-//        response.put("failedUsernames", result.getFailedUsernames());
-//        response.put("message", "Bulk import completed");
-//
-//        return ResponseEntity.ok(response);
-//    }
+    @PostMapping("/students/bulk")
+    public ResponseEntity<Map<String, Object>> bulkImportStudents(@RequestBody List<StudentImportDTO> dtos) {
+        if (dtos == null || dtos.isEmpty()) {
+            throw new BadRequestException("Request body cannot be empty");
+        }
+
+        BulkImportStudentResult result = bulkStudentImportService.importStudents(dtos);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("successCount", result.getSuccessCount());
+        response.put("failedCount", result.getFailedCount());
+        response.put("failedUsernames", result.getFailedUsernames());
+        response.put("message", "Bulk import completed");
+
+        return ResponseEntity.ok(response);
+    }
 
     /**
      * Bulk import endpoint.

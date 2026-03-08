@@ -1,5 +1,7 @@
 package Henok.example.DeutscheCollageBack_endAPI.Controller;
 
+import Henok.example.DeutscheCollageBack_endAPI.Enums.*;
+import Henok.example.DeutscheCollageBack_endAPI.Enums.Role;
 import Henok.example.DeutscheCollageBack_endAPI.Repository.*;
 import Henok.example.DeutscheCollageBack_endAPI.Repository.MOE_Repos.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -202,7 +205,47 @@ public class FilterDataController {
                 .collect(Collectors.toList());
         response.put("schoolBackgrounds", schoolBackgrounds);
 
+
+        // === Roles ===
+        List<Map<String, Object>> roles = enumToOptions(Role.class);
+        response.put("roles", roles);
+
+        // === Gender ===
+        List<Map<String, Object>> genders = enumToOptions(Gender.class);
+        response.put("genders", genders);
+
+        // === Marital Status ===
+        List<Map<String, Object>> maritalStatuses = enumToOptions(MaritalStatus.class);
+        response.put("maritalStatuses", maritalStatuses);
+
+        // === Document Status ===
+        List<Map<String, Object>> documentStatuses = enumToOptions(DocumentStatus.class);
+        response.put("documentStatuses", documentStatuses);
+
+        // === Exit Exam Pass Status ===
+        List<Map<String, Object>> exitExamStatuses = enumToOptions(ExitExamPassStatus.class);
+        response.put("exitExamPassStatuses", exitExamStatuses);
+
+        // === Assessment Status (for assessments / reviews) ===
+        List<Map<String, Object>> assessmentStatuses = enumToOptions(AssessmentStatus.class);
+        response.put("assessmentStatuses", assessmentStatuses);
+
+        // === Application Status (for student applications) ===
+        List<Map<String, Object>> applicationStatuses = enumToOptions(ApplicationStatus.class);
+        response.put("applicationStatuses", applicationStatuses);
+
         return ResponseEntity.ok(response);
 
+    }
+
+    private List<Map<String, Object>> enumToOptions(Class<? extends Enum<?>> enumClass) {
+        return Arrays.stream(enumClass.getEnumConstants())
+                .map(e -> {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("id", e.name());
+                    map.put("name", e.name());
+                    return map;
+                })
+                .collect(Collectors.toList());
     }
 }

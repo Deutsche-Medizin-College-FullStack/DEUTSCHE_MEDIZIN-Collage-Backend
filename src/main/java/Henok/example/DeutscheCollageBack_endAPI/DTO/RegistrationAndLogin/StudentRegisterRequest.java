@@ -1,6 +1,7 @@
 package Henok.example.DeutscheCollageBack_endAPI.DTO.RegistrationAndLogin;
 
 import Henok.example.DeutscheCollageBack_endAPI.Enums.DocumentStatus;
+import Henok.example.DeutscheCollageBack_endAPI.Enums.ExitExamPassStatus;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.Gender;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.MaritalStatus;
 import jakarta.validation.constraints.Digits;
@@ -137,6 +138,9 @@ public class StudentRegisterRequest {
     @Digits(integer = 19, fraction = 0)
     private Long departmentEnrolledId; // Required: Department enrolled ID
 
+    @Digits(integer = 19, fraction = 0)
+    private Long batchId; // Optional: Batch ID (nullable)
+
     @Size(max = 20)
     private String programModalityCode; // Required: Program modality code (e.g., Regular)
 
@@ -155,7 +159,7 @@ public class StudentRegisterRequest {
     @Digits(integer = 5, fraction = 2)
     private Double exitExamScore; // Optional: Exit exam score
 
-    private Boolean isStudentPassExitExam; // Optional: Pass/fail status for exit exam
+    private ExitExamPassStatus isStudentPassExitExam; // Optional: Pass/fail/not taken status for exit exam
 
     // Academic Performance
     @Digits(integer = 5, fraction = 2)

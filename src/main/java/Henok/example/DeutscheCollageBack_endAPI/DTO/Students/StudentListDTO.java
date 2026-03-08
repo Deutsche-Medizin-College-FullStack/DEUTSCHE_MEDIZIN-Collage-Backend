@@ -18,6 +18,8 @@ public class StudentListDTO {
     private String grandfatherNameENG;
     private String studentRecentStatus;  // status name
     private String departmentEnrolled;   // department name
+    private Long batchId;
+    private String batchName;
     private String batchClassYearSemester; // BCYS name
     private byte[] studentPhoto;
 }

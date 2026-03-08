@@ -120,7 +120,7 @@ public class CourseMigrationService {
                 }
 
                 // Optional: Semester
-                if (dto.getSemesterId() != null) {
+                if (dto.getSemesterId() != null && !dto.getSemesterId().trim().isEmpty()) {
                     Semester sem = semesterRepository.findById(dto.getSemesterId())
                             .orElseThrow(() -> new ResourceNotFoundException("Semester not found: " + dto.getSemesterId()));
                     course.setSemester(sem);

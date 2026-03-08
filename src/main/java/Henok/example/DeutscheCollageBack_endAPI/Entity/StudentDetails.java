@@ -2,6 +2,7 @@ package Henok.example.DeutscheCollageBack_endAPI.Entity;
 
 
 import Henok.example.DeutscheCollageBack_endAPI.Enums.DocumentStatus;
+import Henok.example.DeutscheCollageBack_endAPI.Enums.ExitExamPassStatus;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.Gender;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.MaritalStatus;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.MOE_Data.*;
@@ -175,6 +176,10 @@ public class StudentDetails {
     private Department departmentEnrolled;
 
     @ManyToOne
+    @JoinColumn(name = "batch_id", nullable = true)
+    private Batch batch;
+
+    @ManyToOne
     @JoinColumn(name = "program_modality", nullable = false)
     private ProgramModality programModality;
 
@@ -200,6 +205,24 @@ public class StudentDetails {
     @Column
     private Double grade12Result;
 
+    @Column(name = "year_of_exam_g12")
+    private String yearOfExamG12;
+
+    @Column(name = "nationalexam_id_g12")
+    private String nationalexamIdG12;
+
+    @Column(name = "date_class_end_gc")
+    private LocalDate dateClassEndGC;
+
+    @Column(name = "date_graduated")
+    private LocalDate dateGraduated;
+
+    @Column(name = "entry_year_gc")
+    private String entryYearGC;
+
+    @Column(name = "entry_year_ec")
+    private String entryYearEC;
+
     // Remark for incomplete documents
     private String remark;
 
@@ -214,13 +237,26 @@ public class StudentDetails {
     private Double exitExamScore;
 
     @Column(nullable = false)
-    private boolean isStudentPassExitExam;
+    @Enumerated(EnumType.STRING)
+    private ExitExamPassStatus isStudentPassExitExam = ExitExamPassStatus.Not_Taken;
 
     public boolean isStudentPassExitExam() {
-        return isStudentPassExitExam;
+        return isStudentPassExitExam == ExitExamPassStatus.Yes;
+    }
+
+    public void setStudentPassExitExam(Boolean passed) {
+        if (passed == null) {
+            this.isStudentPassExitExam = ExitExamPassStatus.Not_Taken;
+            return;
+        }
+        this.isStudentPassExitExam = passed ? ExitExamPassStatus.Yes : ExitExamPassStatus.No;
     }
 
     public boolean isTransfer() {
         return isTransfer;
+    }
+
+    public void setStudentPassExitExam(ExitExamPassStatus exitExamPassStatus) {
+        this.isStudentPassExitExam = exitExamPassStatus;
     }
 }

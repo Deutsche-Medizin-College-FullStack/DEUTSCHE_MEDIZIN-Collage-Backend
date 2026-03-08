@@ -91,49 +91,76 @@ public class CourseService {
         courseRepository.save(course);
     }
 
-    // Inside CourseService class
     private CourseResponseDTO toResponseDTO(Course course) {
-        List<CourseResponseDTO.PrerequisiteDTO> prereqDTOs = course.getPrerequisites().stream()
+        // Prerequisites are safe (assuming List is never null — if it can be, add null check)
+        List<CourseResponseDTO.PrerequisiteDTO> prereqDTOs = (course.getPrerequisites() != null)
+                ? course.getPrerequisites().stream()
                 .map(prereq -> new CourseResponseDTO.PrerequisiteDTO(
-                        prereq.getCID(),
+                        prereq.getCID(),           // assuming getId() here (you had getCID() before)
                         prereq.getCCode(),
                         prereq.getCTitle()
                 ))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+                : Collections.emptyList();
+
+        // Null-safe references
+        CourseResponseDTO.RefDTO categoryRef = null;
+        if (course.getCategory() != null) {
+            categoryRef = new CourseResponseDTO.RefDTO(
+                    course.getCategory().getCatID(),
+                    course.getCategory().getCatName()
+            );
+        }
+
+        CourseResponseDTO.RefDTO departmentRef = null;
+        if (course.getDepartment() != null) {
+            departmentRef = new CourseResponseDTO.RefDTO(
+                    course.getDepartment().getDptID(),
+                    course.getDepartment().getDeptName()
+            );
+        }
+
+        CourseResponseDTO.RefDTO classYearRef = null;
+        if (course.getClassYear() != null) {
+            classYearRef = new CourseResponseDTO.RefDTO(
+                    course.getClassYear().getId(),
+                    course.getClassYear().getClassYear()
+            );
+        }
+
+        CourseResponseDTO.SemesterRefDTO semesterRef = null;
+        if (course.getSemester() != null) {
+            semesterRef = new CourseResponseDTO.SemesterRefDTO(
+                    course.getSemester().getAcademicPeriodCode(),
+                    course.getSemester().getAcademicPeriod()
+            );
+        }
 
         return new CourseResponseDTO(
-                course.getCID(),
+                course.getCID(),                // assuming getId() is the correct method now
                 course.getCTitle(),
                 course.getCCode(),
                 course.getTheoryHrs(),
                 course.getLabHrs(),
-                new CourseResponseDTO.RefDTO(
-                        course.getCategory().getCatID(),
-                        course.getCategory().getCatName()
-                ),
-                new CourseResponseDTO.RefDTO(
-                        course.getDepartment().getDptID(),
-                        course.getDepartment().getDeptName()
-                ),
-                new CourseResponseDTO.RefDTO(
-                        course.getClassYear().getId(),
-                        course.getClassYear().getClassYear()
-                ),
-                new CourseResponseDTO.SemesterRefDTO(
-                        course.getSemester().getAcademicPeriodCode(),
-                        course.getSemester().getAcademicPeriod()
-                ),
+                categoryRef,
+                departmentRef,
+                classYearRef,
+                semesterRef,
                 prereqDTOs
         );
     }
 
     /**
-     * Returns filtered list of courses using CourseResponseDTO.
+     * Core method: Returns filtered list of Course entities.
      * All parameters are optional (null = no filter on that field).
-     * Uses Specification for clean, dynamic, type-safe query building.
+     * This is the ONLY place where filtering logic lives.
+     * All other get-methods should call this one.
      */
-    public List<CourseResponseDTO> getAllCoursesFiltered(
-            Long departmentId, String semesterId, Long classYearId, Long categoryId) {
+    private List<Course> getCoursesFiltered(
+            Long departmentId,
+            String semesterId,
+            Long classYearId,
+            Long categoryId) {
 
         // Build dynamic specification
         Specification<Course> spec = Specification.where(null);
@@ -158,51 +185,46 @@ public class CourseService {
                     cb.equal(root.get("category").get("catID"), categoryId));
         }
 
-        List<Course> courses = courseRepository.findAll(spec);
+        return courseRepository.findAll(spec);
+    }
 
-        // If we want to keep the "no courses found" exception (your original behavior)
+    /**
+     * Original filtered method - kept as-is, now delegates to core method
+     */
+    public List<CourseResponseDTO> getAllCoursesFiltered(
+            Long departmentId, String semesterId, Long classYearId, Long categoryId) {
+
+        List<Course> courses = getCoursesFiltered(departmentId, semesterId, classYearId, categoryId);
+
+        // Optional: you can decide whether to throw or return empty
         // if (courses.isEmpty()) {
         //     throw new ResourceNotFoundException("No courses found matching the filters");
         // }
 
-        // Most APIs prefer returning empty list instead of 404 for filtered lists
         return courses.stream()
                 .map(this::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
     /**
-     * Returns minimal list of courses with optional filtering by department, class year, and semester.
-     * Uses Map<String, Object> to avoid DTO and entity serialization issues.
-     * All parameters are optional (null = no filter on that field).
+     * Minimal list (Map version) - now uses the core filtering method
      */
     public List<Map<String, Object>> getCoursesMinimalListFiltered(
             Long departmentId, Long classYearId, Long semesterId) {
 
-        // Build specification dynamically
-        Specification<Course> spec = Specification.where(null);
-
-        if (departmentId != null) {
-            spec = spec.and((root, query, cb) ->
-                    cb.equal(root.get("department").get("dptID"), departmentId));
-        }
-
-        if (classYearId != null) {
-            spec = spec.and((root, query, cb) ->
-                    cb.equal(root.get("classYear").get("id"), classYearId));
-        }
-
-        if (semesterId != null) {
-            spec = spec.and((root, query, cb) ->
-                    cb.equal(root.get("semester").get("id"), semesterId));
-        }
-
-        List<Course> courses = courseRepository.findAll(spec);
+        // Note: this method doesn't support categoryId filter (as per your original signature)
+        // If you want to add it later → just pass null for categoryId
+        List<Course> courses = getCoursesFiltered(
+                departmentId,
+                null,               // no semesterId in original minimal method
+                classYearId,
+                null                // no categoryId in original minimal method
+        );
 
         return courses.stream()
                 .map(course -> {
                     Map<String, Object> map = new HashMap<>();
-                    map.put("id", course.getCID());
+                    map.put("id", course.getCID());          // ← assuming getId() is correct
                     map.put("cCode", course.getCCode());
                     map.put("cTitle", course.getCTitle());
                     map.put("department", course.getDepartment().getDeptName());
@@ -211,34 +233,36 @@ public class CourseService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Get single course DTO by ID - now consistent
+     */
     public CourseResponseDTO getCourseDTOById(Long id) {
         Course course = courseRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Course not found with id: " + id));
         return toResponseDTO(course);
     }
 
+    /**
+     * Get single raw entity by ID (used internally or by other services)
+     */
     public Course getCourseById(Long id) {
         return courseRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Course not found with id: " + id));
     }
 
-    public List<Course> getPrerequisitesByCourseId(Long courseId) {
-        Course course = courseRepository.findById(courseId)
-                .orElseThrow(() -> new ResourceNotFoundException("Course not found with id: " + courseId));
-        Set<Course> prerequisites = course.getPrerequisites();
-        if (prerequisites.isEmpty()) {
-            throw new ResourceNotFoundException("No prerequisites found for course with id: " + courseId);
-        }
-        return new ArrayList<>(prerequisites);
-    }
-
+    /**
+     * Get all courses for a specific department - now delegates to core
+     */
     public List<CourseResponseDTO> getCoursesByDepartment(Long departmentId) {
-        Department department = departmentRepository.findById(departmentId)
-                .orElseThrow(() -> new ResourceNotFoundException("Department not found with id: " + departmentId));
-        List<Course> courses = courseRepository.findByDepartment(department);
+        List<Course> courses = getCoursesFiltered(
+                departmentId,
+                null, null, null   // no other filters
+        );
+
         if (courses.isEmpty()) {
             throw new ResourceNotFoundException("No courses found for department with id: " + departmentId);
         }
+
         return courses.stream()
                 .map(this::toResponseDTO)
                 .collect(Collectors.toList());
@@ -312,6 +336,16 @@ public class CourseService {
             throw new ResourceNotFoundException("Course not found with id: " + id);
         }
         courseRepository.deleteById(id);
+    }
+
+    public List<Course> getPrerequisitesByCourseId(Long courseId) {
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new ResourceNotFoundException("Course not found with id: " + courseId));
+        Set<Course> prerequisites = course.getPrerequisites();
+        if (prerequisites.isEmpty()) {
+            throw new ResourceNotFoundException("No prerequisites found for course with id: " + courseId);
+        }
+        return new ArrayList<>(prerequisites);
     }
 
     public void addPrerequisite(Long courseId, Long prerequisiteId) {

@@ -1,5 +1,6 @@
 package Henok.example.DeutscheCollageBack_endAPI.migration.DTO;
 
+import com.fasterxml.jackson.annotation.JsonSetter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,4 +41,27 @@ public class CourseCreateDTO {
 
     // Optional: Semester ID (can be null)
     private String semesterId;
+
+    // Treat empty string as null for Long fields
+    @JsonSetter("departmentId")
+    public void setDepartmentId(String value) {
+        this.departmentId = parseLongOrNull(value);
+    }
+
+    @JsonSetter("classYearId")
+    public void setClassYearId(String value) {
+        this.classYearId = parseLongOrNull(value);
+    }
+
+    // Helper method (can be static or in a util class)
+    private Long parseLongOrNull(String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            return Long.parseLong(value.trim());
+        } catch (NumberFormatException e) {
+            return null;  // or throw exception if you prefer strict behavior
+        }
+    }
 }

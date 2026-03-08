@@ -146,47 +146,5 @@
       }
     ],
     "active": true
-  },
-  {
-    "id": 6,
-    "versionName": "kenya",
-    "departmentId": null,
-    "departmentName": null,
-    "remark": "",
-    "intervals": [
-      {
-        "id": 30,
-        "description": "bad",
-        "min": 0.0,
-        "max": 69.99,
-        "givenValue": 0.0,
-        "gradeLetter": "F"
-      },
-      {
-        "id": 31,
-        "description": "good",
-        "min": 70.0,
-        "max": 79.99,
-        "givenValue": 4.0,
-        "gradeLetter": "C-"
-      },
-      {
-        "id": 32,
-        "description": "excellent ",
-        "min": 80.0,
-        "max": 89.99,
-        "givenValue": 4.0,
-        "gradeLetter": "A"
-      },
-      {
-        "id": 33,
-        "description": "excellent",
-        "min": 90.0,
-        "max": 100.0,
-        "givenValue": 4.0,
-        "gradeLetter": "A+"
-      }
-    ],
-    "active": false
   }
 ]

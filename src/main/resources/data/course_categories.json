@@ -14,5 +14,9 @@
   {
     "catId": "4",
     "catName": "Supportive Course"
+  },
+  {
+    "catId": "5",
+    "catName": "External Course"
   }
 ]

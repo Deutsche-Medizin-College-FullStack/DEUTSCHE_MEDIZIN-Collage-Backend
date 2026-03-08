@@ -2,20 +2,6 @@ package Henok.example.DeutscheCollageBack_endAPI.migration.DTO;
 
 import lombok.Data;
 
-/**
- * DTO used for the one-time bulk import of legacy students.
- *
- * Design decisions:
- * - All fields are String (or primitive wrappers) to handle CSV/JSON parsing safely.
- * - Foreign key references that come as numeric IDs from the legacy data are kept as String
- *   (departmentEnrolledId, batchClassYearSemesterId, schoolBackgroundId, studentRecentStatusId).
- *   These will be parsed to Long in the import service and used to fetch the entities directly by ID.
- * - Text columns like "Batch" / "Recent_Batch" are ignored since you confirmed there is no description field.
- * - Mother names, current address, email, impairment, academicYear, photo, document etc. are not present → will be null.
- * - Password will be defaulted to "stud1234" in the import service.
- * - Phone number is kept as String because legacy values are formatted (e.g., "(+251) ...").
- * - Empty or blank values in CSV are tolerated – mapping logic will skip or set defaults.
- */
 @Data
 public class StudentImportDTO {
 
@@ -36,8 +22,6 @@ public class StudentImportDTO {
     // Mother names – not present in legacy data → will remain null
     private String motherNameAMH;
     private String motherNameENG;
-    private String motherFatherNameAMH;
-    private String motherFatherNameENG;
 
     // Demographic
     private String gender;                     // "Male" or "Female" → mapped to Gender enum
@@ -50,6 +34,7 @@ public class StudentImportDTO {
 
     // Foreign keys provided as numeric IDs (Long in DB)
     private String departmentEnrolledId;        // e.g. "2" → Department.id
+    private String batchId;                     // e.g. "5" → Batch.id
     private String batchClassYearSemesterId;    // e.g. "15" → BatchClassYearSemester.id
     private String studentRecentStatusId;      // e.g. "2" → StudentStatus.id
     private String schoolBackgroundId;         // e.g. "1" → SchoolBackground.id
@@ -63,7 +48,7 @@ public class StudentImportDTO {
     private String placeOfBirthWoredaCode;     // e.g. "1199"
 
     // Emergency contact – mostly empty in sample
-    private String contactPersonFirstNameENG;
+    private String contactPersonFullNameENG;
     private String contactPersonPhoneNumber;
     private String contactPersonRelation;
 
@@ -73,6 +58,14 @@ public class StudentImportDTO {
     private String documentStatus;             // "TRUE" → COMPLETE, else INCOMPLETE
     private String exitExamUserID;
     private String exitExamScore;              // will be parsed to Double if present
-    private String isStudentPassExitExam;      // "TRUE"/"FALSE"
+    private String isStudentPassExitExam;      // "TRUE"/"FALSE"/"NOT_TAKEN"
     private String grade12Result;              // will be parsed to Double if present
+
+    // NEW FIELDS ADDED
+    private String Year_of_Exam_G12;           // e.g. "2025"
+    private String NATIONALEXAM_ID_G12;        // e.g. "305288"
+    private String Date_Class_EndGC;           // Date class ended
+    private String Date_Graduated;             // Graduation date
+    private String Entry_Year_GC;              // e.g. "2019/20 G.C"
+    private String Entry_Year_EC;              // e.g. "2012 E.C"
 }

@@ -1,6 +1,7 @@
 package Henok.example.DeutscheCollageBack_endAPI.DTO.Students;
 
 import Henok.example.DeutscheCollageBack_endAPI.Enums.DocumentStatus;
+import Henok.example.DeutscheCollageBack_endAPI.Enums.ExitExamPassStatus;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.Gender;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.MaritalStatus;
 import lombok.Data;
@@ -49,6 +50,7 @@ public class StudentUpdateDTO {
     private String contactPersonFirstNameENG; // Optional: Update emergency contact first name in English
     private String contactPersonLastNameAMH; // Optional: Update emergency contact last name in Amharic
     private String contactPersonLastNameENG; // Optional: Update emergency contact last name in English
+    private String contactPersonFullNameENG; // Optional: Update full emergency contact name in English
     private String contactPersonPhoneNumber; // Optional: Update emergency contact phone number
     private String contactPersonRelation; // Optional: Update relation to student
 
@@ -59,6 +61,7 @@ public class StudentUpdateDTO {
     private Long batchClassYearSemesterId; // Optional: Update BatchClassYearSemester ID
     private Long studentRecentStatusId; // Optional: Update current student status ID
     private Long departmentEnrolledId; // Optional: Update department enrolled ID
+    private Long batchId; // Optional: Update batch ID (nullable)
     private String programModalityCode; // Optional: Update program modality code
 
     // Document Information
@@ -69,8 +72,16 @@ public class StudentUpdateDTO {
     private Boolean isTransfer; // Optional: Update transfer status
     private String exitExamUserID; // Optional: Update exit exam user ID
     private Double exitExamScore; // Optional: Update exit exam score
-    private Boolean isStudentPassExitExam; // Optional: Update pass/fail status for exit exam
+    private ExitExamPassStatus isStudentPassExitExam; // Optional: Update pass/fail/not taken status for exit exam
 
     // Academic Performance
     private Double grade12Result; // Optional: Update Grade 12 exam result
+
+    // Additional academic fields
+    private String yearOfExamG12;
+    private String nationalexamIdG12;
+    private LocalDate dateClassEndGC;
+    private LocalDate dateGraduated;
+    private String entryYearGC;
+    private String entryYearEC;
 }

@@ -1,5 +1,6 @@
 package Henok.example.DeutscheCollageBack_endAPI.migration.runner;
 
+import Henok.example.DeutscheCollageBack_endAPI.DTO.BatchClassYearSemesterDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.GradingSystemDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.MOE_DTOs.WoredaDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.MOE_DTOs.ZoneDTO;
@@ -72,6 +73,7 @@ public class DataMigrationRunner implements CommandLineRunner {
     private final ProgramModalityRepository programModalityRepository;
     private final DepartmentRepo departmentRepo;
     private final GradingSystemRepository gradingSystemRepository;
+    private final BatchClassYearSemesterRepo batchClassYearSemesterRepo;
 
     // Services
     private final GradingSystemService gradingSystemService; // <-- we will use the existing service!
@@ -87,11 +89,12 @@ public class DataMigrationRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        mainFunction();
+        mainFunction();
     }
 
     public void mainFunction(){
         try {
+            System.out.println("================ Migration Begin =================");
             loadAcademicYears();
             loadEnrollmentTypes();
             loadImpairments();
@@ -103,8 +106,8 @@ public class DataMigrationRunner implements CommandLineRunner {
             loadStudentStatuses();
             loadRegions();
             //-----------------------------------------------------------------
-//            loadZones();                // zones depend on regions
-//            loadWoredas();              // woredas depend on zones
+            loadZones();                // zones depend on regions
+            loadWoredas();              // woredas depend on zones
             //-----------------------------------------------------------------
             loadSchoolBackgrounds();
             loadProgramLevels();
@@ -112,6 +115,7 @@ public class DataMigrationRunner implements CommandLineRunner {
             loadProgramModalities();
             loadDepartments();
             loadProgressionSequences();
+            loadInitialBatchClassYearSemester();
 
             System.out.println("----------------- Grading System Seeding ---------------");
             loadGradingSystems();
@@ -121,6 +125,13 @@ public class DataMigrationRunner implements CommandLineRunner {
             loadGeneralManager();
 
             System.out.println("Reference data migration completed.");
+            System.out.println("""
+                    Next steps will be :\s
+                    1. Adding Batches 1-5
+                    2. Populate Department BCYS table(call - /api/bcsy/populate-department-bcys)\
+                    3. Adding Students (call - /api/migration/students/bulk)\
+                    4. Adding Courses (call - /api/migration/courses/bulk)\
+                    5. Add Fact Sheets (call - /api/migration/fact-sheet/bulk)""");
         } catch (Exception e) {
             System.err.println("Unexpected error during reference data migration: " + e.getMessage());
             // Still allow app startup to continue
@@ -138,13 +149,13 @@ public class DataMigrationRunner implements CommandLineRunner {
             Class<T> entityClass) throws IOException {
 
         if (!tableExists(tableName)) {
-            System.out.println("Table " + tableName + " does not exist → skipping " + entityName);
+            System.out.println("\tTable " + tableName + " does not exist → skipping " + entityName);
             return;
         }
 
         InputStream is = getClass().getResourceAsStream(filePath);
         if (is == null) {
-            System.out.println("File not found: " + filePath + " → skipping " + entityName);
+            System.out.println("\tFile not found: " + filePath + " → skipping " + entityName);
             return;
         }
 
@@ -157,16 +168,16 @@ public class DataMigrationRunner implements CommandLineRunner {
             items = objectMapper.readValue(is, listType);
 
         } catch (JsonProcessingException e) {
-            System.err.println("Invalid JSON format in " + filePath + " → skipping " + entityName + ": " + e.getMessage());
+            System.err.println("\tInvalid JSON format in " + filePath + " → skipping " + entityName + ": " + e.getMessage());
             return;
         } catch (IOException e) {
-            System.err.println("IO error reading " + filePath + " → skipping " + entityName + ": " + e.getMessage());
+            System.err.println("\tIO error reading " + filePath + " → skipping " + entityName + ": " + e.getMessage());
             return;
         }
 
         // Handle empty / null gracefully
         if (items == null || items.isEmpty()) {
-            System.out.println(entityName + ": file is empty or contains no items → nothing to migrate");
+            System.out.println("\t" + entityName + ": file is empty or contains no items → nothing to migrate");
             return;
         }
 
@@ -703,7 +714,7 @@ public class DataMigrationRunner implements CommandLineRunner {
             }
         }
 
-        System.out.println("\t" + entityName + ": inserted " + inserted + ", skipped " + skipped
+        System.out.println(entityName + ": inserted " + inserted + ", skipped " + skipped
                 + ", failed " + failed + " / total " + rawSystems.size());
     }
 
@@ -812,7 +823,7 @@ public class DataMigrationRunner implements CommandLineRunner {
             }
         }
 
-        System.out.println("\t" + entityName + ": success " + success + ", skipped " + skipped
+        System.out.println(entityName + ": success " + success + ", skipped " + skipped
                 + ", failed " + failed + " / total " + total);
     }
 
@@ -901,7 +912,7 @@ public class DataMigrationRunner implements CommandLineRunner {
             }
         }
 
-        System.out.println("\t" + entityName + ": success " + success + ", skipped " + skipped
+        System.out.println(entityName + ": success " + success + ", skipped " + skipped
                 + ", failed " + failed + " / total " + total);
     }
 
@@ -955,7 +966,7 @@ public class DataMigrationRunner implements CommandLineRunner {
 
             int success = requested - failed;
 
-            System.out.println("\t" + entityName + ": success " + success + ", failed " + failed + " / total " + requested);
+            System.out.println(entityName + ": success " + success + ", failed " + failed + " / total " + requested);
 
             // Log individual failures (very helpful for debugging large JSON)
             if (!errors.isEmpty()) {
@@ -971,6 +982,61 @@ public class DataMigrationRunner implements CommandLineRunner {
             System.err.println("\tBad request when seeding " + entityName + ": " + e.getMessage());
         } catch (Exception e) {
             System.err.println("\tUnexpected error while seeding " + entityName + ": " + e.getMessage());
+        }
+    }
+
+    // ────────────────────────────────────────────────
+// Seed one fixed BatchClassYearSemester combination
+// Combination: batch ID=1, classYear ID=12, semester code="NO"
+// Only creates if it does not already exist
+// ────────────────────────────────────────────────
+    @Transactional
+    private void loadInitialBatchClassYearSemester() {
+        String entityName = "BatchClassYearSemester";
+        String description = "Batch 1 - Class Year 12 - Semester NO";
+
+        try {
+            // Fetch required parents
+            Batch batch = batchRepo.findById(1L)
+                    .orElse(null);
+            if (batch == null) {
+                System.out.println("\tSkipping " + entityName + " '" + description + "' → Batch with ID 1 not found");
+                return;
+            }
+
+            ClassYear classYear = classYearRepository.findById(12L)
+                    .orElse(null);
+            if (classYear == null) {
+                System.out.println("\tSkipping " + entityName + " '" + description + "' → ClassYear with ID 12 not found");
+                return;
+            }
+
+            Semester semester = semesterRepo.findById("NO")
+                    .orElse(null);
+            if (semester == null) {
+                System.out.println("\tSkipping " + entityName + " '" + description + "' → Semester with code 'NO' not found");
+                return;
+            }
+
+            // Check if this exact combination already exists
+            if (batchClassYearSemesterRepo.existsByBatchAndClassYearAndSemester(batch, classYear, semester)) {
+                System.out.println("\t" + entityName + " already exists: " + description + " → skipping");
+                return;
+            }
+
+            // Create and save
+            BatchClassYearSemester bcys = new BatchClassYearSemester();
+            bcys.setBatch(batch);
+            bcys.setClassYear(classYear);
+            bcys.setSemester(semester);
+            // description is computed via getDisplayName() - no need to set manually
+
+            batchClassYearSemesterRepo.save(bcys);
+
+            System.out.println("Successfully seeded " + entityName + ": " + bcys.getDisplayName());
+
+        } catch (Exception e) {
+            System.err.println("\tFailed to seed " + entityName + " '" + description + "': " + e.getMessage());
         }
     }
 

@@ -13,6 +13,8 @@ public class StudentCGPADTO {
     private String idNumber;
     private String fullName;
     private String department;
+    private Long batchId;
+    private String batchName;
     private String batchClassYearSemester;
     private String studentStatus;
     private Double cgpa;

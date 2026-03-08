@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 import Henok.example.DeutscheCollageBack_endAPI.Enums.DocumentStatus;
+import Henok.example.DeutscheCollageBack_endAPI.Enums.ExitExamPassStatus;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.Gender;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.MaritalStatus;
 import lombok.Data;
@@ -63,6 +64,7 @@ public class StudentDetailsSummaryDTO {
     private LocalDate dateEnrolledGC;
 
     private Map<String, Object> academicYear;         // {yearCode: "...", name: "..."}
+    private Map<String, Object> batch;                // {id: ..., name: "..."}
     private Map<String, Object> batchClassYearSemester;// {id: ..., name: "..."}
     private Map<String, Object> recentBatch;  // {id: Long, name: String}
     private Map<String, Object> studentRecentStatus;  // assuming it has id & name
@@ -77,10 +79,17 @@ public class StudentDetailsSummaryDTO {
     private boolean isTransfer;
     private String exitExamUserID;
     private Double exitExamScore;
-    private boolean isStudentPassExitExam;
+    private ExitExamPassStatus isStudentPassExitExam;
+    private String yearOfExamG12;
+    private String nationalexamIdG12;
+    private LocalDate dateClassEndGC;
+    private LocalDate dateGraduated;
+    private String entryYearGC;
+    private String entryYearEC;
 
     // New fields - stored directly in StudentDetails table
     private BigDecimal cgpa;                  // e.g. 3.45
     private Integer totalEarnedCreditHours;   // e.g. 92
     private Integer totalCoursesRegistered;       // e.g.  thirty
+
 }

@@ -123,7 +123,7 @@ public interface StudentDetailsRepository extends JpaRepository<StudentDetails, 
     Optional<Double> getAverageGrade12Result();
 
     // Count passed exit exams.
-    @Query("SELECT COUNT(s) FROM StudentDetails s WHERE s.isStudentPassExitExam = true")
+        @Query("SELECT COUNT(s) FROM StudentDetails s WHERE s.isStudentPassExitExam = 'Yes'")
     long countByIsStudentPassExitExamTrue();
 
     long countByStudentRecentStatus(StudentStatus status);

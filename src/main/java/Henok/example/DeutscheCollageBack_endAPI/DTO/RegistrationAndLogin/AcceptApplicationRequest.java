@@ -1,5 +1,6 @@
 package Henok.example.DeutscheCollageBack_endAPI.DTO.RegistrationAndLogin;
 
+import Henok.example.DeutscheCollageBack_endAPI.Enums.ExitExamPassStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -25,6 +26,9 @@ public class AcceptApplicationRequest {
 
     private String academicYearCode;
 
+    @NotNull(message = "Batch ID is required")
+    private Long batchId;
+
     @NotNull(message = "Batch class year semester ID is required")
     private Long batchClassYearSemesterId;
 
@@ -38,7 +42,7 @@ public class AcceptApplicationRequest {
 
     private Double exitExamScore;
 
-    private Boolean isStudentPassExitExam;
+    private ExitExamPassStatus isStudentPassExitExam;
 
     private Double grade12Result;
 

@@ -11,6 +11,7 @@ import Henok.example.DeutscheCollageBack_endAPI.Entity.*;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.MOE_Data.*;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.ApplicationStatus;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.DocumentStatus;
+import Henok.example.DeutscheCollageBack_endAPI.Enums.ExitExamPassStatus;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.Role;
 import Henok.example.DeutscheCollageBack_endAPI.Error.BadRequestException;
 import Henok.example.DeutscheCollageBack_endAPI.Error.ResourceNotFoundException;
@@ -64,6 +65,8 @@ public class StudentDetailService {
     private StudentStatusRepo studentStatusRepository;
     @Autowired
     private DepartmentRepo departmentRepository;
+    @Autowired
+    private BatchRepo batchRepository;
     @Autowired
     private ProgramModalityRepository programModalityRepository;
     @Autowired
@@ -171,6 +174,8 @@ public class StudentDetailService {
 
                     dto.setStudentRecentStatus(student.getStudentRecentStatus().getStatusName());
                     dto.setDepartmentEnrolled(student.getDepartmentEnrolled().getDeptName());
+                    dto.setBatchId(student.getBatch() != null ? student.getBatch().getId() : null);
+                    dto.setBatchName(student.getBatch() != null ? student.getBatch().getBatchName() : null);
                     dto.setBatchClassYearSemester(student.getBatchClassYearSemester().getDisplayName());
 
                     dto.setStudentPhoto(student.getStudentPhoto());
@@ -269,6 +274,8 @@ public class StudentDetailService {
                     dto.setFullName(fullName);
 
                     dto.setDepartment(student.getDepartmentEnrolled().getDeptName());
+                    dto.setBatchId(student.getBatch() != null ? student.getBatch().getId() : null);
+                    dto.setBatchName(student.getBatch() != null ? student.getBatch().getBatchName() : null);
                     dto.setBatchClassYearSemester(student.getBatchClassYearSemester().getDisplayName());
                     dto.setStudentStatus(student.getStudentRecentStatus().getStatusName());
 
@@ -309,10 +316,8 @@ public class StudentDetailService {
                 details.getFatherNameAMH(),
                 details.getGrandfatherNameAMH()).trim();
 
-        // Emergency contact full name
-        String contactFullNameENG = String.join(" ",
-                details.getContactPersonFirstNameENG(),
-                details.getContactPersonLastNameENG()).trim();
+        // Contact full name is stored in contactPersonFirstNameENG.
+        String contactFullNameENG = details.getContactPersonFirstNameENG();
 
         return StudentProfileResponse.builder()
                 .userId(user.getId())
@@ -344,12 +349,21 @@ public class StudentDetailService {
                 .contactPersonRelation(details.getContactPersonRelation())
                 .dateEnrolledGC(details.getDateEnrolledGC())
                 .academicYear(details.getAcademicYear() != null ? details.getAcademicYear().getYearCode() : null)
+                .batchId(details.getBatch() != null ? details.getBatch().getId() : null)
+                .batchName(details.getBatch() != null ? details.getBatch().getBatchName() : null)
                 .batchClassYearSemester(details.getBatchClassYearSemester().getDisplayName()) // assuming you have a display field
                 .studentRecentStatus(details.getStudentRecentStatus().getStatusName())
                 .departmentEnrolled(details.getDepartmentEnrolled().getDeptName())
                 .programModality(details.getProgramModality().getModality())
                 .documentStatus(details.getDocumentStatus())          // enum - kept as is
                 .grade12Result(details.getGrade12Result())
+                .isStudentPassExitExam(details.getIsStudentPassExitExam())
+                .yearOfExamG12(details.getYearOfExamG12())
+                .nationalexamIdG12(details.getNationalexamIdG12())
+                .dateClassEndGC(details.getDateClassEndGC())
+                .dateGraduated(details.getDateGraduated())
+                .entryYearGC(details.getEntryYearGC())
+                .entryYearEC(details.getEntryYearEC())
                 .build();
     }
 
@@ -480,12 +494,6 @@ public class StudentDetailService {
         if (request.getMotherNameENG() == null || request.getMotherNameENG().isEmpty()) {
             throw new IllegalArgumentException("Mother name (English) cannot be empty");
         }
-        if (request.getMotherFatherNameAMH() == null || request.getMotherFatherNameAMH().isEmpty()) {
-            throw new IllegalArgumentException("Mother's father name (Amharic) cannot be empty");
-        }
-        if (request.getMotherFatherNameENG() == null || request.getMotherFatherNameENG().isEmpty()) {
-            throw new IllegalArgumentException("Mother's father name (English) cannot be empty");
-        }
         if (request.getGender() == null) {
             throw new IllegalArgumentException("Gender cannot be null");
         }
@@ -531,12 +539,6 @@ public class StudentDetailService {
         if (request.getContactPersonFirstNameENG() == null || request.getContactPersonFirstNameENG().isEmpty()) {
             throw new IllegalArgumentException("Contact person first name (English) cannot be empty");
         }
-        if (request.getContactPersonLastNameAMH() == null || request.getContactPersonLastNameAMH().isEmpty()) {
-            throw new IllegalArgumentException("Contact person last name (Amharic) cannot be empty");
-        }
-        if (request.getContactPersonLastNameENG() == null || request.getContactPersonLastNameENG().isEmpty()) {
-            throw new IllegalArgumentException("Contact person last name (English) cannot be empty");
-        }
         if (request.getContactPersonPhoneNumber() == null || request.getContactPersonPhoneNumber().isEmpty()) {
             throw new IllegalArgumentException("Contact person phone number cannot be empty");
         }
@@ -557,6 +559,9 @@ public class StudentDetailService {
         }
         if (request.getDepartmentEnrolledId() == null) {
             throw new IllegalArgumentException("Department enrolled cannot be null");
+        }
+        if (request.getBatchId() != null && !batchRepository.existsById(request.getBatchId())) {
+            throw new IllegalArgumentException("Batch not found with id: " + request.getBatchId());
         }
         if (request.getProgramModalityCode() == null) {
             throw new IllegalArgumentException("Program modality cannot be null");
@@ -674,6 +679,14 @@ public class StudentDetailService {
         if (dto.getContactPersonLastNameENG() != null && !dto.getContactPersonLastNameENG().isEmpty()) {
             student.setContactPersonLastNameENG(dto.getContactPersonLastNameENG());
         }
+        if (dto.getContactPersonFullNameENG() != null && !dto.getContactPersonFullNameENG().isEmpty()) {
+            student.setContactPersonFirstNameENG(dto.getContactPersonFullNameENG());
+            student.setContactPersonLastNameENG(null);
+        } else if ((dto.getContactPersonFirstNameENG() != null && !dto.getContactPersonFirstNameENG().isEmpty())
+                || (dto.getContactPersonLastNameENG() != null && !dto.getContactPersonLastNameENG().isEmpty())) {
+            student.setContactPersonFirstNameENG(buildFullName(dto.getContactPersonFirstNameENG(), dto.getContactPersonLastNameENG()));
+            student.setContactPersonLastNameENG(null);
+        }
         if (dto.getContactPersonPhoneNumber() != null && !dto.getContactPersonPhoneNumber().isEmpty()) {
             student.setContactPersonPhoneNumber(dto.getContactPersonPhoneNumber());
         }
@@ -707,6 +720,11 @@ public class StudentDetailService {
                     .orElseThrow(() -> new ResourceNotFoundException("Department not found with id: " + dto.getDepartmentEnrolledId()));
             student.setDepartmentEnrolled(dept);
         }
+        if (dto.getBatchId() != null) {
+            Batch batch = batchRepository.findById(dto.getBatchId())
+                .orElseThrow(() -> new ResourceNotFoundException("Batch not found with id: " + dto.getBatchId()));
+            student.setBatch(batch);
+        }
         if (dto.getProgramModalityCode() != null) {
             ProgramModality modality = programModalityRepository.findById(dto.getProgramModalityCode())
                     .orElseThrow(() -> new ResourceNotFoundException("Program modality not found with code: " + dto.getProgramModalityCode()));
@@ -735,6 +753,24 @@ public class StudentDetailService {
         }
         if (dto.getGrade12Result() != null) {
             student.setGrade12Result(dto.getGrade12Result());
+        }
+        if (dto.getYearOfExamG12() != null) {
+            student.setYearOfExamG12(dto.getYearOfExamG12());
+        }
+        if (dto.getNationalexamIdG12() != null) {
+            student.setNationalexamIdG12(dto.getNationalexamIdG12());
+        }
+        if (dto.getDateClassEndGC() != null) {
+            student.setDateClassEndGC(dto.getDateClassEndGC());
+        }
+        if (dto.getDateGraduated() != null) {
+            student.setDateGraduated(dto.getDateGraduated());
+        }
+        if (dto.getEntryYearGC() != null) {
+            student.setEntryYearGC(dto.getEntryYearGC());
+        }
+        if (dto.getEntryYearEC() != null) {
+            student.setEntryYearEC(dto.getEntryYearEC());
         }
     }
 
@@ -786,9 +822,9 @@ public class StudentDetailService {
             student.setStudentPhoto(studentPhoto.getBytes());
         }
         student.setContactPersonFirstNameAMH(request.getContactPersonFirstNameAMH());
-        student.setContactPersonFirstNameENG(request.getContactPersonFirstNameENG());
+        student.setContactPersonFirstNameENG(buildFullName(request.getContactPersonFirstNameENG(), request.getContactPersonLastNameENG()));
         student.setContactPersonLastNameAMH(request.getContactPersonLastNameAMH());
-        student.setContactPersonLastNameENG(request.getContactPersonLastNameENG());
+        student.setContactPersonLastNameENG(null);
         student.setContactPersonPhoneNumber(request.getContactPersonPhoneNumber());
         student.setContactPersonRelation(request.getContactPersonRelation());
         student.setDateEnrolledEC(request.getDateEnrolledEC());
@@ -802,6 +838,10 @@ public class StudentDetailService {
         Department dept = departmentRepository.findById(request.getDepartmentEnrolledId())
                 .orElseThrow(() -> new ResourceNotFoundException("Department not found with id: " + request.getDepartmentEnrolledId()));
         student.setDepartmentEnrolled(dept);
+        if (request.getBatchId() != null) {
+            student.setBatch(batchRepository.findById(request.getBatchId())
+                .orElseThrow(() -> new ResourceNotFoundException("Batch not found with id: " + request.getBatchId())));
+        }
 //        student.setStudentRecentDepartment(dept);
         student.setProgramModality(programModalityRepository.findById(request.getProgramModalityCode())
                 .orElseThrow(() -> new ResourceNotFoundException("Program modality not found with code: " + request.getProgramModalityCode())));
@@ -813,7 +853,9 @@ public class StudentDetailService {
         student.setTransfer(request.getIsTransfer() != null ? request.getIsTransfer() : false);
         student.setExitExamUserID(request.getExitExamUserID());
         student.setExitExamScore(request.getExitExamScore());
-        student.setStudentPassExitExam(request.getIsStudentPassExitExam() != null ? request.getIsStudentPassExitExam() : false);
+        student.setStudentPassExitExam(request.getIsStudentPassExitExam() != null
+            ? request.getIsStudentPassExitExam()
+            : ExitExamPassStatus.Not_Taken);
         student.setGrade12Result(request.getGrade12Result());
         return student;
     }
@@ -877,6 +919,7 @@ public class StudentDetailService {
         // Emergency Contact
         dto.setContactPersonFirstNameAMH(student.getContactPersonFirstNameAMH());
         dto.setContactPersonFirstNameENG(student.getContactPersonFirstNameENG());
+        dto.setContactPersonFullNameENG(student.getContactPersonFirstNameENG());
         dto.setContactPersonLastNameAMH(student.getContactPersonLastNameAMH());
         dto.setContactPersonLastNameENG(student.getContactPersonLastNameENG());
         dto.setContactPersonPhoneNumber(student.getContactPersonPhoneNumber());
@@ -898,6 +941,9 @@ public class StudentDetailService {
         dto.setDepartmentEnrolledId(student.getDepartmentEnrolled().getDptID());
         dto.setDepartmentEnrolledName(student.getDepartmentEnrolled().getDeptName());
 
+        dto.setBatchId(student.getBatch() != null ? student.getBatch().getId() : null);
+        dto.setBatchName(student.getBatch() != null ? student.getBatch().getBatchName() : null);
+
         // Program Modality (required, safe)
         dto.setProgramModalityCode(student.getProgramModality().getModalityCode());
         dto.setProgramModalityName(student.getProgramModality().getModality());
@@ -916,8 +962,14 @@ public class StudentDetailService {
         dto.setIsTransfer(student.isTransfer());
         dto.setExitExamUserID(student.getExitExamUserID());
         dto.setExitExamScore(student.getExitExamScore());
-        dto.setIsStudentPassExitExam(student.isStudentPassExitExam());
+        dto.setIsStudentPassExitExam(student.getIsStudentPassExitExam());
         dto.setGrade12Result(student.getGrade12Result());
+        dto.setYearOfExamG12(student.getYearOfExamG12());
+        dto.setNationalexamIdG12(student.getNationalexamIdG12());
+        dto.setDateClassEndGC(student.getDateClassEndGC());
+        dto.setDateGraduated(student.getDateGraduated());
+        dto.setEntryYearGC(student.getEntryYearGC());
+        dto.setEntryYearEC(student.getEntryYearEC());
 
         return dto;
     }
@@ -931,6 +983,13 @@ public StudentDetails acceptAppliedStudent(
         AcceptApplicationRequest request,
         MultipartFile studentPhoto,
         MultipartFile document) throws IOException {
+
+    if (request.getBatchId() == null) {
+        throw new IllegalArgumentException("Batch ID is required");
+    }
+    if (!batchRepository.existsById(request.getBatchId())) {
+        throw new ResourceNotFoundException("Batch not found with id: " + request.getBatchId());
+    }
 
     // Fetch applied student
     AppliedStudent applied = appliedStudentRepository.findById(appliedStudentId)
@@ -1000,6 +1059,7 @@ public StudentDetails acceptAppliedStudent(
     registerRequest.setDateEnrolledEC(request.getDateEnrolledEC());
     registerRequest.setDateEnrolledGC(request.getDateEnrolledGC());
     registerRequest.setAcademicYearCode(request.getAcademicYearCode());
+    registerRequest.setBatchId(request.getBatchId());
     registerRequest.setBatchClassYearSemesterId(request.getBatchClassYearSemesterId());
     registerRequest.setStudentRecentStatusId(request.getStudentRecentStatusId());
 
@@ -1141,6 +1201,9 @@ System.out.println("---------Finished Registering Applicant --------");
         dto.setAcademicYear(toIdNameMap(sd.getAcademicYear(),
                 AcademicYear::getYearCode, ay -> ay.getAcademicYearGC()));
 
+        dto.setBatch(toIdNameMap(sd.getBatch(),
+            Batch::getId, Batch::getBatchName));
+
         dto.setBatchClassYearSemester(toIdNameMap(sd.getBatchClassYearSemester(),
                 BatchClassYearSemester::getBcysID,
                 BatchClassYearSemester::getDisplayName));
@@ -1176,7 +1239,13 @@ System.out.println("---------Finished Registering Applicant --------");
         dto.setTransfer(sd.isTransfer());
         dto.setExitExamUserID(sd.getExitExamUserID());
         dto.setExitExamScore(sd.getExitExamScore());
-        dto.setStudentPassExitExam(sd.isStudentPassExitExam());
+        dto.setIsStudentPassExitExam(sd.getIsStudentPassExitExam());
+        dto.setYearOfExamG12(sd.getYearOfExamG12());
+        dto.setNationalexamIdG12(sd.getNationalexamIdG12());
+        dto.setDateClassEndGC(sd.getDateClassEndGC());
+        dto.setDateGraduated(sd.getDateGraduated());
+        dto.setEntryYearGC(sd.getEntryYearGC());
+        dto.setEntryYearEC(sd.getEntryYearEC());
 
         dto.setCgpa(sd.getCgpa());                          // can be null
         dto.setTotalEarnedCreditHours(sd.getTotalEarnedCreditHours());  // can be null or 0
@@ -1199,6 +1268,12 @@ System.out.println("---------Finished Registering Applicant --------");
         map.put("id", idExtractor.apply(entity));
         map.put("name", nameExtractor.apply(entity));
         return map;
+    }
+
+    private String buildFullName(String firstPart, String secondPart) {
+        String first = firstPart != null ? firstPart.trim() : "";
+        String second = secondPart != null ? secondPart.trim() : "";
+        return (first + " " + second).trim();
     }
 
     //==================================================================================================================

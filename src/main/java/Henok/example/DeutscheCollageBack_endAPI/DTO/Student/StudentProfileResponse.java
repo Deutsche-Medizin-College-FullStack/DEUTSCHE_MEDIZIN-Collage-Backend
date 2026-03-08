@@ -1,6 +1,7 @@
 package Henok.example.DeutscheCollageBack_endAPI.DTO.Student;
 
 import Henok.example.DeutscheCollageBack_endAPI.Enums.DocumentStatus;
+import Henok.example.DeutscheCollageBack_endAPI.Enums.ExitExamPassStatus;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.Gender;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.MaritalStatus;
 import lombok.AllArgsConstructor;
@@ -50,6 +51,8 @@ public class StudentProfileResponse {
 
     private LocalDate dateEnrolledGC;
     private String academicYear;
+    private Long batchId;
+    private String batchName;
     private String batchClassYearSemester;
     private String studentRecentStatus;        // name from StudentStatus entity
     private String departmentEnrolled;         // department name
@@ -57,4 +60,11 @@ public class StudentProfileResponse {
 
     private DocumentStatus documentStatus;     // enum
     private Double grade12Result;
+    private ExitExamPassStatus isStudentPassExitExam;
+    private String yearOfExamG12;
+    private String nationalexamIdG12;
+    private LocalDate dateClassEndGC;
+    private LocalDate dateGraduated;
+    private String entryYearGC;
+    private String entryYearEC;
 }
