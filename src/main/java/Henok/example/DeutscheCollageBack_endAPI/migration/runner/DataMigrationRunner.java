@@ -126,12 +126,13 @@ public class DataMigrationRunner implements CommandLineRunner {
 
             System.out.println("Reference data migration completed.");
             System.out.println("""
-                    Next steps will be :\s
-                    1. Adding Batches 1-5
-                    2. Populate Department BCYS table(call - /api/bcsy/populate-department-bcys)\
-                    3. Adding Students (call - /api/migration/students/bulk)\
-                    4. Adding Courses (call - /api/migration/courses/bulk)\
-                    5. Add Fact Sheets (call - /api/migration/fact-sheet/bulk)""");
+                    Next steps will be :\n\t
+                    1. Adding Batches 1-5\n\t
+                    2. Populate Department BCYS table(call - /api/bcsy/populate-department-bcys)\n\t
+                    3. Adding Students (call - /api/migration/students/bulk)\n\t
+                    4. Adding Courses (call - /api/migration/courses/bulk)\n\t
+                    5. Add Fact Sheets (call - /api/migration/fact-sheet/bulk)\n\t
+                    6. Reload CGPA for all Students\n""");
         } catch (Exception e) {
             System.err.println("Unexpected error during reference data migration: " + e.getMessage());
             // Still allow app startup to continue
@@ -322,7 +323,7 @@ public class DataMigrationRunner implements CommandLineRunner {
     private void loadSchoolBackgrounds() throws IOException {
         loadEntity(
                 "SchoolBackground",
-                "School_Background_T",
+                "school_background_t",
                 "/data/school_backgrounds.json",
                 schoolBackgroundRepository,
                 item -> schoolBackgroundRepository.findByBackground(item.getBackground()).isPresent(),
@@ -1082,7 +1083,7 @@ public class DataMigrationRunner implements CommandLineRunner {
 
             registrarService.registerRegistrar(request, nullNationalId, nullPhoto);
 
-            System.out.println("\tSuccessfully seeded " + entityName + ": " + identifier);
+            System.out.println("Successfully seeded " + entityName + ": " + identifier);
 
         } catch (IllegalArgumentException e) {
             System.err.println("\tValidation failed for " + entityName + " '" + identifier + "': " + e.getMessage());
