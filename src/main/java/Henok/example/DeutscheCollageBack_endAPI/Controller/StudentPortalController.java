@@ -106,7 +106,7 @@ public class StudentPortalController {
                     .body(Map.of("error", "Student profile not found"));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of("error", "Failed to load student profile"));
+                    .body(Map.of("error", "Failed to load student profile: " + e.getMessage()));
         }
     }
 

@@ -29,7 +29,7 @@ public class SecurityConfig {
         http
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
-                    config.setAllowedOrigins(Arrays.asList("*")); // Allow all origins
+                    config.setAllowedOriginPatterns(Arrays.asList("*"));
                     config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")); // Allowed HTTP methods
                     config.setAllowedHeaders(Arrays.asList("*")); // Allow all headers
                     config.setAllowCredentials(false); // Credentials not needed for public APIs

@@ -64,6 +64,9 @@ public class StudentDashboardService {
         // 5. Document Status
         dashboard.setDocumentStatus(buildDocumentStatus(student));
 
+        // 6. Exit Exam and Graduation Information
+        dashboard.setExitExamAndGraduation(buildExitExamAndGraduation(student));
+
         return dashboard;
     }
 
@@ -254,6 +257,26 @@ public class StudentDashboardService {
         docStatus.setStudentPhotoUploadStatus(photoStatus);
         
         return docStatus;
+    }
+
+    /**
+     * Builds exit exam and graduation information.
+     */
+    private StudentDashboardDTO.ExitExamAndGraduationInfo buildExitExamAndGraduation(StudentDetails student) {
+        StudentDashboardDTO.ExitExamAndGraduationInfo info = new StudentDashboardDTO.ExitExamAndGraduationInfo();
+
+        info.setExitExamUserID(student.getExitExamUserID());
+        info.setExitExamScore(student.getExitExamScore());
+        info.setIsStudentPassExitExam(student.getIsStudentPassExitExam());
+        info.setGrade12Result(student.getGrade12Result());
+        info.setYearOfExamG12(student.getYearOfExamG12());
+        info.setNationalexamIdG12(student.getNationalexamIdG12());
+        info.setDateClassEndGC(student.getDateClassEndGC());
+        info.setDateGraduated(student.getDateGraduated());
+        info.setEntryYearGC(student.getEntryYearGC());
+        info.setEntryYearEC(student.getEntryYearEC());
+
+        return info;
     }
 
     /**
