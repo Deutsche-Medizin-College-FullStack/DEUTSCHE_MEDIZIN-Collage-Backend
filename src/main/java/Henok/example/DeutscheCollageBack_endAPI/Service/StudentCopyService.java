@@ -96,6 +96,7 @@ public class StudentCopyService {
                 .findByStudentAndBatchClassYearSemester(student.getUser(), historicalBCYS);
 
         // 5. Get grading system
+
         Department department = student.getDepartmentEnrolled();
         GradingSystem gradingSystem = gradingSystemService.findApplicableGradingSystem(department);
 
@@ -424,7 +425,7 @@ public class StudentCopyService {
     public SimplifiedStudentCopyDTO generateSimplifiedStudentCopy(StudentCopyRequestDTO request) {
         // Generate full student copy first
         StudentCopyDTO fullCopy = generateStudentCopy(request);
-        
+
         // Convert to simplified version
         SimplifiedStudentCopyDTO simplified = new SimplifiedStudentCopyDTO();
         

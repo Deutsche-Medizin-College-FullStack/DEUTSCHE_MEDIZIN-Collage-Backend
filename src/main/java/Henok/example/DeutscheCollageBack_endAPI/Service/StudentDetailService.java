@@ -83,6 +83,8 @@ public class StudentDetailService {
     @Autowired
     private CourseRepo courseRepository;
 
+    private static final Long EXTERNAL_COURSE_CATEGORY_ID = 5L;
+
 
 
     // Registers a new student with the provided details and files
@@ -1452,8 +1454,10 @@ System.out.println("---------Finished Registering Applicant --------");
 
         // 2. Get ALL courses that belong to the student's department
         // We assume these are the curriculum courses the student must take
-        List<Course> allDepartmentCourses = courseRepository.findByDepartment(department);
-
+        List<Course> curriculumCourses = courseRepository.findCurriculumCoursesByDepartment(
+                department,
+                EXTERNAL_COURSE_CATEGORY_ID
+        );
         // 3. Build set of taken course IDs for fast lookup
         Set<Long> takenCourseIds = takenScores.stream()
                 .map(s -> s.getCourse().getCID())
@@ -1463,7 +1467,7 @@ System.out.println("---------Finished Registering Applicant --------");
         List<RemainingCourseDTO> remainingDtos = new ArrayList<>();
         int totalRemainingCr = 0;
 
-        for (Course course : allDepartmentCourses) {
+        for (Course course : curriculumCourses) {
             if (!takenCourseIds.contains(course.getCID())) {
 
                 int crHrs = (course.getTheoryHrs() != null ? course.getTheoryHrs() : 0) +

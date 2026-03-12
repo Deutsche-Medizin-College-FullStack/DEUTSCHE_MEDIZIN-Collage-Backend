@@ -35,10 +35,42 @@ public class GradeReportController {
 
             GradeReportResponseDTO response = gradeReportService.generateGradeReports(request);
             return ResponseEntity.ok(response);
+        } catch (IllegalStateException e) {
+            return ResponseEntity.badRequest()
+                    .body(new ErrorResponse(resolveIllegalStateMessage(e)));
         } catch (Exception e) {
+            IllegalStateException illegalState = findIllegalStateCause(e);
+            if (illegalState != null) {
+                return ResponseEntity.badRequest()
+                        .body(new ErrorResponse(resolveIllegalStateMessage(illegalState)));
+            }
+
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ErrorResponse("Failed to generate grade reports: " + e.getMessage()));
         }
+    }
+
+    private IllegalStateException findIllegalStateCause(Throwable throwable) {
+        Throwable current = throwable;
+        while (current != null) {
+            if (current instanceof IllegalStateException) {
+                return (IllegalStateException) current;
+            }
+            current = current.getCause();
+        }
+        return null;
+    }
+
+    private String resolveIllegalStateMessage(IllegalStateException exception) {
+        Throwable current = exception;
+        while (current.getCause() != null && current.getCause() instanceof IllegalStateException) {
+            current = current.getCause();
+        }
+
+        String message = current.getMessage();
+        return (message == null || message.isBlank())
+                ? "Failed to generate grade reports due to an invalid internal state"
+                : message;
     }
 }
 

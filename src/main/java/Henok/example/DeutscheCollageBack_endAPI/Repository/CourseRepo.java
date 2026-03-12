@@ -31,4 +31,18 @@ public interface CourseRepo extends JpaRepository<Course, Long>, JpaSpecificatio
             "     OR (c.department IS NULL AND :departmentId IS NULL))")
     boolean existsByCCodeAndDepartmentId(@Param("code") String code,
                                          @Param("departmentId") Long departmentId);
+
+
+    /**
+     * Finds all courses that belong to the given department
+     * and are NOT in the EXTERNAL category (catID = 5).
+     * These represent the actual campus curriculum courses a student is expected to take.
+     */
+    @Query("SELECT c FROM Course c " +
+            "WHERE c.department = :department " +
+            "AND c.category.catID != :excludedCategoryId")
+    List<Course> findCurriculumCoursesByDepartment(
+            @Param("department") Department department,
+            @Param("excludedCategoryId") Long excludedCategoryId
+    );
 }
