@@ -27,6 +27,7 @@ public class StudentCopyDTO {
     private LocalDate dateOfBirthGC;
     
     // Academic Context
+    private String studentBCYS;
     private ClassYearInfo classyear;
     private SemesterInfo semester;
     private AcademicYearInfo academicYear;

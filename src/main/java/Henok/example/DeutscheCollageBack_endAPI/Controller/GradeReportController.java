@@ -37,39 +37,39 @@ public class GradeReportController {
             return ResponseEntity.ok(response);
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest()
-                    .body(new ErrorResponse(resolveIllegalStateMessage(e)));
+                    .body(new ErrorResponse(resolveExceptionMessage(e)));
         } catch (Exception e) {
-            IllegalStateException illegalState = findIllegalStateCause(e);
-            if (illegalState != null) {
+            RuntimeException runtimeException = findRuntimeCause(e);
+            if (runtimeException != null) {
                 return ResponseEntity.badRequest()
-                        .body(new ErrorResponse(resolveIllegalStateMessage(illegalState)));
+                        .body(new ErrorResponse(resolveExceptionMessage(runtimeException)));
             }
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ErrorResponse("Failed to generate grade reports: " + e.getMessage()));
+                    .body(new ErrorResponse("Failed to generate grade reports: " + resolveExceptionMessage(e)));
         }
     }
 
-    private IllegalStateException findIllegalStateCause(Throwable throwable) {
+    private RuntimeException findRuntimeCause(Throwable throwable) {
         Throwable current = throwable;
         while (current != null) {
-            if (current instanceof IllegalStateException) {
-                return (IllegalStateException) current;
+            if (current instanceof RuntimeException) {
+                return (RuntimeException) current;
             }
             current = current.getCause();
         }
         return null;
     }
 
-    private String resolveIllegalStateMessage(IllegalStateException exception) {
+    private String resolveExceptionMessage(Throwable exception) {
         Throwable current = exception;
-        while (current.getCause() != null && current.getCause() instanceof IllegalStateException) {
+        while (current.getCause() != null) {
             current = current.getCause();
         }
 
         String message = current.getMessage();
         return (message == null || message.isBlank())
-                ? "Failed to generate grade reports due to an invalid internal state"
+                ? "Failed to generate grade reports due to an unexpected error"
                 : message;
     }
 }

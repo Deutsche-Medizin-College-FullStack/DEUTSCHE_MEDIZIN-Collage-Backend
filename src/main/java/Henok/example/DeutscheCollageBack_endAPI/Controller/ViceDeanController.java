@@ -85,26 +85,32 @@ public class ViceDeanController {
     }
 
     // ==================== GET FILES ====================
-    @GetMapping(value = "/get-photo/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<?> getPhoto(@PathVariable Long id) {
+    @GetMapping(value = "/get-photo/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getViceDeanPhoto(@PathVariable Long id) {
         try {
             byte[] photo = deanViceDeanService.getDeanViceDeanPhoto(id, Role.VICE_DEAN);
+
             if (photo == null || photo.length == 0) {
-                Map<String, String> error = new HashMap<>(); 
-                error.put("error", "Photo not found");
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+                return ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(Map.of("error", "Photo not found for Vice-Dean ID: " + id));
             }
+
             return ResponseEntity.ok()
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(photo);
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(photo);
+
         } catch (IllegalArgumentException e) {
-            Map<String, String> error = new HashMap<>(); 
-            error.put("error", e.getMessage());
-            return ResponseEntity.badRequest().body(error);
+            return ResponseEntity
+                    .badRequest()
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(Map.of("error", e.getMessage()));
         } catch (Exception e) {
-            Map<String, String> error = new HashMap<>(); 
-            error.put("error", "Failed to retrieve photo");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(Map.of("error", "Failed to retrieve photo"));
         }
     }
 

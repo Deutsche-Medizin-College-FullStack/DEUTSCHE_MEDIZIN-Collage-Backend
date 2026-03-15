@@ -64,6 +64,7 @@ public class StudentCopyService {
      */
     @Transactional(readOnly = true)
     public StudentCopyDTO generateStudentCopy(StudentCopyRequestDTO request) {
+        // System.out.println("Generating a full student Copy for student: " + request.getStudentId());
 
         // 1. Get student
         StudentDetails student = studentDetailsRepository.findById(request.getStudentId())
@@ -96,11 +97,13 @@ public class StudentCopyService {
                 .findByStudentAndBatchClassYearSemester(student.getUser(), historicalBCYS);
 
         // 5. Get grading system
-
+        // System.out.println("getting Grading System ...");
         Department department = student.getDepartmentEnrolled();
         GradingSystem gradingSystem = gradingSystemService.findApplicableGradingSystem(department);
+                // System.out.println("Finished grading system");
 
         // 6. Build course grades (unchanged)
+        // System.out.println("Building course grades ...");
         List<CourseGradeDTO> courseGrades = new ArrayList<>();
         for (StudentCourseScore score : courseScores) {
             if (score.getScore() == null || !score.isReleased()) continue;
@@ -130,23 +133,31 @@ public class StudentCopyService {
 
             courseGrades.add(cg);
         }
+        // System.out.println("Finished building course grades, total courses: " + courseGrades.size());
 
         // 7. Calculate GPA & CGPA (already using the new ProgressionSequence version)
+        //System.out.println("Calculating GPA and CGPA ...");
         double semesterGPA = calculateGPA(courseGrades);
         double semesterCGPA = calculateCGPA(student.getUser(), historicalBCYS, gradingSystem);   // ← now correct
+        // System.out.println("Finished calculating GPA and CGPA");
 
         String status = semesterGPA >= MINIMUM_PASSING_GPA ? "PASSED" : "FAILED";
 
-        // 10. Find AcademicYear
-        AcademicYear academicYear = departmentBCYSRepository
+        // 10. Find AcademicYear and DepartmentBCYS for this historical BCYS (to get academic year and department-specific info)
+        // Find DepartmentBCYS once (used for both academicYear and studentBCYS)
+        DepartmentBCYS deptBCYS = departmentBCYSRepository
                 .findByBcysAndDepartment(historicalBCYS, department)
-                .map(DepartmentBCYS::getAcademicYear)
-                .orElse(null);
-//        System.out.println("Success, Academic Year = " + (academicYear != null ? academicYear.getAcademicYearGC() : "N/A"));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No cohort record found for department " +
+                        department.getDeptName() + " and BCYS " +
+                        historicalBCYS.getDisplayName()
+                ));
+
+        AcademicYear academicYear = deptBCYS.getAcademicYear();
 
         // 11. Build response DTO
         StudentCopyDTO dto = new StudentCopyDTO();
-        
+        dto.setStudentBCYS(deptBCYS.getDisplayName());
         // Student Information
         dto.setIdNumber(student.getUser().getUsername());
         dto.setFullName(String.join(" ",
@@ -425,6 +436,7 @@ public class StudentCopyService {
     public SimplifiedStudentCopyDTO generateSimplifiedStudentCopy(StudentCopyRequestDTO request) {
         // Generate full student copy first
         StudentCopyDTO fullCopy = generateStudentCopy(request);
+        // System.out.println("Generated full student copy, now converting to simplified version ...");
 
         // Convert to simplified version
         SimplifiedStudentCopyDTO simplified = new SimplifiedStudentCopyDTO();

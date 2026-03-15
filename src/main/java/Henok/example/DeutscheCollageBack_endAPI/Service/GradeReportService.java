@@ -64,11 +64,10 @@ public class GradeReportService {
                 if (gradeReport != null) {
                     gradeReports.add(gradeReport);
                 }
-            } catch (IllegalStateException e) {
+            } catch (RuntimeException e) {
                 throw e;
             } catch (Exception e) {
-                // Silently skip failed students (as per original)
-                System.out.println("Failed to generate report for student " + studentId + ": " + e.getMessage());
+                throw new RuntimeException(e);
             }
         }
 
@@ -123,11 +122,10 @@ public class GradeReportService {
                 if (copy != null) {
                     studentCopies.add(copy);
                 }
-            } catch (IllegalStateException e) {
+            } catch (RuntimeException e) {
                 throw e;
             } catch (Exception e) {
-                // Skip problematic semester silently (as before)
-                System.out.println("error when creating simplified Student copy : " + e.getMessage());
+                throw new RuntimeException(e);
             }
         }
 
