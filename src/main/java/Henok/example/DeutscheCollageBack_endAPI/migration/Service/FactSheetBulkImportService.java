@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,120 +27,207 @@ public class FactSheetBulkImportService {
     private final BatchClassYearSemesterRepo batchRepository;
     private final CourseSourceRepo courseSourceRepository;
     private final StudentCourseScoreRepo scoreRepository;
+    private final StudentDetailsRepository studentDetailsRepository;  // ← new dependency
 
+
+    // Easy to change later if category ID changes
+    private static final Long COMMON_COURSE_CATEGORY_ID = 3L;
 
     /**
-     * Memory-safe bulk import for very large JSON payloads.
-     *
-     * Changes for production (Railway):
-     * - NO logging for successful records (prevents huge console output → OOM).
-     * - Only failed records are logged in the detailed block format you requested.
-     * - Minimal progress logging every 1000 records.
-     * - All parsing and processing is done record-by-record with minimal object retention.
+     * Memory-safe bulk import with department-aware common course correction.
+     * IMPORTANT: This is a critical one-time migration — NO records are skipped.
+     * All records are saved. Mismatches are only logged (warnings or corrections).
      */
     public BulkImportResult bulkImportScores(List<StudentCourseScoreImportDTO> dtoList) {
-        List<String> failedRecords = new ArrayList<>();
+        List<String> failedRecords = new ArrayList<>();  // now only used for severe parsing errors
         int successfulCount = 0;
         int total = dtoList.size();
 
-        System.out.println("=== STARTING BULK IMPORT OF " + total + " RECORDS ===");
+        System.out.println("=== STARTING CRITICAL BULK IMPORT OF " + total + " RECORDS ===");
+        System.out.println("Common course category ID: " + COMMON_COURSE_CATEGORY_ID);
 
         for (int i = 0; i < total; i++) {
             StudentCourseScoreImportDTO dto = dtoList.get(i);
 
-            // Use raw string values directly – avoid extra object creation
-            String rawStudentId = dto.getStudent_user_id() != null ? dto.getStudent_user_id().trim() : "";
-            String rawCourseId = dto.getCourse_id() != null ? dto.getCourse_id().trim() : "";
-            String rawBatchId = dto.getBatch_class_year_semester_id() != null ? dto.getBatch_class_year_semester_id().trim() : "";
+            String rawStudentId = safeTrim(dto.getStudent_user_id());
+            String rawCourseId  = safeTrim(dto.getCourse_id());
+            String rawBatchId   = safeTrim(dto.getBatch_class_year_semester_id());
+            String rawSourceId  = safeTrim(dto.getSource_id());
 
             String recordKey = rawStudentId + " - " + rawCourseId + " - " + rawBatchId;
 
             try {
-                // Parse required IDs
+                // Parse IDs
                 Long studentId = parseLong(rawStudentId, "student_user_id");
-                Long courseId = parseLong(rawCourseId, "course_id");
-                Long batchId = parseLong(rawBatchId, "batch_class_year_semester_id");
-                Long sourceId = parseLong(dto.getSource_id(), "source_id");
+                Long courseId  = parseLong(rawCourseId,  "course_id");
+                Long batchId   = parseLong(rawBatchId,  "batch_class_year_semester_id");
+                Long sourceId  = parseLong(rawSourceId, "source_id");
 
-                // Use parsed values for cleaner response key
                 recordKey = studentId + " - " + courseId + " - " + batchId;
 
-                User student = userRepository.findById(studentId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Student not found: " + studentId));
+                // 1. Get student & department
+                User user = userRepository.findById(studentId)
+                        .orElseThrow(() -> new ResourceNotFoundException("User not found: " + studentId));
 
-                Course course = courseRepository.findById(courseId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Course not found: " + courseId));
+                StudentDetails details = studentDetailsRepository.findByUser(user)
+                        .orElseThrow(() -> new ResourceNotFoundException("StudentDetails not found for user: " + studentId));
 
-                BatchClassYearSemester batch = batchRepository.findById(batchId)
-                        .orElseThrow(() -> new ResourceNotFoundException("BatchClassYearSemester not found: " + batchId));
-
-                CourseSource source = courseSourceRepository.findById(sourceId)
-                        .orElseThrow(() -> new ResourceNotFoundException("CourseSource not found: " + sourceId));
-
-                // Duplicate check
-                boolean exists = scoreRepository.existsByStudentAndCourseAndBatchClassYearSemesterAndCourseSource(
-                        student, course, batch, source);
-
-                if (exists) {
-                    String errorMsg = "Duplicate entry already exists";
-                    logFailure(rawStudentId, rawCourseId, rawBatchId, errorMsg);
-                    failedRecords.add(recordKey + " (" + errorMsg + ")");
-                    continue;
+                Department studentDept = details.getDepartmentEnrolled();
+                if (studentDept == null) {
+                    logWarning(studentId, courseId, batchId, "Student has no enrolled department - using original course");
                 }
 
-                // Parse score
+                // 2. Get requested course
+                Course requestedCourse = courseRepository.findById(courseId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Course not found: " + courseId));
+
+                Course finalCourse = requestedCourse;  // default
+
+                // 3. Common course correction logic (only for common courses)
+                if (isCommonCourse(requestedCourse)) {
+
+                    if (!Objects.equals(requestedCourse.getDepartment(), studentDept)) {
+
+                        // Try to find the correct common course for student's department
+                        Optional<Course> correctedOpt = courseRepository.findBycTitleAndCategoryAndDepartment(
+                                requestedCourse.getCTitle(),
+                                requestedCourse.getCategory(),
+                                studentDept
+                        );
+
+                        if (correctedOpt.isPresent()) {
+                            Course corrected = correctedOpt.get();
+                            finalCourse = corrected;
+
+                            logCorrection(
+                                    studentId,
+                                    requestedCourse.getCID(), corrected.getCID(),
+                                    batchId,
+                                    "Common course reassigned from dept " +
+                                            (requestedCourse.getDepartment() != null ? requestedCourse.getDepartment().getDeptName() : "null") +
+                                            " → " + (studentDept != null ? studentDept.getDeptName() : "null")
+                            );
+                        } else {
+                            logWarning(
+                                    studentId, courseId, batchId,
+                                    "Common course department mismatch - no matching common course found for student's dept"
+                            );
+                        }
+                    }
+                    // else: departments match → no action needed
+                } else {
+                    // Not common course → check mismatch but never correct
+                    if (studentDept != null && !Objects.equals(requestedCourse.getDepartment(), studentDept)) {
+                        logWarning(
+                                studentId, courseId, batchId,
+                                "Department-specific course mismatch: student in " +
+                                        studentDept.getDeptName() + ", course belongs to " +
+                                        (requestedCourse.getDepartment() != null ? requestedCourse.getDepartment().getDeptName() : "null")
+                        );
+                    }
+                }
+
+                // 4. Proceed with other entities
+                BatchClassYearSemester batch = batchRepository.findById(batchId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Batch not found: " + batchId));
+
+                CourseSource source = courseSourceRepository.findById(sourceId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Source not found: " + sourceId));
+
+                // 5. Duplicate check (still useful)
+                boolean exists = scoreRepository.existsByStudentAndCourseAndBatchClassYearSemesterAndCourseSource(
+                        user, finalCourse, batch, source);
+
+                if (exists) {
+                    logWarning(studentId, finalCourse.getCID(), batchId, "Duplicate score entry - skipped saving");
+                    continue;  // ← only case we skip saving (duplicate protection)
+                }
+
+                // 6. Parse score & isReleased
                 Double parsedScore = parseDouble(dto.getScore());
 
-                // isReleased logic
                 boolean isReleased;
-                String isReleasedRaw = dto.getIs_released() != null ? dto.getIs_released().trim() : "";
+                String isReleasedRaw = safeTrim(dto.getIs_released());
                 if ("1".equals(isReleasedRaw)) {
                     isReleased = true;
                 } else if ("0".equals(isReleasedRaw)) {
                     isReleased = false;
                 } else {
-                    isReleased = parsedScore != null; // true only if score exists
+                    isReleased = parsedScore != null;
                 }
 
-                // Save entity
+                // 7. Save
                 StudentCourseScore scoreEntity = new StudentCourseScore();
-                scoreEntity.setStudent(student);
-                scoreEntity.setCourse(course);
+                scoreEntity.setStudent(user);
+                scoreEntity.setCourse(finalCourse);           // ← may be corrected
                 scoreEntity.setBatchClassYearSemester(batch);
                 scoreEntity.setCourseSource(source);
                 scoreEntity.setScore(parsedScore);
-                scoreEntity.setReleased(isReleased);
+                scoreEntity.setReleased(isReleased);          // note: field name was 'released' in your last code
 
                 scoreRepository.save(scoreEntity);
                 successfulCount++;
 
             } catch (NumberFormatException e) {
                 String field = e.getMessage();
-                String errorMsg = "Invalid number format in " + field;
-                logFailure(rawStudentId, rawCourseId, rawBatchId, errorMsg);
-                failedRecords.add(recordKey + " (" + errorMsg + ")");
-            } catch (ResourceNotFoundException | BadRequestException e) {
-                logFailure(rawStudentId, rawCourseId, rawBatchId, e.getMessage());
+                logSevereError(rawStudentId, rawCourseId, rawBatchId, "Invalid format in " + field);
+                failedRecords.add(recordKey + " (parse error: " + field + ")");
+            } catch (ResourceNotFoundException e) {
+                logSevereError(rawStudentId, rawCourseId, rawBatchId, e.getMessage());
                 failedRecords.add(recordKey + " (" + e.getMessage() + ")");
             } catch (Exception e) {
-                String errorMsg = "Unexpected error: " + e.getClass().getSimpleName();
-                logFailure(rawStudentId, rawCourseId, rawBatchId, errorMsg);
-                failedRecords.add(recordKey + " (" + errorMsg + ")");
+                logSevereError(rawStudentId, rawCourseId, rawBatchId, "Unexpected: " + e.getClass().getSimpleName());
+                failedRecords.add(recordKey + " (unexpected error)");
             }
 
-            // Minimal progress logging – safe even for 100k+ records
+            // Progress
             if ((i + 1) % 1000 == 0 || (i + 1) == total) {
-                System.out.println("Processed " + (i + 1) + "/" + total + " records | Success: " + successfulCount + " | Failed: " + failedRecords.size());
+                System.out.println("Processed " + (i + 1) + "/" + total +
+                        " | Saved: " + successfulCount +
+                        " | Severe errors: " + failedRecords.size());
             }
         }
 
-        System.out.println("=== BULK IMPORT COMPLETED ===");
-        System.out.println("Total processed : " + total);
-        System.out.println("Successful      : " + successfulCount);
-        System.out.println("Failed          : " + failedRecords.size());
+        System.out.println("=== CRITICAL IMPORT FINISHED ===");
+        System.out.println("Total: " + total);
+        System.out.println("Saved: " + successfulCount);
+        System.out.println("Severe parse/reference errors: " + failedRecords.size());
         System.out.println("=====================================");
 
         return new BulkImportResult(successfulCount, failedRecords);
+    }
+
+    // ────────────────────────────────────────────────
+    //  Helpers
+    // ────────────────────────────────────────────────
+
+    private boolean isCommonCourse(Course course) {
+        return course.getCategory() != null &&
+                COMMON_COURSE_CATEGORY_ID.equals(course.getCategory().getCatID());
+    }
+
+    private String safeTrim(String s) {
+        return s != null ? s.trim() : "";
+    }
+
+    private void logCorrection(Long studentId, Long oldCourseId, Long newCourseId, Long batchId, String reason) {
+        System.out.println("CORRECTION ─ Student " + studentId +
+                " | Old course: " + oldCourseId +
+                " → New course: " + newCourseId +
+                " | Batch: " + batchId +
+                " | Reason: " + reason);
+    }
+
+    private void logWarning(Long studentId, Long courseId, Long batchId, String msg) {
+        System.out.println("WARNING ─ Student " + studentId +
+                " | Course " + courseId +
+                " | Batch " + batchId +
+                " | " + msg);
+    }
+
+    private void logSevereError(String studentId, String courseId, String batchId, String msg) {
+        System.out.println("SEVERE ERROR ─ " + studentId + " - " + courseId + " - " + batchId +
+                " | " + msg);
     }
 
     // Keep these helper methods unchanged

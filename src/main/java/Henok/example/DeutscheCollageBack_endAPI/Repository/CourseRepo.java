@@ -1,6 +1,7 @@
 package Henok.example.DeutscheCollageBack_endAPI.Repository;
 
 import Henok.example.DeutscheCollageBack_endAPI.Entity.Course;
+import Henok.example.DeutscheCollageBack_endAPI.Entity.CourseCategory;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -44,5 +45,11 @@ public interface CourseRepo extends JpaRepository<Course, Long>, JpaSpecificatio
     List<Course> findCurriculumCoursesByDepartment(
             @Param("department") Department department,
             @Param("excludedCategoryId") Long excludedCategoryId
+    );
+
+    Optional<Course> findBycTitleAndCategoryAndDepartment(
+            String cTitle,
+            CourseCategory category,
+            Department department
     );
 }
