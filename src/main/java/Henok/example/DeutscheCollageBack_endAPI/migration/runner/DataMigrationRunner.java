@@ -89,33 +89,33 @@ public class DataMigrationRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-    //    mainFunction();
+        mainFunction();
     }
 
     public void mainFunction(){
         try {
             System.out.println("================ Migration Begin =================");
-            loadAcademicYears();
-            loadEnrollmentTypes();
-            loadImpairments();
-            loadBatches();
-            loadClassYears();
-            loadSemesters();
-            loadCourseCategories();
-            loadCourseSources();
-            loadStudentStatuses();
-            loadRegions();
+//            loadAcademicYears();
+//            loadEnrollmentTypes();
+//            loadImpairments();
+//            loadBatches();
+//            loadClassYears();
+//            loadSemesters();
+//            loadCourseCategories();
+//            loadCourseSources();
+//            loadStudentStatuses();
+//            loadRegions();
             //-----------------------------------------------------------------
-            loadZones();                // zones depend on regions
-            loadWoredas();              // woredas depend on zones
-            //-----------------------------------------------------------------
-            loadSchoolBackgrounds();
-            loadProgramLevels();
-
-            loadProgramModalities();
-            loadDepartments();
-            loadProgressionSequences();
-            loadInitialBatchClassYearSemester();
+//            loadZones();                // zones depend on regions
+//            loadWoredas();              // woredas depend on zones
+//            //-----------------------------------------------------------------
+//            loadSchoolBackgrounds();
+//            loadProgramLevels();
+//
+//            loadProgramModalities();
+//            loadDepartments();
+//            loadProgressionSequences();
+//            loadInitialBatchClassYearSemester();
 
             System.out.println("----------------- Grading System Seeding ---------------");
             loadGradingSystems();
@@ -646,7 +646,7 @@ public class DataMigrationRunner implements CommandLineRunner {
                     continue;
                 }
 
-                // Quick early duplicate check (service will also check, but we avoid unnecessary work)
+                // Quick early duplicate check
                 if (gradingSystemRepository.findByVersionName(versionName).isPresent()) {
                     System.out.println("\t" + entityName + " '" + versionName + "' already exists → skipping");
                     skipped++;
@@ -656,22 +656,33 @@ public class DataMigrationRunner implements CommandLineRunner {
                 GradingSystemDTO dto = new GradingSystemDTO();
                 dto.setVersionName(versionName);
                 dto.setRemark((String) raw.get("remark"));
-                dto.setActive(Boolean.TRUE.equals(raw.get("isActive"))); // default false, only true if explicitly set
+                dto.setActive(Boolean.TRUE.equals(raw.get("isActive")));
 
-                // Optional department
-                String deptCode = (String) raw.get("departmentCode");
-                if (deptCode != null && !deptCode.trim().isEmpty()) {
-                    Department dept = departmentRepo.findByDepartmentCode(deptCode)
-                            .orElse(null);
-                    if (dept != null) {
-                        dto.setDepartmentId(dept.getDptID());
-                    } else {
-                        System.out.println("\tDepartment code '" + deptCode + "' not found for "
-                                + entityName + " '" + versionName + "' → proceeding without department");
+                // ─── Fixed: use "departmentId" (Long) instead of "departmentCode" ───
+                Object deptIdObj = raw.get("departmentId");
+                Long departmentId = null;
+                if (deptIdObj != null) {
+                    if (deptIdObj instanceof Number) {
+                        departmentId = ((Number) deptIdObj).longValue();
+                    } else if (deptIdObj instanceof String) {
+                        try {
+                            departmentId = Long.parseLong(((String) deptIdObj).trim());
+                        } catch (NumberFormatException nfe) {
+                            System.out.println("\tInvalid departmentId format for '" + versionName + "': " + deptIdObj);
+                        }
                     }
                 }
 
-                // Intervals – required field in practice
+                if (departmentId != null) {
+                    // Optional: verify it exists (recommended)
+                    if (departmentRepo.existsById(departmentId)) {
+                        dto.setDepartmentId(departmentId);
+                    } else {
+                        System.out.println("\tDepartment ID " + departmentId + " not found for '" + versionName + "' → proceeding without department");
+                    }
+                }
+
+                // Intervals
                 @SuppressWarnings("unchecked")
                 List<Map<String, Object>> rawIntervals = (List<Map<String, Object>>) raw.get("intervals");
                 if (rawIntervals == null || rawIntervals.isEmpty()) {
@@ -692,30 +703,24 @@ public class DataMigrationRunner implements CommandLineRunner {
                 }
                 dto.setIntervals(intervalDTOs);
 
-                // Let the service do the real work (validation, save, cascade)
+                // Call the service
                 gradingSystemService.createGradingSystem(dto);
                 inserted++;
 
-                System.out.println("Successfully seeded " + entityName + ": " + versionName);
+                System.out.println("\tSuccessfully seeded " + entityName + ": " + versionName);
 
             } catch (IllegalArgumentException e) {
-                // Common: duplicate name, overlapping intervals, etc.
                 System.err.println("\tValidation failed for " + entityName + " '"
                         + (raw.get("versionName") != null ? raw.get("versionName") : "unknown")
-                        + "': " + e.getMessage() + " → skipping");
-                failed++;
-            } catch (ResourceNotFoundException e) {
-                // e.g. department not found
-                System.err.println("\tResource not found while seeding " + entityName + ": " + e.getMessage() + " → skipping");
+                        + "': " + e.getMessage());
                 failed++;
             } catch (Exception e) {
-                // Catch-all for unexpected issues
                 System.err.println("\tUnexpected error seeding " + entityName + " record: " + e.getMessage());
                 failed++;
             }
         }
 
-        System.out.println(entityName + ": inserted " + inserted + ", skipped " + skipped
+        System.out.println("\t" + entityName + ": inserted " + inserted + ", skipped " + skipped
                 + ", failed " + failed + " / total " + rawSystems.size());
     }
 

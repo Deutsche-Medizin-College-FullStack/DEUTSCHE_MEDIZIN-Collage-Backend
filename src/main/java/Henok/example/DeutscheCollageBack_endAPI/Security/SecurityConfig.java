@@ -168,7 +168,15 @@ public class SecurityConfig {
 
 
                         //---------------- Head and Registrar shared endpoints -----------------
-                        .requestMatchers("/api/courses",
+                        .requestMatchers(HttpMethod.POST, "/api/courses",
+                                "/api/courses/single",
+                                "/api/courses/*",
+                                "/api/courses/*/prerequisites/*").hasAnyRole("DEPARTMENT_HEAD", "REGISTRAR")
+                        .requestMatchers(HttpMethod.PUT, "/api/courses",
+                                "/api/courses/single",
+                                "/api/courses/*",
+                                "/api/courses/*/prerequisites/*").hasAnyRole("DEPARTMENT_HEAD", "REGISTRAR")
+                        .requestMatchers(HttpMethod.DELETE, "/api/courses",
                                 "/api/courses/single",
                                 "/api/courses/*",
                                 "/api/courses/*/prerequisites/*").hasAnyRole("DEPARTMENT_HEAD", "REGISTRAR")

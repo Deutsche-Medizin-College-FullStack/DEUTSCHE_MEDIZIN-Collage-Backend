@@ -288,14 +288,13 @@ public class RegistrarController {
         }
     }
 
-    // In your StudentController (or appropriate controller)
 
     @GetMapping("/students/{userId}/academic-progress")
     public ResponseEntity<?> getStudentAcademicProgress(@PathVariable Long userId) {
 
         try {
             // You can add role/permission check here if needed
-            // e.g. only student himself, registrar, advisor, etc.
+            // e.g. only student himself, registrar, etc.
             StudentAcademicProgressDTO progress = studentDetailsService.getStudentAcademicProgress(userId);
 
             return ResponseEntity.ok(progress);

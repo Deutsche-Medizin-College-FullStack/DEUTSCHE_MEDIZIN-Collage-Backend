@@ -53,6 +53,7 @@ public class GradingSystemService {
         entity.setVersionName(dto.getVersionName());
         entity.setEffectiveDate(LocalDate.now()); // Auto-fill effective date
         entity.setRemark(dto.getRemark()); // Set remark if provided
+        entity.setActive(dto.isActive());
         entity.setIntervals(new ArrayList<>());
 
         // Set department if provided

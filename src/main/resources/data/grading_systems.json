@@ -71,7 +71,7 @@
         "gradeLetter": "F"
       }
     ],
-    "active": true
+    "isActive": true
   },
   {
     "id": 2,
@@ -145,6 +145,6 @@
         "gradeLetter": "A+"
       }
     ],
-    "active": true
+    "isActive": true
   }
 ]

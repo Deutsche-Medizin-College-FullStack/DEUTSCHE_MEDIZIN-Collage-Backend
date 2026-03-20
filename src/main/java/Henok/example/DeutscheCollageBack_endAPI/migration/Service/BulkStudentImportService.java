@@ -214,7 +214,24 @@ public class BulkStudentImportService {
         details.setContactPersonPhoneNumber(dto.getContactPersonPhoneNumber());
         details.setContactPersonRelation(dto.getContactPersonRelation());
         details.setTransfer("TRUE".equalsIgnoreCase(dto.getIsTransfer()));
-        details.setDocumentStatus("TRUE".equalsIgnoreCase(dto.getDocumentStatus()) ? DocumentStatus.COMPLETE : DocumentStatus.INCOMPLETE);
+
+        // Handle documentStatus from JSON flexibly (case-insensitive, supports multiple formats)
+        String docStatusStr = dto.getDocumentStatus();
+        DocumentStatus documentStatus = DocumentStatus.INCOMPLETE; // default
+
+        if (isNotBlank(docStatusStr)) {
+            String normalized = docStatusStr.trim().toUpperCase();
+            if (normalized.equals("COMPLETE") ||
+                    normalized.equals("COMPLETED") ||
+                    normalized.equals("TRUE") ||
+                    normalized.equals("YES") ||
+                    normalized.equals("1")) {
+                documentStatus = DocumentStatus.COMPLETE;
+            }
+            // else remains INCOMPLETE (including "INCOMPLETE", "FALSE", "NO", "0", empty, etc.)
+        }
+
+        details.setDocumentStatus(documentStatus);
         details.setStudentPassExitExam(parseExitExamPassStatus(dto.getIsStudentPassExitExam()));
         details.setRemark(dto.getRemark());
 
