@@ -89,33 +89,33 @@ public class DataMigrationRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        mainFunction();
+//        mainFunction();
     }
 
     public void mainFunction(){
         try {
             System.out.println("================ Migration Begin =================");
-//            loadAcademicYears();
-//            loadEnrollmentTypes();
-//            loadImpairments();
-//            loadBatches();
-//            loadClassYears();
-//            loadSemesters();
-//            loadCourseCategories();
-//            loadCourseSources();
-//            loadStudentStatuses();
-//            loadRegions();
+            loadAcademicYears();
+            loadEnrollmentTypes();
+            loadImpairments();
+            loadBatches();
+            loadClassYears();
+            loadSemesters();
+            loadCourseCategories();
+            loadCourseSources();
+            loadStudentStatuses();
+            loadRegions();
             //-----------------------------------------------------------------
-//            loadZones();                // zones depend on regions
-//            loadWoredas();              // woredas depend on zones
-//            //-----------------------------------------------------------------
-//            loadSchoolBackgrounds();
-//            loadProgramLevels();
-//
-//            loadProgramModalities();
-//            loadDepartments();
-//            loadProgressionSequences();
-//            loadInitialBatchClassYearSemester();
+            loadZones();                // zones depend on regions
+            loadWoredas();              // woredas depend on zones
+            //-----------------------------------------------------------------
+            loadSchoolBackgrounds();
+            loadProgramLevels();
+
+            loadProgramModalities();
+            loadDepartments();
+            loadProgressionSequences();
+            loadInitialBatchClassYearSemester();
 
             System.out.println("----------------- Grading System Seeding ---------------");
             loadGradingSystems();

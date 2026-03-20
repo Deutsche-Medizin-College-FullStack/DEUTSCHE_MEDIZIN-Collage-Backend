@@ -103,16 +103,16 @@ public class StudentRegisterRequest {
 
     // Emergency Contact Information
     @Size(max = 100)
-    private String contactPersonFirstNameAMH; // Required: Emergency contact first name in Amharic
+    private String contactPersonFullNameAMH; // Required: Emergency contact first name in Amharic
 
     @Size(max = 100)
-    private String contactPersonFirstNameENG; // Required: Emergency contact first name in English
+    private String contactPersonFullNameENG; // Required: Emergency contact first name in English
 
     @Size(max = 100)
-    private String contactPersonLastNameAMH; // Required: Emergency contact last name in Amharic
+    private String contactPersonLastNameAMH; // Optional: Emergency contact last name in Amharic
 
     @Size(max = 100)
-    private String contactPersonLastNameENG; // Required: Emergency contact last name in English
+    private String contactPersonLastNameENG; // Optional: Emergency contact last name in English
 
     @Size(max = 15)
     private String contactPersonPhoneNumber; // Required: Emergency contact phone number

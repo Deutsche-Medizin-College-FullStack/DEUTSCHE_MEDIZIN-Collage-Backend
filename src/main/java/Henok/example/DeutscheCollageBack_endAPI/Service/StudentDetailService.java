@@ -490,12 +490,12 @@ public class StudentDetailService {
         if (request.getGrandfatherNameENG() == null || request.getGrandfatherNameENG().isEmpty()) {
             throw new IllegalArgumentException("Grandfather name (English) cannot be empty");
         }
-        if (request.getMotherNameAMH() == null || request.getMotherNameAMH().isEmpty()) {
-            throw new IllegalArgumentException("Mother name (Amharic) cannot be empty");
-        }
-        if (request.getMotherNameENG() == null || request.getMotherNameENG().isEmpty()) {
-            throw new IllegalArgumentException("Mother name (English) cannot be empty");
-        }
+//        if (request.getMotherNameAMH() == null || request.getMotherNameAMH().isEmpty()) {
+//            throw new IllegalArgumentException("Mother name (Amharic) cannot be empty");
+//        }
+//        if (request.getMotherNameENG() == null || request.getMotherNameENG().isEmpty()) {
+//            throw new IllegalArgumentException("Mother name (English) cannot be empty");
+//        }
         if (request.getGender() == null) {
             throw new IllegalArgumentException("Gender cannot be null");
         }
@@ -535,14 +535,14 @@ public class StudentDetailService {
         if (request.getSchoolBackgroundId() == null) {
             throw new IllegalArgumentException("School background cannot be null");
         }
-        if (request.getContactPersonFirstNameAMH() == null || request.getContactPersonFirstNameAMH().isEmpty()) {
-            throw new IllegalArgumentException("Contact person first name (Amharic) cannot be empty");
+        if (request.getContactPersonFullNameAMH() == null || request.getContactPersonFullNameAMH().isEmpty()) {
+            throw new IllegalArgumentException("Contact person's Name (Amharic) cannot be empty");
         }
-        if (request.getContactPersonFirstNameENG() == null || request.getContactPersonFirstNameENG().isEmpty()) {
-            throw new IllegalArgumentException("Contact person first name (English) cannot be empty");
+        if (request.getContactPersonFullNameENG() == null || request.getContactPersonFullNameENG().isEmpty()) {
+            throw new IllegalArgumentException("Contact person's Name (English) cannot be empty");
         }
         if (request.getContactPersonPhoneNumber() == null || request.getContactPersonPhoneNumber().isEmpty()) {
-            throw new IllegalArgumentException("Contact person phone number cannot be empty");
+            throw new IllegalArgumentException("Contact person's phone number cannot be empty");
         }
 //        if (request.getDateEnrolledEC() == null || request.getDateEnrolledEC().isEmpty()) {
 //            throw new IllegalArgumentException("Date enrolled (EC) cannot be empty");
@@ -562,8 +562,8 @@ public class StudentDetailService {
         if (request.getDepartmentEnrolledId() == null) {
             throw new IllegalArgumentException("Department enrolled cannot be null");
         }
-        if (request.getBatchId() != null && !batchRepository.existsById(request.getBatchId())) {
-            throw new IllegalArgumentException("Batch not found with id: " + request.getBatchId());
+        if (request.getBatchId() == null) {
+            throw new IllegalArgumentException("Batch of the Student cannot be null: ");
         }
         if (request.getProgramModalityCode() == null) {
             throw new IllegalArgumentException("Program modality cannot be null");
@@ -823,8 +823,8 @@ public class StudentDetailService {
         if (studentPhoto != null && !studentPhoto.isEmpty()) {
             student.setStudentPhoto(studentPhoto.getBytes());
         }
-        student.setContactPersonFirstNameAMH(request.getContactPersonFirstNameAMH());
-        student.setContactPersonFirstNameENG(buildFullName(request.getContactPersonFirstNameENG(), request.getContactPersonLastNameENG()));
+        student.setContactPersonFirstNameAMH(request.getContactPersonFullNameAMH());
+        student.setContactPersonFirstNameENG(buildFullName(request.getContactPersonFullNameENG(), request.getContactPersonLastNameENG()));
         student.setContactPersonLastNameAMH(request.getContactPersonLastNameAMH());
         student.setContactPersonLastNameENG(null);
         student.setContactPersonPhoneNumber(request.getContactPersonPhoneNumber());
@@ -1046,8 +1046,8 @@ public StudentDetails acceptAppliedStudent(
     registerRequest.setSchoolBackgroundId(applied.getSchoolBackground().getId());
 
     // Emergency Contact
-    registerRequest.setContactPersonFirstNameAMH(applied.getContactPersonFirstNameAMH());
-    registerRequest.setContactPersonFirstNameENG(applied.getContactPersonFirstNameENG());
+    registerRequest.setContactPersonFullNameAMH(applied.getContactPersonFirstNameAMH() + " " + applied.getContactPersonLastNameAMH());
+    registerRequest.setContactPersonFullNameENG(applied.getContactPersonFirstNameENG() + " " + applied.getContactPersonLastNameENG());
     registerRequest.setContactPersonLastNameAMH(applied.getContactPersonLastNameAMH());
     registerRequest.setContactPersonLastNameENG(applied.getContactPersonLastNameENG());
     registerRequest.setContactPersonPhoneNumber(applied.getContactPersonPhoneNumber());
