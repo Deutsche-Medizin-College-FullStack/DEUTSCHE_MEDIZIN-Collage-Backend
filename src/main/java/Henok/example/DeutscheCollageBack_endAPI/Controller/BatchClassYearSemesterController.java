@@ -4,17 +4,24 @@ import Henok.example.DeutscheCollageBack_endAPI.DTO.BatchClassYearSemesterDTO;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.BatchClassYearSemester;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.Department;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.DepartmentBCYS;
+import Henok.example.DeutscheCollageBack_endAPI.Entity.MOE_Data.AcademicYear;
 import Henok.example.DeutscheCollageBack_endAPI.Error.ErrorResponse;
 import Henok.example.DeutscheCollageBack_endAPI.Error.ResourceNotFoundException;
 import Henok.example.DeutscheCollageBack_endAPI.Repository.DepartmentBCYSRepository;
 import Henok.example.DeutscheCollageBack_endAPI.Repository.DepartmentRepo;
+import Henok.example.DeutscheCollageBack_endAPI.Repository.MOE_Repos.AcademicYearRepo;
 import Henok.example.DeutscheCollageBack_endAPI.Repository.BatchClassYearSemesterRepo;
 import Henok.example.DeutscheCollageBack_endAPI.Service.BatchClassYearSemesterService;
+import Henok.example.DeutscheCollageBack_endAPI.migration.DTO.DepartmentBCYSImportDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -30,6 +37,8 @@ public class BatchClassYearSemesterController {
     private DepartmentRepo departmentRepository;
     @Autowired
     private DepartmentBCYSRepository departmentBCYSRepository;
+    @Autowired
+    private AcademicYearRepo academicYearRepository;
 
     /**
      * Creates a new batch-class-year-semester combination.
@@ -121,106 +130,203 @@ public class BatchClassYearSemesterController {
      *
      * @return simple map with summary of what was done
      */
-    @PostMapping("/populate-department-bcys")
-    public ResponseEntity<Map<String, Object>> populateDepartmentBCYSForAll() {
+    // @PostMapping("/populate-department-bcys")
+    // public ResponseEntity<Map<String, Object>> populateDepartmentBCYSForAll() {
+    //     Map<String, Object> response = new HashMap<>();
+
+    //     try {
+    //         List<BatchClassYearSemester> allBcys = bcysRepository.findAll();
+    //         if (allBcys.isEmpty()) {
+    //             response.put("status", "info");
+    //             response.put("message", "No BatchClassYearSemester records found. Nothing to migrate.");
+    //             return ResponseEntity.ok(response);
+    //         }
+
+    //         List<Department> allDepartments = departmentRepository.findAll();
+    //         if (allDepartments.isEmpty()) {
+    //             response.put("status", "warning");
+    //             response.put("message", "No departments found. Migration skipped.");
+    //             return ResponseEntity.ok(response);
+    //         }
+
+    //         // Find Medicine department (id = 2)
+    //         Department medicineDept = allDepartments.stream()
+    //                 .filter(d -> d.getDptID() == 2L)
+    //                 .findFirst()
+    //                 .orElse(null);
+
+    //         int totalCreated = 0;
+    //         int totalSkipped = 0;
+    //         int totalSkippedRules = 0;
+    //         List<String> errors = new ArrayList<>();
+
+    //         for (BatchClassYearSemester bcys : allBcys) {
+    //             String batchName = bcys.getBatch() != null ? bcys.getBatch().getBatchName() : null;
+    //             String classYearName = bcys.getClassYear() != null ? bcys.getClassYear().getClassYear() : null;
+
+    //             // Rule 1: batch name == "0" → skip completely
+    //             if ("0".equals(batchName)) {
+    //                 totalSkippedRules++;
+    //                 continue;
+    //             }
+
+    //             // Determine which departments to map
+    //             List<Department> departmentsToMap;
+
+    //             if ("PC1".equals(classYearName) || "PC2".equals(classYearName) ||
+    //                     "C1".equals(classYearName) || "C2".equals(classYearName) || "C3".equals(classYearName)) {
+    //                 // Rule 3: PC1/PC2/C1/C2/C3 → ONLY Medicine
+    //                 departmentsToMap = medicineDept != null ? List.of(medicineDept) : Collections.emptyList();
+    //             } else if (classYearName != null && classYearName.matches("\\d+") && Integer.parseInt(classYearName) >= 2) {
+    //                 // Rule 2: class year >= 2 → exclude Medicine
+    //                 departmentsToMap = allDepartments.stream()
+    //                         .filter(d -> d.getDptID() != 2L)
+    //                         .collect(Collectors.toList());
+    //             } else {
+    //                 // Default: map to all departments
+    //                 departmentsToMap = allDepartments;
+    //             }
+
+    //             if (departmentsToMap.isEmpty()) {
+    //                 totalSkippedRules++;
+    //                 continue;
+    //             }
+
+    //             for (Department dept : departmentsToMap) {
+    //                 boolean exists = departmentBCYSRepository.existsByBcysAndDepartment(bcys, dept);
+    //                 if (exists) {
+    //                     totalSkipped++;
+    //                     continue;
+    //                 }
+
+    //                 try {
+    //                     DepartmentBCYS link = new DepartmentBCYS();
+    //                     link.setBcys(bcys);
+    //                     link.setDepartment(dept);
+    //                     // All other fields remain null
+
+    //                     departmentBCYSRepository.save(link);
+    //                     totalCreated++;
+    //                 } catch (Exception e) {
+    //                     String errorMsg = String.format("Failed for bcysID=%d + deptID=%d: %s",
+    //                             bcys.getBcysID(), dept.getDptID(), e.getMessage());
+    //                     errors.add(errorMsg);
+    //                 }
+    //             }
+    //         }
+
+    //         response.put("status", errors.isEmpty() ? "success" : "partial-success");
+    //         response.put("message", "Migration completed with rules applied");
+    //         response.put("bcysProcessed", allBcys.size());
+    //         response.put("departmentsTotal", allDepartments.size());
+    //         response.put("linksCreated", totalCreated);
+    //         response.put("linksSkippedAlreadyExist", totalSkipped);
+    //         response.put("bcysSkippedByRules", totalSkippedRules);
+    //         response.put("errors", errors);
+
+    //         return ResponseEntity.ok(response);
+
+    //     } catch (Exception e) {
+    //         response.put("status", "error");
+    //         response.put("message", "Migration failed: " + e.getMessage());
+    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    //     }
+    // }
+
+    @PostMapping("/populate-department-bcys-with-dates")
+    public ResponseEntity<Map<String, Object>> populateWithDates(
+            @RequestBody List<DepartmentBCYSImportDTO> importList) {
+
         Map<String, Object> response = new HashMap<>();
 
-        try {
-            List<BatchClassYearSemester> allBcys = bcysRepository.findAll();
-            if (allBcys.isEmpty()) {
-                response.put("status", "info");
-                response.put("message", "No BatchClassYearSemester records found. Nothing to migrate.");
-                return ResponseEntity.ok(response);
-            }
+        int created = 0;
+        int updated = 0;
+        int skipped = 0;
+        int failed = 0;
+        List<String> errors = new ArrayList<>();
 
-            List<Department> allDepartments = departmentRepository.findAll();
-            if (allDepartments.isEmpty()) {
-                response.put("status", "warning");
-                response.put("message", "No departments found. Migration skipped.");
-                return ResponseEntity.ok(response);
-            }
+        for (DepartmentBCYSImportDTO row : importList) {
+            try {
+                // Parse IDs
+                Long bcysIdLong = parseLongSafe(row.getBcysId(), "bcysId");
+                Long deptIdLong  = parseLongSafe(row.getDepartmentId(), "departmentId");
 
-            // Find Medicine department (id = 2)
-            Department medicineDept = allDepartments.stream()
-                    .filter(d -> d.getDptID() == 2L)
-                    .findFirst()
-                    .orElse(null);
+                BatchClassYearSemester bcys = bcysRepository.findById(bcysIdLong)
+                        .orElseThrow(() -> new ResourceNotFoundException("BCYS not found: " + row.getBcysId()));
 
-            int totalCreated = 0;
-            int totalSkipped = 0;
-            int totalSkippedRules = 0;
-            List<String> errors = new ArrayList<>();
+                Department dept = departmentRepository.findById(deptIdLong)
+                        .orElseThrow(() -> new ResourceNotFoundException("Department not found: " + row.getDepartmentId()));
 
-            for (BatchClassYearSemester bcys : allBcys) {
-                String batchName = bcys.getBatch() != null ? bcys.getBatch().getBatchName() : null;
-                String classYearName = bcys.getClassYear() != null ? bcys.getClassYear().getClassYear() : null;
-
-                // Rule 1: batch name == "0" → skip completely
-                if ("0".equals(batchName)) {
-                    totalSkippedRules++;
-                    continue;
+                // Academic year (nullable)
+                AcademicYear year = null;
+                if (StringUtils.hasText(row.getAcademicYearCode())) {
+                    year = academicYearRepository.findById(row.getAcademicYearCode())
+                            .orElseThrow(() -> new ResourceNotFoundException(
+                                    "AcademicYear not found: " + row.getAcademicYearCode()));
                 }
 
-                // Determine which departments to map
-                List<Department> departmentsToMap;
+                // Dates (nullable)
+                LocalDate startGC = parseLocalDateSafe(row.getClassStartGC(), "classStartGC");
+                LocalDate endGC   = parseLocalDateSafe(row.getClassEndGC(), "classEndGC");
 
-                if ("PC1".equals(classYearName) || "PC2".equals(classYearName) ||
-                        "C1".equals(classYearName) || "C2".equals(classYearName) || "C3".equals(classYearName)) {
-                    // Rule 3: PC1/PC2/C1/C2/C3 → ONLY Medicine
-                    departmentsToMap = medicineDept != null ? List.of(medicineDept) : Collections.emptyList();
-                } else if (classYearName != null && classYearName.matches("\\d+") && Integer.parseInt(classYearName) >= 2) {
-                    // Rule 2: class year >= 2 → exclude Medicine
-                    departmentsToMap = allDepartments.stream()
-                            .filter(d -> d.getDptID() != 2L)
-                            .collect(Collectors.toList());
+                // Check existing
+                Optional<DepartmentBCYS> existingOpt = departmentBCYSRepository
+                        .findByBcysAndDepartment(bcys, dept);
+
+                DepartmentBCYS link = existingOpt.orElse(new DepartmentBCYS());
+
+                link.setBcys(bcys);
+                link.setDepartment(dept);
+                link.setAcademicYear(year);
+                link.setClassStartGC(startGC);
+                link.setClassStartEC(row.getClassStartEC());
+                link.setClassEndGC(endGC);
+                link.setClassEndEC(row.getClassEndEC());
+
+                departmentBCYSRepository.save(link);
+
+                if (existingOpt.isPresent()) {
+                    updated++;
                 } else {
-                    // Default: map to all departments
-                    departmentsToMap = allDepartments;
+                    created++;
                 }
 
-                if (departmentsToMap.isEmpty()) {
-                    totalSkippedRules++;
-                    continue;
-                }
-
-                for (Department dept : departmentsToMap) {
-                    boolean exists = departmentBCYSRepository.existsByBcysAndDepartment(bcys, dept);
-                    if (exists) {
-                        totalSkipped++;
-                        continue;
-                    }
-
-                    try {
-                        DepartmentBCYS link = new DepartmentBCYS();
-                        link.setBcys(bcys);
-                        link.setDepartment(dept);
-                        // All other fields remain null
-
-                        departmentBCYSRepository.save(link);
-                        totalCreated++;
-                    } catch (Exception e) {
-                        String errorMsg = String.format("Failed for bcysID=%d + deptID=%d: %s",
-                                bcys.getBcysID(), dept.getDptID(), e.getMessage());
-                        errors.add(errorMsg);
-                    }
-                }
+            } catch (Exception e) {
+                String err = String.format("Row bcys=%s dept=%s → %s",
+                        row.getBcysId(), row.getDepartmentId(), e.getMessage());
+                errors.add(err);
+                failed++;
             }
+        }
 
-            response.put("status", errors.isEmpty() ? "success" : "partial-success");
-            response.put("message", "Migration completed with rules applied");
-            response.put("bcysProcessed", allBcys.size());
-            response.put("departmentsTotal", allDepartments.size());
-            response.put("linksCreated", totalCreated);
-            response.put("linksSkippedAlreadyExist", totalSkipped);
-            response.put("bcysSkippedByRules", totalSkippedRules);
-            response.put("errors", errors);
+        response.put("status", failed == 0 ? "success" : "partial");
+        response.put("created", created);
+        response.put("updated", updated);
+        response.put("failed", failed);
+        response.put("errors", errors);
 
-            return ResponseEntity.ok(response);
+        return ResponseEntity.ok(response);
+    }
 
-        } catch (Exception e) {
-            response.put("status", "error");
-            response.put("message", "Migration failed: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    private Long parseLongSafe(String value, String fieldName) {
+        if (!StringUtils.hasText(value)) {
+            throw new IllegalArgumentException(fieldName + " is required");
+        }
+        try {
+            return Long.parseLong(value.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(fieldName + " must be a valid number: " + value);
+        }
+    }
+
+    private LocalDate parseLocalDateSafe(String value, String fieldName) {
+        if (!StringUtils.hasText(value)) {
+            return null;
+        }
+        try {
+            return LocalDate.parse(value.trim());
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException(fieldName + " must be in YYYY-MM-DD format: " + value);
         }
     }
 }

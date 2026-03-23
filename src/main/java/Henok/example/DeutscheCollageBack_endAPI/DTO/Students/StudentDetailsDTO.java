@@ -5,7 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
-// DTO to hold all StudentDetails fields, including photo and document
+// DTO to hold all StudentDetails fields, including photo and document availability
 // Why: Prevents exposing entity internals, provides all data for retrieval
 @Data
 public class StudentDetailsDTO {
@@ -91,7 +91,7 @@ public class StudentDetailsDTO {
     private String academicYearEC;
 
     // Document & Others
-    private byte[] document;
+    private boolean hasDocument;
     private String documentStatus;
     private String remark;
     private Boolean isTransfer;

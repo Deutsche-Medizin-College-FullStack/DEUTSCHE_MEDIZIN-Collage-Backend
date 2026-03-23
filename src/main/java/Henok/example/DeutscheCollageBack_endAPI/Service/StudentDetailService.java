@@ -958,7 +958,7 @@ public class StudentDetailService {
         }
 
         // Document & Others
-        dto.setDocument(student.getDocument());
+        dto.setHasDocument(student.getDocument() != null && student.getDocument().length > 0);
         dto.setDocumentStatus(student.getDocumentStatus().name());
         dto.setRemark(student.getRemark());
         dto.setIsTransfer(student.isTransfer());

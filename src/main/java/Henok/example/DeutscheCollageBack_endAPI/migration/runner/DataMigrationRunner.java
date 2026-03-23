@@ -89,7 +89,7 @@ public class DataMigrationRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        mainFunction();
+        // mainFunction();
     }
 
     public void mainFunction(){
