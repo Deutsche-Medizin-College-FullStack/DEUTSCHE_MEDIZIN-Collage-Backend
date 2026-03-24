@@ -289,34 +289,7 @@ public class RegistrarController {
     }
 
 
-    @GetMapping("/students/{userId}/academic-progress")
-    public ResponseEntity<?> getStudentAcademicProgress(@PathVariable Long userId) {
-
-        try {
-            // You can add role/permission check here if needed
-            // e.g. only student himself, registrar, etc.
-            StudentAcademicProgressDTO progress = studentDetailsService.getStudentAcademicProgress(userId);
-
-            return ResponseEntity.ok(progress);
-
-        } catch (ResourceNotFoundException ex) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(new ErrorResponse(ex.getMessage()));
-
-        } catch (BadRequestException ex) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(new ErrorResponse(ex.getMessage()));
-
-        } catch (Exception ex) {
-            // Log the error in production
-//            log.error("Unexpected error fetching academic progress for user {}: {}", userId, ex.getMessage(), ex);
-            return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ErrorResponse("An unexpected error occurred. Please try again later."));
-        }
-    }
+    
 
 
     @PostMapping(value = "/form-templates", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

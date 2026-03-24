@@ -2,11 +2,13 @@ package Henok.example.DeutscheCollageBack_endAPI.Controller;
 
 import Henok.example.DeutscheCollageBack_endAPI.DTO.Student.StudentProfileResponse;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.StudentSlips.StudentsListForSlipDTO;
+import Henok.example.DeutscheCollageBack_endAPI.DTO.Students.StudentAcademicProgressDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.Students.StudentDetailsDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.Students.StudentUpdateDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.Students.StudentListDTO;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.User;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.Role;
+import Henok.example.DeutscheCollageBack_endAPI.Error.BadRequestException;
 import Henok.example.DeutscheCollageBack_endAPI.Error.ErrorResponse;
 import Henok.example.DeutscheCollageBack_endAPI.Error.ResourceNotFoundException;
 import Henok.example.DeutscheCollageBack_endAPI.Service.StudentDetailService;
@@ -210,6 +212,35 @@ public class StudentController {
         // Return the list with HTTP 200 OK status.
         // Why: Provides a successful response; error handling can be added via global exception handlers if needed.
         return ResponseEntity.ok(fields);
+    }
+
+    @GetMapping("/{userId}/academic-progress")
+    public ResponseEntity<?> getStudentAcademicProgress(@PathVariable Long userId) {
+
+        try {
+            // You can add role/permission check here if needed
+            // e.g. only student himself, registrar, etc.
+            StudentAcademicProgressDTO progress = studentDetailsService.getStudentAcademicProgress(userId);
+
+            return ResponseEntity.ok(progress);
+
+        } catch (ResourceNotFoundException ex) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ErrorResponse(ex.getMessage()));
+
+        } catch (BadRequestException ex) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorResponse(ex.getMessage()));
+
+        } catch (Exception ex) {
+            // Log the error in production
+//            log.error("Unexpected error fetching academic progress for user {}: {}", userId, ex.getMessage(), ex);
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorResponse("An unexpected error occurred. Please try again later."));
+        }
     }
 
 }

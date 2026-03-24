@@ -753,15 +753,18 @@ public class DepartmentHeadService {
                 .map(student -> {
                     Map<String, Object> map = new HashMap<>();
                     map.put("id", student.getId());
+                    map.put("userId", student.getUser().getId());
                     map.put("studentId", student.getUser().getUsername());
                     map.put("fullName",
                             student.getFirstNameENG() + " " +
                                     student.getFatherNameENG() + " " +
                                     student.getGrandfatherNameENG());
                     map.put("recentBcysName", student.getBatchClassYearSemester().getDisplayName());
+                    map.put("originalBatch", student.getBatch().getBatchName());
                     map.put("studentRecentStatusName", student.getStudentRecentStatus().getStatusName());
                     map.put("phoneNumber", student.getPhoneNumber());
                     map.put("gender", student.getGender().name());
+                    map.put("cgpa", student.getCgpa());
                     return map;
                 })
                 .collect(Collectors.toList());
