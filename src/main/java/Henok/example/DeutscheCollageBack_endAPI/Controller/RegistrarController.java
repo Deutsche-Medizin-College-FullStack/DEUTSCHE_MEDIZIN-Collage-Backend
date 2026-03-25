@@ -153,7 +153,7 @@ public class RegistrarController {
     }
 
     // GET /api/registrar/photo/{id}
-    @GetMapping(value = "/photo/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping("/photo/{id}")
     public ResponseEntity<?> getPhoto(@PathVariable Long id) {
         try {
             byte[] img = registrarService.getPhotographById(id);
@@ -166,7 +166,7 @@ public class RegistrarController {
     }
 
     // GET /api/registrar/nationalID/{id}
-    @GetMapping(value = "/nationalID/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping("/nationalID/{id}")
     public ResponseEntity<?> getNationalID(@PathVariable Long id) {
         try {
             byte[] img = registrarService.getNationalIdById(id);

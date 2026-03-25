@@ -23,6 +23,8 @@ public class SecurityConfig {
 
     @Autowired
     private CustomAccessDeniedHandler customAccessDeniedHandler;
+    @Autowired
+    private RateLimitingFilter rateLimitingFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtRequestFilter jwtRequestFilter) throws Exception {
@@ -40,9 +42,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/auth/login",
                                 "/api/applicants/register",
-                                "/api/auth/register", "/",
-                                "/swagger-ui.html",
-                                "/swagger-ui/index.html").permitAll()
+                                "/api/auth/register", "/").permitAll()
                         .requestMatchers(HttpMethod.GET,
                                 "/api/enums/**",
                                 "/api/country/**",
@@ -221,8 +221,8 @@ public class SecurityConfig {
                         .accessDeniedHandler(customAccessDeniedHandler)  // ← This is key
                         .authenticationEntryPoint(new CustomAuthenticationEntryPoint()) // optional: for unauthenticated
                 )
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(rateLimitingFilter, JwtRequestFilter.class);   // ← important
         return http.build();
     }
 
