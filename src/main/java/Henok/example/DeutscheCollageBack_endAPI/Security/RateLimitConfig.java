@@ -32,7 +32,7 @@ public class RateLimitConfig {
     @Bean(name = "staffBucket")
     public Bucket staffBucket() {
         return Bucket.builder()
-                .addLimit(Bandwidth.classic(2, Refill.intervally(2, Duration.ofMinutes(3))))
+                .addLimit(Bandwidth.classic(200, Refill.intervally(200 , Duration.ofMinutes(1))))
                 .build();
     }
 
