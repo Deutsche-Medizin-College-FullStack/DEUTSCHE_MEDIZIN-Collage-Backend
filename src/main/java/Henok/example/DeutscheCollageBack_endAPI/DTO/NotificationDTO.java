@@ -16,6 +16,7 @@ public class NotificationDTO {
     private String message;
     private Date createdAt;
     private boolean isRead;
+    // private Long numOfUnreadNotifications; // Optional: total unread count for the user
 
     // Purpose: Maps Notification entity to safe API response, hiding User entity.
 }

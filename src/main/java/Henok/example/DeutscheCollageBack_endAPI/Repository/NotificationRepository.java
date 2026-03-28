@@ -14,6 +14,10 @@ import java.util.Optional;
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
 
+    // methods for counts
+    long countByUser(User user);
+    long countByUserAndIsRead(User user, boolean isRead);
+
     // Fetch all notifications for a user, ordered by creation date (newest first)
     List<Notification> findByUserOrderByCreatedAtDesc(User user);
 

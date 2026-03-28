@@ -1,12 +1,14 @@
 package Henok.example.DeutscheCollageBack_endAPI.Controller;
 
 import Henok.example.DeutscheCollageBack_endAPI.DTO.NotificationDTO;
+import Henok.example.DeutscheCollageBack_endAPI.DTO.NotificationResponseDTO;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.User;
 import Henok.example.DeutscheCollageBack_endAPI.Error.ErrorResponse;
 import Henok.example.DeutscheCollageBack_endAPI.Service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,6 +75,19 @@ public class NotificationController {
         // Why @PreAuthorize: Ensures only authenticated users access their own notifications.
         // Error handling: Returns structured JSON errors using ErrorResponse.
         // Path: /api/notifications/me/latest follows RESTful conventions.
+    }
+    // Version 2 - Latest notifications with summary info
+    @GetMapping("/me/v2/latest")
+    public ResponseEntity<?> getLatestNotificationsWithInfo(@AuthenticationPrincipal User user) {
+        try {
+            NotificationResponseDTO response = notificationService.getLatestNotificationsWithStats(user);
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(new ErrorResponse(e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorResponse("Failed to fetch latest notifications: " + e.getMessage()));
+        }
     }
 
     @PatchMapping("/me/read-all")

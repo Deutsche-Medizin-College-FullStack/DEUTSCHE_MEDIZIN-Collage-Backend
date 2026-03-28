@@ -1,6 +1,7 @@
 package Henok.example.DeutscheCollageBack_endAPI.Service;
 
 import Henok.example.DeutscheCollageBack_endAPI.DTO.NotificationDTO;
+import Henok.example.DeutscheCollageBack_endAPI.DTO.NotificationResponseDTO;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.Notification;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.User;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.Role;
@@ -130,6 +131,39 @@ public class NotificationService {
         // Purpose: Fetches the 5 most recent notifications for a user, sorted by createdAt descending.
         // Why Pageable: Efficiently limits to 5 at DB level, avoiding overfetching.
         // Error handling: Throws for null user.
+    }
+
+    // Add this method to NotificationService.java
+    public NotificationResponseDTO getLatestNotificationsWithStats(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
+
+        // Get latest 5 notifications
+        Pageable pageable = PageRequest.of(0, 5);
+        List<Notification> latestNotifications = notificationRepository
+                .findTop5ByUserOrderByCreatedAtDesc(user, pageable);
+
+        // Get statistics
+        long total = notificationRepository.countByUser(user);
+        long unread = notificationRepository.countByUserAndIsRead(user, false);
+        long read = total - unread;
+
+        // Map to DTOs
+        List<NotificationDTO> notificationDTOs = latestNotifications.stream()
+                .map(n -> new NotificationDTO(
+                        n.getId(),
+                        n.getSenderRole().name(),
+                        n.getMessage(),
+                        n.getCreatedAt(),
+                        n.isRead()
+                ))
+                .collect(Collectors.toList());
+
+        // Build response
+        NotificationResponseDTO.Info info = new NotificationResponseDTO.Info(total, unread, read);
+
+        return new NotificationResponseDTO(info, notificationDTOs);
     }
 
     public void markAllNotificationsAsRead(User user) {
