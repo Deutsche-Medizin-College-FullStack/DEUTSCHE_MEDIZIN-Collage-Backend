@@ -62,10 +62,10 @@ public class StudentImportDTO {
     private String grade12Result;              // will be parsed to Double if present
 
     // NEW FIELDS ADDED
-    private String Year_of_Exam_G12;           // e.g. "2025"
-    private String NATIONALEXAM_ID_G12;        // e.g. "305288"
-    private String Date_Class_EndGC;           // Date class ended
-    private String Date_Graduated;             // Graduation date
-    private String Entry_Year_GC;              // e.g. "2019/20 G.C"
-    private String Entry_Year_EC;              // e.g. "2012 E.C"
+    private String year_of_Exam_G12;           // e.g. "2025"
+    private String nationalExam_ID_G12;        // e.g. "305288"
+    private String date_Class_EndGC;           // Date class ended
+    private String date_Graduated;             // Graduation date
+    private String entry_Year_GC;              // e.g. "2019/20 G.C"
+    private String entry_Year_EC;              // e.g. "2012 E.C"
 }

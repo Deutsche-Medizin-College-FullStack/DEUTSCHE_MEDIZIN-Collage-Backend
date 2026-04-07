@@ -68,27 +68,27 @@ public class BulkStudentImportService {
             StudentImportDTO dto = dtos.get(i);
             try {
                 System.out.println("=======[" + (dto.getUsername() != null ? dto.getUsername() : "UNKNOWN_USERNAME (row " + (i + 1) + ")") + "]==========");
-                System.out.println("First Name (ENG/AMH): " + dto.getFirstNameENG() + " / " + dto.getFirstNameAMH());
-                System.out.println("Father Name (ENG/AMH): " + dto.getFatherNameENG() + " / " + dto.getFatherNameAMH());
-                System.out.println("Grandfather Name (ENG/AMH): " + dto.getGrandfatherNameENG() + " / " + dto.getGrandfatherNameAMH());
-                System.out.println("Gender: " + dto.getGender());
-                System.out.println("Marital Status: " + dto.getMaritalStatus());
-                System.out.println("Phone: " + dto.getPhoneNumber());
-                System.out.println("Date of Birth (GC): " + dto.getDateOfBirthGC());
-                System.out.println("Date Enrolled (GC): " + dto.getDateEnrolledGC());
-                System.out.println("Department ID: " + dto.getDepartmentEnrolledId());
-                System.out.println("Batch ID: " + dto.getBatchId());
-                System.out.println("Student Status ID: " + dto.getStudentRecentStatusId());
-                System.out.println("School Background ID: " + dto.getSchoolBackgroundId());
-                System.out.println("Batch Class Year Semester ID: " + dto.getBatchClassYearSemesterId());
-                System.out.println("Program Modality Code: " + dto.getProgramModalityCode());
-                System.out.println("Place of Birth - Region/Zone/Woreda Codes: " +
-                        dto.getPlaceOfBirthRegionCode() + " / " +
-                        dto.getPlaceOfBirthZoneCode() + " / " +
-                        dto.getPlaceOfBirthWoredaCode());
-                System.out.println("Is Transfer: " + dto.getIsTransfer());
-                System.out.println("Document Status: " + dto.getDocumentStatus());
-                System.out.println("Remark: " + dto.getRemark());
+//                System.out.println("First Name (ENG/AMH): " + dto.getFirstNameENG() + " / " + dto.getFirstNameAMH());
+//                System.out.println("Father Name (ENG/AMH): " + dto.getFatherNameENG() + " / " + dto.getFatherNameAMH());
+//                System.out.println("Grandfather Name (ENG/AMH): " + dto.getGrandfatherNameENG() + " / " + dto.getGrandfatherNameAMH());
+//                System.out.println("Gender: " + dto.getGender());
+//                System.out.println("Marital Status: " + dto.getMaritalStatus());
+//                System.out.println("Phone: " + dto.getPhoneNumber());
+//                System.out.println("Date of Birth (GC): " + dto.getDateOfBirthGC());
+//                System.out.println("Date Enrolled (GC): " + dto.getDateEnrolledGC());
+//                System.out.println("Department ID: " + dto.getDepartmentEnrolledId());
+//                System.out.println("Batch ID: " + dto.getBatchId());
+//                System.out.println("Student Status ID: " + dto.getStudentRecentStatusId());
+//                System.out.println("School Background ID: " + dto.getSchoolBackgroundId());
+//                System.out.println("Batch Class Year Semester ID: " + dto.getBatchClassYearSemesterId());
+//                System.out.println("Program Modality Code: " + dto.getProgramModalityCode());
+//                System.out.println("Place of Birth - Region/Zone/Woreda Codes: " +
+//                        dto.getPlaceOfBirthRegionCode() + " / " +
+//                        dto.getPlaceOfBirthZoneCode() + " / " +
+//                        dto.getPlaceOfBirthWoredaCode());
+//                System.out.println("Is Transfer: " + dto.getIsTransfer());
+//                System.out.println("Document Status: " + dto.getDocumentStatus());
+//                System.out.println("Remark: " + dto.getRemark());
 
                 importSingleStudent(dto);
                 success++;
@@ -126,13 +126,6 @@ public class BulkStudentImportService {
         if (existingUserOpt.isPresent()) {
             user = existingUserOpt.get();
             System.out.println("User already exists for username: " + dto.getUsername() + " (ID: " + user.getId() + "). Skipping user creation.");
-
-            // Check if StudentDetails already exists for this user
-            if (studentDetailsRepository.existsByUserId(user.getId())) {
-                System.out.println("StudentDetails already exists for user ID " + user.getId() + ". Skipping entire record.");
-                return; // Skip completely – nothing to do
-            }
-            // If we reach here: User exists, but no StudentDetails → proceed to create details only
         } else {
             // User does not exist → create new one
             UserRegisterRequest userRequest = new UserRegisterRequest();
@@ -144,9 +137,18 @@ public class BulkStudentImportService {
             System.out.println("Created new User for username: " + dto.getUsername() + " (ID: " + user.getId() + ")");
         }
 
-        // Create StudentDetails
-        StudentDetails details = new StudentDetails();
-        details.setUser(user);
+        // Check if StudentDetails already exists for this user
+        Optional<StudentDetails> existingDetailsOpt = studentDetailsRepository.findByUser(user);
+
+        StudentDetails details;
+        if (existingDetailsOpt.isPresent()) {
+            details = existingDetailsOpt.get();
+            System.out.println("StudentDetails already exists for user ID " + user.getId() + ". Updating existing record.");
+        } else {
+            details = new StudentDetails();
+            details.setUser(user);
+            System.out.println("No StudentDetails found for user ID " + user.getId() + ". Creating new record.");
+        }
 
         // === Field mappings (unchanged) ===
         details.setFirstNameENG(dto.getFirstNameENG());
@@ -236,7 +238,7 @@ public class BulkStudentImportService {
         details.setRemark(dto.getRemark());
 
         details.setYearOfExamG12(dto.getYear_of_Exam_G12());
-        details.setNationalexamIdG12(dto.getNATIONALEXAM_ID_G12());
+        details.setNationalexamIdG12(dto.getNationalExam_ID_G12());
         details.setEntryYearGC(dto.getEntry_Year_GC());
         details.setEntryYearEC(dto.getEntry_Year_EC());
 
