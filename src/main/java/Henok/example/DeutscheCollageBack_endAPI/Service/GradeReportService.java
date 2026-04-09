@@ -100,23 +100,29 @@ public class GradeReportService {
             return null;
         }
 
-        // Group by historical BCYS efficiently (one pass)
-        Map<BatchClassYearSemester, List<StudentCourseScore>> scoresByBCYS = allReleasedScores.stream()
-                .collect(Collectors.groupingBy(StudentCourseScore::getBatchClassYearSemester));
+        // Group by ClassYear + Semester combination (NOT by BatchClassYearSemester)
+        // This prevents duplicate entries when student repeats the same year/semester in different batches
+        Map<String, List<StudentCourseScore>> scoresByClassYearSemester = allReleasedScores.stream()
+                .collect(Collectors.groupingBy(score -> 
+                    score.getBatchClassYearSemester().getClassYear().getId() + "_" +
+                    score.getBatchClassYearSemester().getSemester().getAcademicPeriodCode()
+                ));
 
-        // Prepare simplified copies
-        List<SimplifiedStudentCopyDTO> studentCopies = new ArrayList<>(scoresByBCYS.size());
+        // Prepare simplified copies - one per unique ClassYear + Semester
+        List<SimplifiedStudentCopyDTO> studentCopies = new ArrayList<>(scoresByClassYearSemester.size());
 
         Department studentDept = student.getDepartmentEnrolled();
 
-        for (Map.Entry<BatchClassYearSemester, List<StudentCourseScore>> entry : scoresByBCYS.entrySet()) {
-            BatchClassYearSemester historicalBCYS = entry.getKey();
+        for (Map.Entry<String, List<StudentCourseScore>> entry : scoresByClassYearSemester.entrySet()) {
+            // Take any score from this group to extract classYear and semester (they are the same within group)
+            StudentCourseScore anyScore = entry.getValue().get(0);
+            BatchClassYearSemester anyBCYS = anyScore.getBatchClassYearSemester();
 
             try {
                 StudentCopyRequestDTO request = new StudentCopyRequestDTO();
                 request.setStudentId(studentId);
-                request.setClassYearId(historicalBCYS.getClassYear().getId());
-                request.setSemesterId(historicalBCYS.getSemester().getAcademicPeriodCode());
+                request.setClassYearId(anyBCYS.getClassYear().getId());
+                request.setSemesterId(anyBCYS.getSemester().getAcademicPeriodCode());
 
                 SimplifiedStudentCopyDTO copy = studentCopyService.generateSimplifiedStudentCopy(request);
                 if (copy != null) {

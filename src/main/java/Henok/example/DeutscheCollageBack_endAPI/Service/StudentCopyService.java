@@ -56,7 +56,7 @@ public class StudentCopyService {
 
 
     /**
-     * Generates a student copy (transcript) for a specific classyear and semester.
+     * Generates a student copy for a specific classyear and semester.
      * 
      * @param request The request containing studentId, classYearId, and semesterId
      * @return StudentCopyDTO containing all student information and course grades
@@ -77,24 +77,35 @@ public class StudentCopyService {
         Semester semester = semesterRepo.findById(request.getSemesterId())
                 .orElseThrow(() -> new ResourceNotFoundException("Semester not found with id: " + request.getSemesterId()));
 
-        // 3. CRITICAL FIX: Find the ACTUAL historical BCYS the student studied in
-        //    (this works even when current batch in StudentDetails is 0 or different)
-        BatchClassYearSemester historicalBCYS = studentCourseScoreRepo
+        // 3. CRITICAL FIX: Find ALL historical BCYS for the requested classYear + semester
+        //    This handles cases where student repeats the same year/semester in different batches
+        List<BatchClassYearSemester> historicalBCYSList = studentCourseScoreRepo
                 .findByStudentAndIsReleasedTrue(student.getUser()).stream()
                 .map(StudentCourseScore::getBatchClassYearSemester)
                 .filter(bcys ->
                         bcys.getClassYear().getId().equals(classYear.getId()) &&
-                                bcys.getSemester().getAcademicPeriodCode().equals(semester.getAcademicPeriodCode())
+                        bcys.getSemester().getAcademicPeriodCode().equals(semester.getAcademicPeriodCode())
                 )
-                .findFirst()
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "No historical record found for student in ClassYear " + classYear.getClassYear() +
-                                " Semester " + semester.getAcademicPeriodCode()
-                ));
+                .distinct()                    // remove duplicate BCYS if any
+                .toList();
 
-        // 4. Get all courses for this historical BCYS
-        List<StudentCourseScore> courseScores = studentCourseScoreRepo
-                .findByStudentAndBatchClassYearSemester(student.getUser(), historicalBCYS);
+        if (historicalBCYSList.isEmpty()) {
+            throw new ResourceNotFoundException(
+                    "No historical record found for student in ClassYear " + classYear.getClassYear() +
+                            " Semester " + semester.getAcademicPeriodCode()
+            );
+        }
+
+        // We keep the original variable name for minimal code change
+        BatchClassYearSemester historicalBCYS = historicalBCYSList.get(0);   // Use first one for academic context, GPA calculation, etc.
+
+        // 4. Get ALL courses from ALL matching BCYS (this fixes the missing courses from later batches)
+        List<StudentCourseScore> courseScores = new ArrayList<>();
+        for (BatchClassYearSemester bcys : historicalBCYSList) {
+            List<StudentCourseScore> scoresForThisBCYS = studentCourseScoreRepo
+                    .findByStudentAndBatchClassYearSemester(student.getUser(), bcys);
+            courseScores.addAll(scoresForThisBCYS);
+        }
 
         // 5. Get grading system
         // System.out.println("getting Grading System ...");
