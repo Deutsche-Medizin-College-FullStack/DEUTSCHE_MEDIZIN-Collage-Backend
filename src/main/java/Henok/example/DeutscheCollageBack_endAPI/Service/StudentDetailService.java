@@ -174,10 +174,19 @@ public class StudentDetailService {
                     dto.setGrandfatherNameAMH(student.getGrandfatherNameAMH());
                     dto.setGrandfatherNameENG(student.getGrandfatherNameENG());
 
+                        dto.setStudentRecentStatusId(student.getStudentRecentStatus() != null
+                            ? student.getStudentRecentStatus().getId()
+                            : null);
                     dto.setStudentRecentStatus(student.getStudentRecentStatus().getStatusName());
+                        dto.setDepartmentEnrolledId(student.getDepartmentEnrolled() != null
+                            ? student.getDepartmentEnrolled().getDptID()
+                            : null);
                     dto.setDepartmentEnrolled(student.getDepartmentEnrolled().getDeptName());
                     dto.setBatchId(student.getBatch() != null ? student.getBatch().getId() : null);
                     dto.setBatchName(student.getBatch() != null ? student.getBatch().getBatchName() : null);
+                        dto.setBatchClassYearSemesterId(student.getBatchClassYearSemester() != null
+                            ? student.getBatchClassYearSemester().getBcysID()
+                            : null);
                     dto.setBatchClassYearSemester(student.getBatchClassYearSemester().getDisplayName());
 
                     dto.setStudentPhoto(student.getStudentPhoto());
@@ -425,6 +434,74 @@ public class StudentDetailService {
         } catch (IOException e) {
             throw new IllegalArgumentException("Failed to process file uploads: " + e.getMessage());
         }
+    }
+
+    // Bulk partial update for selected academic fields and account status
+    // Why: Reuses existing updateStudent partial update flow and existing account enable/disable methods
+    @Transactional(rollbackFor = Exception.class)
+    public List<StudentDetailsDTO> bulkPartialUpdateAcademicFields(List<StudentBulkAcademicUpdateDTO> updates) {
+        if (updates == null || updates.isEmpty()) {
+            throw new IllegalArgumentException("Bulk update request cannot be empty");
+        }
+
+        List<StudentDetailsDTO> updatedStudents = new ArrayList<>();
+
+        for (StudentBulkAcademicUpdateDTO item : updates) {
+            if (item == null || item.getStudentId() == null) {
+                throw new IllegalArgumentException("Each bulk item must include studentId");
+            }
+
+            boolean hasAcademicField = item.getBatchClassYearSemesterId() != null
+                    || item.getStudentRecentStatusId() != null
+                    || item.getDepartmentEnrolledId() != null
+                    || item.getBatchId() != null;
+
+            boolean hasAccountStatus = item.getAccountStatus() != null
+                    && !item.getAccountStatus().trim().isEmpty();
+
+            boolean hasUpdatableField = hasAcademicField || hasAccountStatus;
+
+            if (!hasUpdatableField) {
+                throw new IllegalArgumentException(
+                        "At least one field must be provided for studentId: " + item.getStudentId());
+            }
+
+            StudentDetailsDTO updated;
+
+            if (hasAcademicField) {
+                StudentUpdateDTO dto = new StudentUpdateDTO();
+                dto.setBatchClassYearSemesterId(item.getBatchClassYearSemesterId());
+                dto.setStudentRecentStatusId(item.getStudentRecentStatusId());
+                dto.setDepartmentEnrolledId(item.getDepartmentEnrolledId());
+                dto.setBatchId(item.getBatchId());
+
+                updated = updateStudent(item.getStudentId(), dto, null, null);
+            } else {
+                // Ensures student exists even when only account status is being changed.
+                updated = getStudentById(item.getStudentId());
+            }
+
+            if (hasAccountStatus) {
+                String normalizedStatus = item.getAccountStatus().trim().toUpperCase(Locale.ROOT);
+
+                if ("ENABLED".equals(normalizedStatus)) {
+                    enableStudent(item.getStudentId());
+                } else if ("DISABLED".equals(normalizedStatus)) {
+                    disableStudent(item.getStudentId());
+                } else {
+                    throw new IllegalArgumentException(
+                            "Invalid accountStatus for studentId " + item.getStudentId()
+                                    + ". Use ENABLED or DISABLED");
+                }
+
+                // Refresh DTO after account-status operation.
+                updated = getStudentById(item.getStudentId());
+            }
+
+            updatedStudents.add(updated);
+        }
+
+        return updatedStudents;
     }
 
     // Enables a student by enabling their user account
@@ -847,6 +924,15 @@ public class StudentDetailService {
 //        student.setStudentRecentDepartment(dept);
         student.setProgramModality(programModalityRepository.findById(request.getProgramModalityCode())
                 .orElseThrow(() -> new ResourceNotFoundException("Program modality not found with code: " + request.getProgramModalityCode())));
+        if (request.getEntryYearGC() != null) {
+            student.setEntryYearGC(request.getEntryYearGC());
+        }
+        if (request.getEntryYearEC() != null) {
+            student.setEntryYearEC(request.getEntryYearEC());
+        }
+        if (request.getYearOfExamG12() != null) {
+            student.setYearOfExamG12(request.getYearOfExamG12());
+        }
         if (document != null && !document.isEmpty()) {
             student.setDocument(document.getBytes());
         }

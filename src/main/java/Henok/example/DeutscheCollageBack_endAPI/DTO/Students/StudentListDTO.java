@@ -16,10 +16,13 @@ public class StudentListDTO {
     private String fatherNameENG;
     private String grandfatherNameAMH;
     private String grandfatherNameENG;
+    private Long studentRecentStatusId;
     private String studentRecentStatus;  // status name
+    private Long departmentEnrolledId;
     private String departmentEnrolled;   // department name
     private Long batchId;
     private String batchName;
+    private Long batchClassYearSemesterId;
     private String batchClassYearSemester; // BCYS name
     private byte[] studentPhoto;
 }

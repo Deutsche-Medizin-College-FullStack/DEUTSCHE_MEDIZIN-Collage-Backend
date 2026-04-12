@@ -3,6 +3,7 @@ package Henok.example.DeutscheCollageBack_endAPI.Controller;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.Student.StudentProfileResponse;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.StudentSlips.StudentsListForSlipDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.Students.StudentAcademicProgressDTO;
+import Henok.example.DeutscheCollageBack_endAPI.DTO.Students.StudentBulkAcademicUpdateDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.Students.StudentDetailsDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.Students.StudentUpdateDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.Students.StudentListDTO;
@@ -161,6 +162,35 @@ public class StudentController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ErrorResponse("Failed to update student: " + e.getMessage()));
+        }
+    }
+
+    // Bulk partial update for academic assignment fields + account status:
+    // BCYS, Status, Department, Batch, Account Status (ENABLED/DISABLED)
+    @PutMapping("/bulk/academic-fields")
+    public ResponseEntity<?> bulkPartialUpdateAcademicFields(
+            @RequestBody List<StudentBulkAcademicUpdateDTO> updates) {
+        try {
+            List<StudentDetailsDTO> updatedStudents =
+                    studentDetailsService.bulkPartialUpdateAcademicFields(updates);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Bulk student update completed successfully");
+            response.put("updatedCount", updatedStudents.size());
+            response.put("students", updatedStudents);
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorResponse(e.getMessage()));
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ErrorResponse(e.getMessage()));
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(new ErrorResponse("Bulk update failed due to duplicate entry: " + e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorResponse("Failed to bulk update students: " + e.getMessage()));
         }
     }
 

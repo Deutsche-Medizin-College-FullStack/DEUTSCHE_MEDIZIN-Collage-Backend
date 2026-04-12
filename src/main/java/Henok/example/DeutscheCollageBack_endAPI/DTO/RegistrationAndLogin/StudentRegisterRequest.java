@@ -144,6 +144,15 @@ public class StudentRegisterRequest {
     @Size(max = 20)
     private String programModalityCode; // Required: Program modality code (e.g., Regular)
 
+    @Size(max = 20)
+    private String entryYearGC; // Optional: Entry year in Gregorian Calendar
+
+    @Size(max = 20)
+    private String entryYearEC; // Optional: Entry year in Ethiopian Calendar
+
+    @Size(max = 20)
+    private String yearOfExamG12; // Optional: Grade 12 exam year
+
     // Document Information
     private DocumentStatus documentStatus; // Optional: Defaults to INCOMPLETE
 
