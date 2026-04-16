@@ -150,6 +150,15 @@ public class StudentCopyService {
         //System.out.println("Calculating GPA and CGPA ...");
         double semesterGPA = calculateGPA(courseGrades);
         double semesterCGPA = calculateCGPA(student.getUser(), historicalBCYS, gradingSystem);   // ← now correct
+        String semesterGPALetter = resolveGradeLetterForGpa(semesterGPA, gradingSystem);
+        String semesterCGPALetter = resolveGradeLetterForGpa(semesterCGPA, gradingSystem);
+        PreviousAcademicTotals previousTotals = calculatePreviousAcademicTotals(
+            student.getUser(),
+            student.getDepartmentEnrolled(),
+            historicalBCYS,
+            gradingSystem
+        );
+        String previousCGPALetter = resolveGradeLetterForGpa(previousTotals.cgpa(), gradingSystem);
         // System.out.println("Finished calculating GPA and CGPA");
 
         String status = semesterGPA >= MINIMUM_PASSING_GPA ? "PASSED" : "FAILED";
@@ -224,6 +233,12 @@ public class StudentCopyService {
         // GPA Information
         dto.setSemesterGPA(semesterGPA);
         dto.setSemesterCGPA(semesterCGPA);
+        dto.setSemesterGPALetter(semesterGPALetter);
+        dto.setSemesterCGPALetter(semesterCGPALetter);
+        dto.setPreviousCredit(previousTotals.totalCreditHours());
+        dto.setPreviousGradePoint(previousTotals.totalGradePoints());
+        dto.setPreviousCGPA(previousTotals.cgpa());
+        dto.setPreviousCGPALetter(previousCGPALetter);
         dto.setStatus(status);
 
         return dto;
@@ -405,12 +420,95 @@ public class StudentCopyService {
         return map.get(key);
     }
 
+    private boolean sameClassYearAndSemester(BatchClassYearSemester left, BatchClassYearSemester right) {
+        if (left == null || right == null) {
+            return false;
+        }
+
+        if (left.getClassYear() == null || right.getClassYear() == null ||
+                left.getSemester() == null || right.getSemester() == null) {
+            return false;
+        }
+
+        return Objects.equals(left.getClassYear().getId(), right.getClassYear().getId()) &&
+                Objects.equals(left.getSemester().getAcademicPeriodCode(), right.getSemester().getAcademicPeriodCode());
+    }
+
+    private record GradeComputationTotals(double totalGradePoints, int totalCreditHours) {}
+
+    private record PreviousAcademicTotals(int totalCreditHours, double totalGradePoints, double cgpa) {}
+
+    private PreviousAcademicTotals calculatePreviousAcademicTotals(
+            User student,
+            Department studentDept,
+            BatchClassYearSemester requestedBCYS,
+            GradingSystem gradingSystem
+    ) {
+        if (student == null || requestedBCYS == null || gradingSystem == null) {
+            return new PreviousAcademicTotals(0, 0.0, 0.0);
+        }
+
+        List<StudentCourseScore> allScores = studentCourseScoreRepo.findByStudentAndIsReleasedTrue(student);
+        if (allScores.isEmpty()) {
+            return new PreviousAcademicTotals(0, 0.0, 0.0);
+        }
+
+        Integer requestedSequence = getProgressionSequenceNumber(
+                studentDept,
+                requestedBCYS.getClassYear(),
+                requestedBCYS.getSemester()
+        );
+
+        Map<String, Integer> sequenceMap = buildSequenceMap(studentDept);
+
+        List<StudentCourseScore> previousScores = allScores.stream()
+                .filter(score -> {
+                    BatchClassYearSemester scoreBCYS = score.getBatchClassYearSemester();
+                    if (scoreBCYS == null) {
+                        return false;
+                    }
+
+                    Integer scoreSequence = getSequenceFromMap(
+                            sequenceMap,
+                            studentDept,
+                            scoreBCYS.getClassYear(),
+                            scoreBCYS.getSemester()
+                    );
+
+                    if (requestedSequence != null && scoreSequence != null) {
+                        return scoreSequence < requestedSequence;
+                    }
+
+                    // Fallback if sequence cannot be determined: exclude only the requested class year + semester.
+                    return !sameClassYearAndSemester(scoreBCYS, requestedBCYS);
+                })
+                .collect(Collectors.toList());
+
+        GradeComputationTotals totals = computeWeightedTotals(previousScores, gradingSystem);
+        double previousCgpa = totals.totalCreditHours() == 0
+                ? 0.0
+                : totals.totalGradePoints() / totals.totalCreditHours();
+
+        return new PreviousAcademicTotals(totals.totalCreditHours(), totals.totalGradePoints(), previousCgpa);
+    }
+
     /**
      * Core calculation logic (extracted for reuse)
      */
     private double calculateFromScores(List<StudentCourseScore> scores, GradingSystem gradingSystem) {
+        GradeComputationTotals totals = computeWeightedTotals(scores, gradingSystem);
+        return totals.totalCreditHours() == 0 ? 0.0 : totals.totalGradePoints() / totals.totalCreditHours();
+    }
+
+    private GradeComputationTotals computeWeightedTotals(List<StudentCourseScore> scores, GradingSystem gradingSystem) {
         double totalGradePoints = 0.0;
         int totalCreditHours = 0;
+
+        if (scores == null || scores.isEmpty() || gradingSystem == null || gradingSystem.getIntervals() == null) {
+            return new GradeComputationTotals(0.0, 0);
+        }
+
+        List<MarkInterval> intervals = gradingSystem.getIntervals();
 
         for (StudentCourseScore scs : scores) {
             if (scs.getScore() == null) continue;
@@ -421,7 +519,7 @@ public class StudentCopyService {
             int crHrs = course.getTheoryHrs() + course.getLabHrs();
             if (crHrs <= 0) continue;
 
-            MarkInterval interval = gradingSystem.getIntervals().stream()
+            MarkInterval interval = intervals.stream()
                     .filter(i -> scs.getScore() >= i.getMin() && scs.getScore() <= i.getMax())
                     .findFirst()
                     .orElse(null);
@@ -432,7 +530,38 @@ public class StudentCopyService {
             }
         }
 
-        return totalCreditHours == 0 ? 0.0 : totalGradePoints / totalCreditHours;
+        return new GradeComputationTotals(totalGradePoints, totalCreditHours);
+    }
+
+    /**
+     * Resolves a letter grade for an aggregated GPA value using the grading system.
+     * GPA is mapped to the highest interval whose givenValue is <= GPA.
+     */
+    private String resolveGradeLetterForGpa(double gpa, GradingSystem gradingSystem) {
+        if (gradingSystem == null || gradingSystem.getIntervals() == null || gradingSystem.getIntervals().isEmpty()) {
+            return null;
+        }
+
+        final double epsilon = 1e-9;
+
+        List<MarkInterval> sortedByGivenValueDesc = gradingSystem.getIntervals().stream()
+                .filter(Objects::nonNull)
+                .filter(interval -> interval.getGradeLetter() != null)
+                .sorted(Comparator.comparingDouble(MarkInterval::getGivenValue).reversed())
+                .collect(Collectors.toList());
+
+        if (sortedByGivenValueDesc.isEmpty()) {
+            return null;
+        }
+
+        for (MarkInterval interval : sortedByGivenValueDesc) {
+            if (gpa + epsilon >= interval.getGivenValue()) {
+                return interval.getGradeLetter();
+            }
+        }
+
+        // If GPA is below the minimum threshold, return the lowest letter in the grading system.
+        return sortedByGivenValueDesc.get(sortedByGivenValueDesc.size() - 1).getGradeLetter();
     }
 
 
@@ -476,6 +605,12 @@ public class StudentCopyService {
         // GPA Information
         simplified.setSemesterGPA(fullCopy.getSemesterGPA());
         simplified.setSemesterCGPA(fullCopy.getSemesterCGPA());
+        simplified.setSemesterGPALetter(fullCopy.getSemesterGPALetter());
+        simplified.setSemesterCGPALetter(fullCopy.getSemesterCGPALetter());
+        simplified.setPreviousCredit(fullCopy.getPreviousCredit());
+        simplified.setPreviousGradePoint(fullCopy.getPreviousGradePoint());
+        simplified.setPreviousCGPA(fullCopy.getPreviousCGPA());
+        simplified.setPreviousCGPALetter(fullCopy.getPreviousCGPALetter());
         simplified.setStatus(fullCopy.getStatus());
         
         return simplified;

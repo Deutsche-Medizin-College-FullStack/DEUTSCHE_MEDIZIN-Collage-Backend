@@ -38,6 +38,12 @@ public class StudentCopyDTO {
     // GPA Information
     private Double semesterGPA;
     private Double semesterCGPA;
+    private String semesterGPALetter;
+    private String semesterCGPALetter;
+    private Integer previousCredit;
+    private Double previousGradePoint;
+    private Double previousCGPA;
+    private String previousCGPALetter;
     private String status; // "PASSED" or "FAILED"
     
     // Nested DTOs for structured information
