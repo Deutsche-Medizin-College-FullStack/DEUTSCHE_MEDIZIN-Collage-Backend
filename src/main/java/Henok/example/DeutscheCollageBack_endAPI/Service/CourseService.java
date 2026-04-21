@@ -142,6 +142,7 @@ public class CourseService {
                 course.getCCode(),
                 course.getTheoryHrs(),
                 course.getLabHrs(),
+            course.isPassFail(),
                 categoryRef,
                 departmentRef,
                 classYearRef,
@@ -295,6 +296,10 @@ public class CourseService {
             existingCourse.setLabHrs(courseDTO.getLabHrs());
         }
 
+        if (courseDTO.getIsPassFail() != null) {
+            existingCourse.setPassFail(courseDTO.getIsPassFail());
+        }
+
         if (courseDTO.getCCatagoryID() != null) {
             CourseCategory category = courseCategoryRepository.findById(courseDTO.getCCatagoryID())
                     .orElseThrow(() -> new ResourceNotFoundException("Course category not found with id: " + courseDTO.getCCatagoryID()));
@@ -396,7 +401,8 @@ public class CourseService {
         return new Course(null, dto.getCTitle(), dto.getCCode(),
                 dto.getTheoryHrs() != null ? dto.getTheoryHrs() : 0,
                 dto.getLabHrs() != null ? dto.getLabHrs() : 0,
-                category, department, prerequisites, classYear, semester);
+            category, department, prerequisites, classYear, semester,
+            dto.getIsPassFail() != null ? dto.getIsPassFail() : false);
     }
 
     private void validateCourse(Course course) {

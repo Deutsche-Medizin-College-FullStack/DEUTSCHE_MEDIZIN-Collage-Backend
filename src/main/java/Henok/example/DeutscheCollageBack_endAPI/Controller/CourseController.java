@@ -5,6 +5,7 @@ import Henok.example.DeutscheCollageBack_endAPI.DTO.CourseResponseDTO;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.Course;
 import Henok.example.DeutscheCollageBack_endAPI.Error.ErrorResponse;
 import Henok.example.DeutscheCollageBack_endAPI.Error.ResourceNotFoundException;
+import Henok.example.DeutscheCollageBack_endAPI.Repository.CourseRepo;
 import Henok.example.DeutscheCollageBack_endAPI.Service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,14 @@ public class CourseController {
 
     @Autowired
     private CourseService courseService;
+
+    @Autowired
+    private CourseRepo courseRepo;
+
+    // TEMPORARY ONE-TIME HELPER: remove this method and its caller after use.
+    private void setAllCoursesPassFailFalseOneTime() {
+        // courseRepo.backfillNullPassFailToFalse();
+    }
 
     @PostMapping
     public ResponseEntity<?> addCourses(@RequestBody List<CourseDTO> courseDTOs) {
@@ -104,6 +113,9 @@ public class CourseController {
             @RequestParam(required = false) Long semesterId) {
 
         try {
+            // TEMPORARY ONE-TIME CALL: remove this line after your one-time update.
+            setAllCoursesPassFailFalseOneTime();
+
             List<Map<String, Object>> courseList = courseService.getCoursesMinimalListFiltered(
                     departmentId, classYearId, semesterId);
 

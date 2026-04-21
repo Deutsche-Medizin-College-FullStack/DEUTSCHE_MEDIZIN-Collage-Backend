@@ -54,4 +54,8 @@ public class Course {
     @ManyToOne
     @JoinColumn(name = "semester_id", nullable = true)
     private Semester semester;
+
+    // In Course.java
+    @Column(nullable = true)
+    private boolean isPassFail = false;   // default false (normal letter grade)
 }

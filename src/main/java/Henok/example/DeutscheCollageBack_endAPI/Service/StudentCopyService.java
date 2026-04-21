@@ -52,6 +52,7 @@ public class StudentCopyService {
     private static final String SUFFIX_EXTERNAL  = "*";        // sourceId = 3 (from outside the school)
 
     private static final double MINIMUM_PASSING_GPA = 2.0; // Minimum GPA to pass a semester
+    private static final double MINIMUM_PASSFAIL_SCORE = 50.0; // Minimum score to pass a course (for Pass/Fail logic) 
 
 
 
@@ -113,38 +114,61 @@ public class StudentCopyService {
         GradingSystem gradingSystem = gradingSystemService.findApplicableGradingSystem(department);
                 // System.out.println("Finished grading system");
 
-        // 6. Build course grades (unchanged)
+        // 6. Build course grades - Support both normal grading and Pass/Fail courses
         // System.out.println("Building course grades ...");
         List<CourseGradeDTO> courseGrades = new ArrayList<>();
+        boolean hasFailedPassFailCourse = false;
+
         for (StudentCourseScore score : courseScores) {
-            if (score.getScore() == null || !score.isReleased()) continue;
+            if (score.getScore() == null || !score.isReleased()) {
+                continue;
+            }
 
             Course course = score.getCourse();
             int totalCrHrs = course.getTheoryHrs() + course.getLabHrs();
-
-            MarkInterval interval = gradingSystem.getIntervals().stream()
-                    .filter(i -> score.getScore() >= i.getMin() && score.getScore() <= i.getMax())
-                    .findFirst()
-                    .orElseThrow(() -> new IllegalStateException("No matching interval for score: " + score.getScore()));
-
-            String letterGrade = interval.getGradeLetter();
-            Double gradePoint = totalCrHrs * interval.getGivenValue();
-
-            // Suffix logic
-            String suffix = "";
-            if (score.getCourseSource().getSourceID() == 2) suffix = "**";
-            else if (score.getCourseSource().getSourceID() == 3) suffix = "*";
 
             CourseGradeDTO cg = new CourseGradeDTO();
             cg.setCourseCode(course.getCCode());
             cg.setCourseTitle(course.getCTitle());
             cg.setTotalCrHrs(totalCrHrs);
-            cg.setLetterGrade(letterGrade + suffix);
-            cg.setGradePoint(gradePoint);
+
+            boolean passed = false;
+            if (course.isPassFail()) {
+                // === PASS/FAIL COURSE LOGIC ===
+                if (score.getScore() == 1)
+                    passed = true; // Special case: if score is exactly 1 → treat as 100 (some systems use 1 for pass)
+                else
+                    passed = score.getScore() >= MINIMUM_PASSFAIL_SCORE;   // Pass if score meets/exceeds threshold
+
+                cg.setLetterGrade(passed ? "P" : "F");
+                cg.setGradePoint(0.0);           // Pass/Fail courses usually do NOT affect GPA
+                if (!passed) {
+                    hasFailedPassFailCourse = true;
+                }
+                // Optional: you can add this if you extended CourseGradeDTO
+                // cg.setIsPassFail(true);
+
+            } else {
+                // === NORMAL LETTER GRADE LOGIC ===
+                MarkInterval interval = gradingSystem.getIntervals().stream()
+                        .filter(i -> score.getScore() >= i.getMin() && score.getScore() <= i.getMax())
+                        .findFirst()
+                        .orElseThrow(() -> new IllegalStateException("No matching interval for score: " + score.getScore()));
+
+                String letterGrade = interval.getGradeLetter();
+                Double gradePoint = totalCrHrs * interval.getGivenValue();
+
+                // Suffix logic (for repeated / external courses)
+                String suffix = "";
+                if (score.getCourseSource().getSourceID() == 2) suffix = "**";
+                else if (score.getCourseSource().getSourceID() == 3) suffix = "*";
+
+                cg.setLetterGrade(letterGrade + suffix);
+                cg.setGradePoint(gradePoint);
+            }
 
             courseGrades.add(cg);
         }
-        // System.out.println("Finished building course grades, total courses: " + courseGrades.size());
 
         // 7. Calculate GPA & CGPA (already using the new ProgressionSequence version)
         //System.out.println("Calculating GPA and CGPA ...");
@@ -161,7 +185,7 @@ public class StudentCopyService {
         String previousCGPALetter = resolveGradeLetterForGpa(previousTotals.cgpa(), gradingSystem);
         // System.out.println("Finished calculating GPA and CGPA");
 
-        String status = semesterGPA >= MINIMUM_PASSING_GPA ? "PASSED" : "FAILED";
+        String status = (semesterGPA >= MINIMUM_PASSING_GPA && !hasFailedPassFailCourse) ? "PASSED" : "FAILED";
 
         // 10. Find AcademicYear and DepartmentBCYS for this historical BCYS (to get academic year and department-specific info)
         // Find DepartmentBCYS once (used for both academicYear and studentBCYS)

@@ -38,4 +38,7 @@ public class CourseDTO {
 
     @JsonProperty("semesterID")
     private String semesterID;
+
+    @JsonProperty("isPassFail")
+    private Boolean isPassFail;
 }

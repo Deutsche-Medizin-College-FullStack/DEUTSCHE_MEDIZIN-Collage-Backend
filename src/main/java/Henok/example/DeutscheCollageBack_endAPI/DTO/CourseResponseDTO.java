@@ -18,6 +18,7 @@ public class CourseResponseDTO {
     private String cCode;
     private Integer theoryHrs;
     private Integer labHrs;
+    private Boolean isPassFail;
 
     @Data
     @NoArgsConstructor

@@ -199,7 +199,7 @@ public class GradeReportService {
         footer.append("\n");
 
         // 2. Notation / symbols
-        footer.append("** = Course Repeated, * = Credit Transferred / Taken Externally\n\n");
+        footer.append("** = Course Repeated, * = Credit Transferred / Taken Externally\n");
 
         // 3. Date issued (human readable format - adjust locale/formatter if needed)
         footer.append("Date Issued: ")

@@ -5,8 +5,10 @@ import Henok.example.DeutscheCollageBack_endAPI.Entity.CourseCategory;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -52,4 +54,9 @@ public interface CourseRepo extends JpaRepository<Course, Long>, JpaSpecificatio
             CourseCategory category,
             Department department
     );
+
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE course SET is_pass_fail = false WHERE is_pass_fail IS NULL", nativeQuery = true)
+        int backfillNullPassFailToFalse();
 }
