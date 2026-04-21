@@ -29,7 +29,7 @@ public class CourseController {
 
     // TEMPORARY ONE-TIME HELPER: remove this method and its caller after use.
     private void setAllCoursesPassFailFalseOneTime() {
-        // courseRepo.backfillNullPassFailToFalse();
+        courseRepo.backfillNullPassFailToFalse();
     }
 
     @PostMapping
