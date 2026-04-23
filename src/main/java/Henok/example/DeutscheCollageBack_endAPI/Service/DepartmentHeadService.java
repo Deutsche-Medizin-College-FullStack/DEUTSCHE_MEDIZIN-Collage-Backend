@@ -705,8 +705,8 @@ public class DepartmentHeadService {
                     map.put("code", course.getCCode());
                     map.put("title", course.getCTitle());
                     map.put("totalCrHrs", course.getTheoryHrs() + course.getLabHrs());
-                    map.put("classYearName", course.getClassYear().getClassYear()); // assuming getClassYearName() exists
-                    map.put("semesterName", course.getSemester().getAcademicPeriod());     // assuming getSemesterName() exists
+                    map.put("classYearName", course.getClassYear() != null ? course.getClassYear().getClassYear() : null);
+                    map.put("semesterName", course.getSemester() != null ? course.getSemester().getAcademicPeriod() : null);
                     List<TeacherCourseAssignment> assignments = teacherCourseAssignmentRepository.findByCourse(course);
 
                     List<Map<String, String>> teachersList = assignments.stream()
