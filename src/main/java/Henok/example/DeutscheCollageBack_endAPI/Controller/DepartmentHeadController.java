@@ -388,6 +388,7 @@ public class DepartmentHeadController {
                     .body(Map.of("error", e.getMessage()));
 
         } catch (Exception e) {
+            System.out.println("Error in getMyDepartmentCourses: " + e.getMessage());
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("error", "Failed to retrieve courses"));
