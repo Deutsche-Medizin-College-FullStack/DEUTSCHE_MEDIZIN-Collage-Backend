@@ -58,6 +58,8 @@ public class TeacherRegisterRequest {
     @Size(max = 20)
     private String hireDateEC;
 
+    private LocalDate resignedDate;
+
     @Size(max = 50)
     private String title; // optional
 

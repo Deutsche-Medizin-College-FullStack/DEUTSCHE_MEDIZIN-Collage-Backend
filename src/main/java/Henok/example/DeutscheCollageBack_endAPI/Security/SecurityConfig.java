@@ -66,7 +66,7 @@ public class SecurityConfig {
                                 "/api/auth/me/change-password",
                                 "/api/courses/*").authenticated()
 
-                        .requestMatchers(HttpMethod.GET, "/api/students/**").hasAnyRole("DEPARTMENT_HEAD", "REGISTRAR", "TEACHER", "DEAN", "VICE_DEAN", "GENERAL_MANAGER")
+                        // .requestMatchers(HttpMethod.GET, "/api/students/**").hasAnyRole("DEPARTMENT_HEAD", "REGISTRAR", "TEACHER", "DEAN", "VICE_DEAN", "GENERAL_MANAGER")
 
 
                         //Student Endpoints
@@ -81,6 +81,7 @@ public class SecurityConfig {
                                 "/api/course-categories/**",
                                 "/api/course-sources/**",
                                 "/api/student-course-scores/**",
+                                "/api/grade-report/**",
                                 "/api/student-statuses/**",
                                 "/api/semesters/**",
                                 "/api/bcsy/**",
@@ -90,7 +91,8 @@ public class SecurityConfig {
                                //---------------
                                 "/api/student-slips/**",
                                 "/api/students/slip-production",
-                                "/api/grade-report/**",
+                                "/api/students",
+                                "/api/students/",
                                 "/api/students/*",
                                 "/api/students/*/enable",
                                 "/api/students/*/disable",
@@ -116,7 +118,8 @@ public class SecurityConfig {
                                 "/api/department-heads/teachers",
                                 "/api/department-heads/my-courses",
                                 "/api/department-heads/my-students",
-                                "/api/department-heads/assessments/scores").hasRole("DEPARTMENT_HEAD")
+                                "/api/department-heads/assessments/scores",
+                                "/api/teachers/account").hasRole("DEPARTMENT_HEAD")
                         .requestMatchers(HttpMethod.PUT,"/api/teachers/**",
                                 "/api/department-heads/assignments/*/approve-all").hasRole("DEPARTMENT_HEAD")
                         .requestMatchers(HttpMethod.DELETE,
@@ -143,6 +146,7 @@ public class SecurityConfig {
                                 "/api/deans/dashboard",
                                 "/api/deans/get-all-students-cgpa",
                                 "/api/deans/department-heads",
+                                "/api/department-heads/account",
                                 "/api/deans/program-levels/**",
                                 "/api/deans/program-modalities/**",
                                 "/api/deans/head-approved-scores",

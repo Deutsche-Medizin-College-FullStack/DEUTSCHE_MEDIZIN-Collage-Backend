@@ -8,7 +8,6 @@ import Henok.example.DeutscheCollageBack_endAPI.Repository.NotificationRepositor
 import Henok.example.DeutscheCollageBack_endAPI.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.NonTransientDataAccessException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

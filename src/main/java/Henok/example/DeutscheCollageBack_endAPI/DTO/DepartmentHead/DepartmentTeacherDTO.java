@@ -9,12 +9,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DepartmentTeacherDTO {
     private Long teacherId;
+    private Long teacherUserId;
     private String fullName;
     private String title;
     private String email;
     private String phoneNumber;
     private Integer yearsOfExperience;
     private Long numberOfCourses;
+    private String accountStatus; // "Active" or "Disabled"
 }
 
 

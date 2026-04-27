@@ -417,6 +417,7 @@ public class DepartmentHeadService {
         resp.setHiredDateEC(details.getHiredDateEC());
         resp.setRemark(details.getRemark());
         resp.setActive(details.isActive());
+        resp.setAccountStatus(details.getUser().isEnabled() ? "Active" : "Disabled");
 
         // Department as {id, name}
         resp.setDepartment(Map.of(
@@ -652,12 +653,14 @@ public class DepartmentHeadService {
             TeacherDetail teacher = entry.getKey();
             DepartmentTeacherDTO dto = new DepartmentTeacherDTO();
             dto.setTeacherId(teacher.getId());
+            dto.setTeacherUserId(teacher.getUser().getId());
             dto.setFullName(teacher.getFirstNameEnglish() + " " + teacher.getLastNameEnglish());
             dto.setTitle(teacher.getTitle());
             dto.setEmail(teacher.getEmail());
             dto.setPhoneNumber(teacher.getPhoneNumber());
             dto.setYearsOfExperience(teacher.getYearsOfExperience());
             dto.setNumberOfCourses(entry.getValue());
+            dto.setAccountStatus(teacher.getUser().isEnabled() ? "Active" : "Disabled");
             teachers.add(dto);
         }
         

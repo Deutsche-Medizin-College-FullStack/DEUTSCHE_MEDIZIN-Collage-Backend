@@ -31,6 +31,7 @@ public class TeacherResponseDTO {
     private String departmentName;
     private LocalDate hireDateGC;
     private String hireDateEC;
+    private LocalDate resignedDate;
     private String title;
     private Integer yearsOfExperience;
 

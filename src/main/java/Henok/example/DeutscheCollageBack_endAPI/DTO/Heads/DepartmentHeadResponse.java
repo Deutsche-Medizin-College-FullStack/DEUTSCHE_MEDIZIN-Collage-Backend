@@ -36,4 +36,5 @@ public class DepartmentHeadResponse {
     private boolean hasPhoto;
     private boolean hasDocument;
     private boolean isActive;
+    private String accountStatus; // "Active" or "Disabled"
 }

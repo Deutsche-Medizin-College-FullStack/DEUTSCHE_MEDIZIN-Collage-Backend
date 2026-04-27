@@ -6,12 +6,14 @@ import Henok.example.DeutscheCollageBack_endAPI.Entity.ClassYear;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.Course;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.CourseCategory;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.Department;
+import Henok.example.DeutscheCollageBack_endAPI.Entity.ProgressionSequence;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.MOE_Data.Semester;
 import Henok.example.DeutscheCollageBack_endAPI.Error.ResourceNotFoundException;
 import Henok.example.DeutscheCollageBack_endAPI.Repository.ClassYearRepository;
 import Henok.example.DeutscheCollageBack_endAPI.Repository.CourseCategoryRepo;
 import Henok.example.DeutscheCollageBack_endAPI.Repository.CourseRepo;
 import Henok.example.DeutscheCollageBack_endAPI.Repository.DepartmentRepo;
+import Henok.example.DeutscheCollageBack_endAPI.Repository.ProgressionSequenceRepository;
 import Henok.example.DeutscheCollageBack_endAPI.Repository.MOE_Repos.SemesterRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -37,6 +39,9 @@ public class CourseService {
 
     @Autowired
     private SemesterRepo semesterRepository;
+
+    @Autowired
+    private ProgressionSequenceRepository progressionSequenceRepository;
 
     public Set<String> addCoursesSkipDuplicates(List<CourseDTO> courseDTOs) {
         if (courseDTOs == null || courseDTOs.isEmpty()) {
@@ -186,7 +191,14 @@ public class CourseService {
                     cb.equal(root.get("category").get("catID"), categoryId));
         }
 
-        return courseRepository.findAll(spec);
+        List<Course> courses = courseRepository.findAll(spec);
+        courses.sort(Comparator
+            .comparingInt(this::getProgressionSequenceSortKey)
+            .thenComparing(course -> course.getClassYear() == null ? null : course.getClassYear().getId(), Comparator.nullsLast(Long::compareTo))
+            .thenComparing(course -> course.getSemester() == null ? null : course.getSemester().getAcademicPeriodCode(), Comparator.nullsLast(String::compareTo))
+            .thenComparing(Course::getCCode, Comparator.nullsLast(String::compareTo)));
+
+        return courses;
     }
 
     /**
@@ -487,5 +499,30 @@ public class CourseService {
             }
         }
         return false;
+    }
+
+    private int getProgressionSequenceSortKey(Course course) {
+        Department department = course.getDepartment();
+        ClassYear classYear = course.getClassYear();
+        Semester semester = course.getSemester();
+
+        if (classYear == null || semester == null) {
+            return Integer.MAX_VALUE;
+        }
+
+        if (department != null) {
+            return progressionSequenceRepository
+                    .findByDepartmentAndClassYearAndSemester(department, classYear, semester)
+                    .map(ProgressionSequence::getSequenceNumber)
+                    .orElseGet(() -> progressionSequenceRepository
+                            .findByDepartmentIsNullAndClassYearAndSemester(classYear, semester)
+                            .map(ProgressionSequence::getSequenceNumber)
+                            .orElse(Integer.MAX_VALUE));
+        }
+
+        return progressionSequenceRepository
+                .findByDepartmentIsNullAndClassYearAndSemester(classYear, semester)
+                .map(ProgressionSequence::getSequenceNumber)
+                .orElse(Integer.MAX_VALUE);
     }
 }

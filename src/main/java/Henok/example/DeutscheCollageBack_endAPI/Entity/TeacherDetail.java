@@ -72,6 +72,9 @@ public class TeacherDetail {
     @Column(name = "hire_date_ec")
     private String hireDateEC;      // nullable
 
+    @Column(name = "resigned_date")
+    private LocalDate resignedDate; // nullable
+
     @Column
     private String title;           // e.g. Lecturer, Professor
 

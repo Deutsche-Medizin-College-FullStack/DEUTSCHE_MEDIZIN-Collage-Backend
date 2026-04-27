@@ -25,6 +25,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +37,84 @@ public class TeacherController {
 
     private final TeacherService teacherService;
     private final UserService userService;
+
+    // -----------[Bulk Update Teacher Account Status]------------------
+    // description - Updates account status in bulk using a body payload of userId + status.
+    // endpoint - PATCH /api/teachers/account
+    // body - [{ "userId": 1, "status": "ENABLED" }, { "userId": 2, "status": "DISABLED" }]
+    // success response - 200 OK with processed/success/failed counts and per-item results
+    // ErrorResponse - { "error": "message" } (400, 500)
+    @PatchMapping("/account")
+    public ResponseEntity<?> updateTeacherAccountStatusBulk(@RequestBody List<Map<String, Object>> requests) {
+        try {
+            if (requests == null || requests.isEmpty()) {
+                return ResponseEntity.badRequest().body(Map.of("error", "Request body cannot be empty"));
+            }
+
+            List<Map<String, Object>> results = new ArrayList<>();
+            int successCount = 0;
+
+            for (Map<String, Object> item : requests) {
+                Map<String, Object> result = new HashMap<>();
+                try {
+                    Object userIdObj = item.get("userId");
+                    Object statusObj = item.get("status");
+
+                    if (userIdObj == null || statusObj == null) {
+                        throw new IllegalArgumentException("Both userId and status are required");
+                    }
+
+                    Long userId;
+                    try {
+                        userId = Long.valueOf(String.valueOf(userIdObj));
+                    } catch (NumberFormatException ex) {
+                        throw new IllegalArgumentException("userId must be a valid number");
+                    }
+
+                    String status = String.valueOf(statusObj).trim().toUpperCase();
+                    if (!"ENABLED".equals(status) && !"DISABLED".equals(status)) {
+                        throw new IllegalArgumentException("status must be ENABLED or DISABLED");
+                    }
+
+                    if ("ENABLED".equals(status)) {
+                        userService.enableUser(userId);
+                    } else {
+                        userService.disableUser(userId);
+                    }
+
+                    result.put("userId", userId);
+                    result.put("status", status);
+                    result.put("success", true);
+                    result.put("message", "Account status updated successfully");
+                    successCount++;
+
+                } catch (ResourceNotFoundException | IllegalArgumentException e) {
+                    result.put("userId", item.get("userId"));
+                    result.put("status", item.get("status"));
+                    result.put("success", false);
+                    result.put("error", e.getMessage());
+                } catch (Exception e) {
+                    result.put("userId", item.get("userId"));
+                    result.put("status", item.get("status"));
+                    result.put("success", false);
+                    result.put("error", "Failed to process item: " + e.getMessage());
+                }
+                results.add(result);
+            }
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("processed", requests.size());
+            response.put("success", successCount);
+            response.put("failed", requests.size() - successCount);
+            response.put("results", results);
+
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Failed to process bulk account status update: " + e.getMessage()));
+        }
+    }
 
     @GetMapping
     public ResponseEntity<?> getAll() {

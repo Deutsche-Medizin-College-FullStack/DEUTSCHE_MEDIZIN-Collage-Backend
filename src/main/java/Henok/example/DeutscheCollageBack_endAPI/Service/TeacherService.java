@@ -143,8 +143,7 @@ public class TeacherService {
             throw new IllegalArgumentException("Last name in English cannot be empty");
         if (request.getPhoneNumber() == null || request.getPhoneNumber().isEmpty())
             throw new IllegalArgumentException("Phone number cannot be empty");
-        if (request.getEmail() == null || request.getEmail().isEmpty())
-            throw new IllegalArgumentException("Email cannot be empty");
+        
         if (request.getDepartmentId() == null)
             throw new IllegalArgumentException("Department is required");
 
@@ -175,6 +174,7 @@ public class TeacherService {
 
         teacher.setHireDateGC(request.getHireDateGC());
         teacher.setHireDateEC(request.getHireDateEC());
+        teacher.setResignedDate(request.getResignedDate());
         teacher.setTitle(request.getTitle());
         teacher.setYearsOfExperience(request.getYearsOfExperience());
 
@@ -249,6 +249,7 @@ public class TeacherService {
     private TeacherListDTO toListDto(TeacherDetail t) {
         TeacherListDTO dto = new TeacherListDTO();
         dto.setTeacherId(t.getId());
+        dto.setTeacherUserId(t.getUser().getId());
         dto.setFullNameAmharic(t.getFirstNameAmharic() + " " + t.getLastNameAmharic());
         dto.setFullNameEnglish(t.getFirstNameEnglish() + " " + t.getLastNameEnglish());
         dto.setDepartmentName(t.getDepartment().getDeptName());
@@ -256,6 +257,7 @@ public class TeacherService {
         dto.setEmail(t.getEmail());
         dto.setPhoneNumber(t.getPhoneNumber());
         dto.setAssignedCoursesCount(assignmentRepository.findByTeacher(t).size());
+        dto.setAccountStatus(t.getUser().isEnabled() ? "Active" : "Disabled");
 
         if (t.getPhotograph() != null && t.getPhotograph().length > 0) {
             dto.setPhotographBase64(Base64.getEncoder().encodeToString(t.getPhotograph()));
@@ -421,6 +423,8 @@ public class TeacherService {
         });
 
         ofNullable(request.getHireDateGC()).ifPresent(teacher::setHireDateGC);
+        ofNullable(request.getResignedDate()).ifPresent(teacher::setResignedDate);
+
         ofNullable(request.getHireDateEC()).filter(s -> !s.isEmpty()).ifPresent(teacher::setHireDateEC);
         ofNullable(request.getTitle()).ifPresent(t -> teacher.setTitle(t.isEmpty() ? null : t));
         ofNullable(request.getYearsOfExperience()).ifPresent(teacher::setYearsOfExperience);
