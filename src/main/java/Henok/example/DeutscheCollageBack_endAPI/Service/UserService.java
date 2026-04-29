@@ -32,6 +32,14 @@ public class UserService implements UserDetailsService {
     @Autowired
     private NotificationRepository notificationRepository;
 
+    public User getUserById(Long userId) {
+        if (userId == null) {
+            throw new IllegalArgumentException("User ID cannot be null");
+        }
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
@@ -70,8 +78,7 @@ public class UserService implements UserDetailsService {
     // Why: Allows reactivation of disabled accounts.
     // Also sets other flags to active state for completeness.
     public void enableUser(Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
+        User user = getUserById(userId);
         user.setEnabled(true);
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
@@ -82,8 +89,7 @@ public class UserService implements UserDetailsService {
     // Disables a user account by setting the enabled flag to false.
     // Why: For temporary suspension without deleting the record.
     public void disableUser(Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
+        User user = getUserById(userId);
         user.setEnabled(false);
         userRepository.save(user);
     }

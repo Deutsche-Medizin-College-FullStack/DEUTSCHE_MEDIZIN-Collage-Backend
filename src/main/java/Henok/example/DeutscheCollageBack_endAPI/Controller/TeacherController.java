@@ -71,6 +71,8 @@ public class TeacherController {
                         throw new IllegalArgumentException("userId must be a valid number");
                     }
 
+                    ensureTeacherRole(userId);
+
                     String status = String.valueOf(statusObj).trim().toUpperCase();
                     if (!"ENABLED".equals(status) && !"DISABLED".equals(status)) {
                         throw new IllegalArgumentException("status must be ENABLED or DISABLED");
@@ -113,6 +115,13 @@ public class TeacherController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("error", "Failed to process bulk account status update: " + e.getMessage()));
+        }
+    }
+
+    private void ensureTeacherRole(Long userId) {
+        User user = userService.getUserById(userId);
+        if (user.getRole() != Role.TEACHER) {
+            throw new IllegalArgumentException("User with id " + userId + " is not a teacher");
         }
     }
 

@@ -8,6 +8,7 @@ import Henok.example.DeutscheCollageBack_endAPI.DTO.Heads.DepartmentHeadUpdateRe
 import Henok.example.DeutscheCollageBack_endAPI.Entity.Assessment;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.User;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.AssessmentStatus;
+import Henok.example.DeutscheCollageBack_endAPI.Enums.Role;
 import Henok.example.DeutscheCollageBack_endAPI.Error.BadRequestException;
 import Henok.example.DeutscheCollageBack_endAPI.Error.ResourceNotFoundException;
 import Henok.example.DeutscheCollageBack_endAPI.Service.DepartmentHeadService;
@@ -68,6 +69,8 @@ public class DepartmentHeadController {
                         throw new IllegalArgumentException("userId must be a valid number");
                     }
 
+                    ensureDepartmentHeadRole(userId);
+
                     String status = String.valueOf(statusObj).trim().toUpperCase();
                     if (!"ENABLED".equals(status) && !"DISABLED".equals(status)) {
                         throw new IllegalArgumentException("status must be ENABLED or DISABLED");
@@ -110,6 +113,13 @@ public class DepartmentHeadController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("error", "Failed to process bulk account status update: " + e.getMessage()));
+        }
+    }
+
+    private void ensureDepartmentHeadRole(Long userId) {
+        User user = userService.getUserById(userId);
+        if (user.getRole() != Role.DEPARTMENT_HEAD) {
+            throw new IllegalArgumentException("User with id " + userId + " is not a department head");
         }
     }
 
