@@ -15,5 +15,6 @@ public class FormTemplateListDTO {
     private Set<Role> forRoles;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private Boolean isDownloadable;
 
 }

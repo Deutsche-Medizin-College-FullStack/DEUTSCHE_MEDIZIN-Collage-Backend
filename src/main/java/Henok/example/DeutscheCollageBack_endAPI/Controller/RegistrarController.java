@@ -290,19 +290,20 @@ public class RegistrarController {
 
 
     
-
+// ====================== Form Templates ===============================================================
 
     @PostMapping(value = "/form-templates", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> createFormTemplate(
             @RequestPart("file") MultipartFile file,
             @RequestPart("name") String name,
             @RequestPart(value = "description", required = false) String description,
-            @RequestPart(value = "forRoles", required = false) Set<Role> forRoles) {
+            @RequestPart(value = "forRoles", required = false) Set<Role> forRoles,
+            @RequestPart(value = "isDownloadable", required = false) Boolean isDownloadable) {
 
         try {
             // Call service - this is where most validations happen
             FormTemplate created = formTemplateService.createFormTemplate(
-                    file, name, description, forRoles
+                    file, name, description, forRoles, isDownloadable
             );
 
             // Build safe response (no large binary content)
@@ -311,6 +312,7 @@ public class RegistrarController {
             response.put("name", created.getName());
             response.put("description", created.getDescription());
             response.put("forRoles", created.getForRoles());
+            response.put("isDownloadable", created.getIsDownloadable());
             response.put("createdAt", created.getCreatedAt());
             response.put("updatedAt", created.getUpdatedAt());
             response.put("message", "Form template created successfully");
@@ -349,16 +351,18 @@ public class RegistrarController {
             @RequestPart(value = "file", required = false) MultipartFile file,
             @RequestPart(value = "name", required = false) String name,
             @RequestPart(value = "description", required = false) String description,
-            @RequestPart(value = "forRoles", required = false) Set<Role> forRoles) {
+            @RequestPart(value = "forRoles", required = false) Set<Role> forRoles,
+            @RequestPart(value = "isDownloadable", required = false) Boolean isDownloadable) {
 
         try {
-            FormTemplate updated = formTemplateService.updateFormTemplate(id, file, name, description, forRoles);
+            FormTemplate updated = formTemplateService.updateFormTemplate(id, file, name, description, forRoles, isDownloadable);
 
             Map<String, Object> response = new HashMap<>();
             response.put("id", updated.getId());
             response.put("name", updated.getName());
             response.put("description", updated.getDescription());
             response.put("forRoles", updated.getForRoles());
+            response.put("isDownloadable", updated.getIsDownloadable());
             response.put("createdAt", updated.getCreatedAt());
             response.put("updatedAt", updated.getUpdatedAt());
             response.put("message", "Form template updated successfully");

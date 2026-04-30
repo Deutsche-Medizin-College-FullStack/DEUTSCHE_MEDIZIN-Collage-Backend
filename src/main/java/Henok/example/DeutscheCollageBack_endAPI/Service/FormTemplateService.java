@@ -37,7 +37,7 @@ public class FormTemplateService {
     // Validates: file presence, PDF format (MIME, extension, magic bytes), name uniqueness, size limit.
     // Why: Centralizes creation logic and ensures data integrity before saving.
     // Throws BadRequestException for invalid inputs.
-    public FormTemplate createFormTemplate(MultipartFile file, String name, String description, Set<Role> forRoles) {
+    public FormTemplate createFormTemplate(MultipartFile file, String name, String description, Set<Role> forRoles, Boolean isDownloadable) {
         // 1. Validate required fields
         if (name == null || name.trim().isEmpty()) {
             throw new BadRequestException("Form name is required and cannot be empty");
@@ -82,6 +82,7 @@ public class FormTemplateService {
                 .description(description)
                 .fileContent(bytes)
                 .forRoles(forRoles != null ? new HashSet<>(forRoles) : new HashSet<>())
+                .isDownloadable(isDownloadable)
                 .build();
 
         return formTemplateRepository.save(template);
@@ -121,6 +122,7 @@ public class FormTemplateService {
         dto.setForRoles(template.getForRoles());
         dto.setCreatedAt(template.getCreatedAt());
         dto.setUpdatedAt(template.getUpdatedAt());
+        dto.setIsDownloadable(template.getIsDownloadable());
         return dto;
     }
 
@@ -128,7 +130,7 @@ public class FormTemplateService {
     // Only provided fields are updated; null/omitted fields remain unchanged.
     // Enforces name uniqueness if name is provided.
     // Returns the updated entity.
-    public FormTemplate updateFormTemplate(Long id, MultipartFile file, String name, String description, Set<Role> forRoles) {
+    public FormTemplate updateFormTemplate(Long id, MultipartFile file, String name, String description, Set<Role> forRoles, Boolean isDownloadable) {
         FormTemplate template = formTemplateRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Form template not found with id: " + id));
 
@@ -148,6 +150,11 @@ public class FormTemplateService {
         // Update forRoles if provided (replace the set)
         if (forRoles != null) {
             template.setForRoles(new HashSet<>(forRoles));
+        }
+
+        // Update isDownloadable if provided
+        if (isDownloadable != null) {
+            template.setIsDownloadable(isDownloadable);
         }
 
         // Update file content if a new file is uploaded

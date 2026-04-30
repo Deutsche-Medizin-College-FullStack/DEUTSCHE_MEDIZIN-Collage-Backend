@@ -71,4 +71,9 @@ public class FormTemplate {
     @Column(name = "role")
     private Set<Role> forRoles = new HashSet<>();
 
+    // Whether this form template is downloadable by users
+    // nullable: can be null/undefined, false, or true
+    @Column(nullable = true)
+    private Boolean isDownloadable;
+
 }
