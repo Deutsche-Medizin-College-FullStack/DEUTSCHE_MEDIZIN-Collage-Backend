@@ -407,6 +407,12 @@ public class StudentDetailService {
                 && studentDetailsRepository.existsByPhoneNumber(dto.getPhoneNumber())) {
             throw new IllegalArgumentException("Phone number already in use");
         }
+        // Check for duplicate username if provided
+        if (dto.getUsername() != null && !dto.getUsername().isEmpty()
+                && !dto.getUsername().equals(existing.getUser().getUsername())
+                && userRepository.existsByUsername(dto.getUsername())) {
+            throw new IllegalArgumentException("Username already in use");
+        }
         // Check for duplicate exitExamUserID if provided
         if (dto.getExitExamUserID() != null && !dto.getExitExamUserID().isEmpty()
                 && !dto.getExitExamUserID().equals(existing.getExitExamUserID())
@@ -424,6 +430,11 @@ public class StudentDetailService {
 
         // Update fields if provided
         try {
+            if (dto.getUsername() != null && !dto.getUsername().isEmpty()
+                    && !dto.getUsername().equals(existing.getUser().getUsername())) {
+                existing.getUser().setUsername(dto.getUsername());
+                userRepository.save(existing.getUser());
+            }
             updateStudentFields(existing, dto, studentPhoto, document);
             StudentDetails updated = studentDetailsRepository.save(existing);
             return mapToDTO(updated);

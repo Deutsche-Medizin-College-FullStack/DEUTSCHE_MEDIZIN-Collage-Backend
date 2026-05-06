@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Data
 public class StudentUpdateDTO {
     // Personal Information (Names in Amharic and English)
+    private String username; // Optional: Update linked user username
     private String firstNameAMH; // Optional: Update first name in Amharic
     private String firstNameENG; // Optional: Update first name in English
     private String fatherNameAMH; // Optional: Update father's name in Amharic
