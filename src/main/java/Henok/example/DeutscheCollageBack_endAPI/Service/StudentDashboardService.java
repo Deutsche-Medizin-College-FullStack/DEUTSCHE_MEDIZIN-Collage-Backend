@@ -1,6 +1,7 @@
 package Henok.example.DeutscheCollageBack_endAPI.Service;
 
 import Henok.example.DeutscheCollageBack_endAPI.DTO.Student.StudentDashboardDTO;
+import Henok.example.DeutscheCollageBack_endAPI.DTO.Students.StudentAcademicProgressDTO;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.*;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.DocumentStatus;
 import Henok.example.DeutscheCollageBack_endAPI.Error.ResourceNotFoundException;
@@ -21,6 +22,9 @@ public class StudentDashboardService {
 
     @Autowired
     private StudentDetailsRepository studentDetailsRepository;
+
+    @Autowired
+    private StudentDetailService studentDetailService;
 
     @Autowired
     private StudentCourseScoreRepo studentCourseScoreRepo;
@@ -55,16 +59,13 @@ public class StudentDashboardService {
         // 2. Academic Progress Snapshot
         dashboard.setAcademicProgress(buildAcademicProgress(student));
 
-        // 3. Current Semester Courses
-        dashboard.setCurrentSemesterCourses(getCurrentSemesterCourses(student));
+        // 3. Course Progress (taken and remaining courses)
+        dashboard.setCourseProgress(buildCourseProgress(userId));
 
-        // 4. Recent Grades
-        dashboard.setRecentGrades(getRecentGrades(student, 5));
-
-        // 5. Document Status
+        // 4. Document Status
         dashboard.setDocumentStatus(buildDocumentStatus(student));
 
-        // 6. Exit Exam and Graduation Information
+        // 5. Exit Exam and Graduation Information
         dashboard.setExitExamAndGraduation(buildExitExamAndGraduation(student));
 
         return dashboard;
@@ -142,104 +143,127 @@ public class StudentDashboardService {
     }
 
     /**
-     * Gets current semester courses for the student.
+     * Builds course progress by calling the academic progress service
+     * and extracting only course-related data.
      */
-    private List<StudentDashboardDTO.CurrentSemesterCourse> getCurrentSemesterCourses(StudentDetails student) {
-        List<StudentDashboardDTO.CurrentSemesterCourse> courses = new ArrayList<>();
-        
-        if (student.getBatchClassYearSemester() == null) {
-            return courses;
+    private StudentDashboardDTO.CourseProgress buildCourseProgress(Long userId) {
+        try {
+            StudentAcademicProgressDTO academicProgress = studentDetailService.getStudentAcademicProgress(userId);
+            
+            StudentDashboardDTO.CourseProgress courseProgress = new StudentDashboardDTO.CourseProgress();
+            courseProgress.setTakenCourses(academicProgress.getTakenCourses());
+            courseProgress.setTotalTakenCourses(academicProgress.getTotalTakenCourses());
+            courseProgress.setTotalTakenCreditHours(academicProgress.getTotalTakenCreditHours());
+            courseProgress.setRemainingCourses(academicProgress.getRemainingCourses());
+            courseProgress.setTotalRemainingCourses(academicProgress.getTotalRemainingCourses());
+            courseProgress.setTotalRemainingCreditHours(academicProgress.getTotalRemainingCreditHours());
+            
+            return courseProgress;
+        } catch (Exception e) {
+            // Return empty course progress if unable to fetch
+            return new StudentDashboardDTO.CourseProgress();
         }
-        
-        BatchClassYearSemester currentBCYS = student.getBatchClassYearSemester();
-        List<StudentCourseScore> currentScores = studentCourseScoreRepo
-                .findByStudentAndBatchClassYearSemester(student.getUser(), currentBCYS);
-        
-        for (StudentCourseScore score : currentScores) {
-            if (score.getCourse() != null) {
-                StudentDashboardDTO.CurrentSemesterCourse course = new StudentDashboardDTO.CurrentSemesterCourse();
-                course.setCourseCode(score.getCourse().getCCode());
-                course.setCourseTitle(score.getCourse().getCTitle());
-                int creditHours = (score.getCourse().getTheoryHrs() != null ? score.getCourse().getTheoryHrs() : 0) +
-                                 (score.getCourse().getLabHrs() != null ? score.getCourse().getLabHrs() : 0);
-                course.setCreditHours(creditHours);
-                courses.add(course);
-            }
-        }
-        
-        return courses;
     }
 
-    /**
-     * Gets highest grades (top 5 highest scores).
-     */
-    private List<StudentDashboardDTO.RecentGrade> getRecentGrades(StudentDetails student, int limit) {
-        List<StudentDashboardDTO.RecentGrade> recentGrades = new ArrayList<>();
+    // /**
+    //  * Gets current semester courses for the student.
+    //  */
+    // private List<StudentDashboardDTO.CurrentSemesterCourse> getCurrentSemesterCourses(StudentDetails student) {
+    //     List<StudentDashboardDTO.CurrentSemesterCourse> courses = new ArrayList<>();
         
-        // Get all released scores
-        List<StudentCourseScore> allReleasedScores = studentCourseScoreRepo
-                .findByStudentAndIsReleasedTrue(student.getUser());
+    //     if (student.getBatchClassYearSemester() == null) {
+    //         return courses;
+    //     }
         
-        // Sort by score (highest first) and limit to top 5
-        List<StudentCourseScore> sortedScores = allReleasedScores.stream()
-                .filter(score -> score.getScore() != null) // Only include scores that have values
-                .sorted((s1, s2) -> {
-                    Double score1 = s1.getScore();
-                    Double score2 = s2.getScore();
-                    if (score1 == null && score2 == null) return 0;
-                    if (score1 == null) return 1;
-                    if (score2 == null) return -1;
-                    return score2.compareTo(score1); // Highest first
-                })
-                .limit(limit)
-                .collect(Collectors.toList());
+    //     BatchClassYearSemester currentBCYS = student.getBatchClassYearSemester();
+    //     List<StudentCourseScore> currentScores = studentCourseScoreRepo
+    //             .findByStudentAndBatchClassYearSemester(student.getUser(), currentBCYS);
         
-        Department department = student.getDepartmentEnrolled();
-        GradingSystem gradingSystem = null;
-        try {
-            gradingSystem = gradingSystemService.findApplicableGradingSystem(department);
-        } catch (Exception e) {
-            // If no grading system found, return empty list
-            return recentGrades;
-        }
+    //     for (StudentCourseScore score : currentScores) {
+    //         if (score.getCourse() != null) {
+    //             StudentDashboardDTO.CurrentSemesterCourse course = new StudentDashboardDTO.CurrentSemesterCourse();
+    //             course.setCourseCode(score.getCourse().getCCode());
+    //             course.setCourseTitle(score.getCourse().getCTitle());
+    //             int creditHours = (score.getCourse().getTheoryHrs() != null ? score.getCourse().getTheoryHrs() : 0) +
+    //                              (score.getCourse().getLabHrs() != null ? score.getCourse().getLabHrs() : 0);
+    //             course.setCreditHours(creditHours);
+    //             courses.add(course);
+    //         }
+    //     }
         
-        for (StudentCourseScore score : sortedScores) {
-            if (score.getScore() == null || score.getCourse() == null) {
-                continue;
-            }
+    //     return courses;
+    // }
+
+    // /**
+    //  * Gets highest grades (top 5 highest scores).
+    //  */
+    // private List<StudentDashboardDTO.RecentGrade> getRecentGrades(StudentDetails student, int limit) {
+    //     List<StudentDashboardDTO.RecentGrade> recentGrades = new ArrayList<>();
+        
+    //     // Get all released scores
+    //     List<StudentCourseScore> allReleasedScores = studentCourseScoreRepo
+    //             .findByStudentAndIsReleasedTrue(student.getUser());
+        
+    //     // Sort by score (highest first) and limit to top 5
+    //     List<StudentCourseScore> sortedScores = allReleasedScores.stream()
+    //             .filter(score -> score.getScore() != null) // Only include scores that have values
+    //             .sorted((s1, s2) -> {
+    //                 Double score1 = s1.getScore();
+    //                 Double score2 = s2.getScore();
+    //                 if (score1 == null && score2 == null) return 0;
+    //                 if (score1 == null) return 1;
+    //                 if (score2 == null) return -1;
+    //                 return score2.compareTo(score1); // Highest first
+    //             })
+    //             .limit(limit)
+    //             .collect(Collectors.toList());
+        
+    //     Department department = student.getDepartmentEnrolled();
+    //     GradingSystem gradingSystem = null;
+    //     try {
+    //         gradingSystem = gradingSystemService.findApplicableGradingSystem(department);
+    //     } catch (Exception e) {
+    //         // If no grading system found, return empty list
+    //         return recentGrades;
+    //     }
+        
+    //     for (StudentCourseScore score : sortedScores) {
+    //         if (score.getScore() == null || score.getCourse() == null) {
+    //             continue;
+    //         }
             
-            StudentDashboardDTO.RecentGrade grade = new StudentDashboardDTO.RecentGrade();
+    //         StudentDashboardDTO.RecentGrade grade = new StudentDashboardDTO.RecentGrade();
             
-            // Get class year and semester
-            if (score.getBatchClassYearSemester() != null) {
-                BatchClassYearSemester bcys = score.getBatchClassYearSemester();
-                grade.setClassYear(bcys.getClassYear() != null ? bcys.getClassYear().getClassYear() : null);
-                grade.setSemester(bcys.getSemester() != null ? bcys.getSemester().getAcademicPeriod() : null);
-            }
+    //         // Get class year and semester
+    //         if (score.getBatchClassYearSemester() != null) {
+    //             BatchClassYearSemester bcys = score.getBatchClassYearSemester();
+    //             grade.setClassYear(bcys.getClassYear() != null ? bcys.getClassYear().getClassYear() : null);
+    //             grade.setSemester(bcys.getSemester() != null ? bcys.getSemester().getAcademicPeriod() : null);
+    //         }
             
-            grade.setCourseCode(score.getCourse().getCCode());
-            grade.setCourseTitle(score.getCourse().getCTitle());
+    //         grade.setCourseCode(score.getCourse().getCCode());
+    //         grade.setCourseTitle(score.getCourse().getCTitle());
             
-            // Calculate letter grade and grade point
-            if (gradingSystem != null && gradingSystem.getIntervals() != null) {
-                MarkInterval interval = gradingSystem.getIntervals().stream()
-                        .filter(i -> score.getScore() >= i.getMin() && score.getScore() <= i.getMax())
-                        .findFirst()
-                        .orElse(null);
+    //         // Calculate letter grade and grade point
+    //         if (gradingSystem != null && gradingSystem.getIntervals() != null) {
+    //             MarkInterval interval = gradingSystem.getIntervals().stream()
+    //                     .filter(i -> score.getScore() >= i.getMin() && score.getScore() <= i.getMax())
+    //                     .findFirst()
+    //                     .orElse(null);
                 
-                if (interval != null) {
-                    grade.setLetterGrade(interval.getGradeLetter());
-                    int creditHours = (score.getCourse().getTheoryHrs() != null ? score.getCourse().getTheoryHrs() : 0) +
-                                     (score.getCourse().getLabHrs() != null ? score.getCourse().getLabHrs() : 0);
-                    grade.setGradePoint(creditHours * interval.getGivenValue());
-                }
-            }
+    //             if (interval != null) {
+    //                 grade.setLetterGrade(interval.getGradeLetter());
+    //                 int creditHours = (score.getCourse().getTheoryHrs() != null ? score.getCourse().getTheoryHrs() : 0) +
+    //                                  (score.getCourse().getLabHrs() != null ? score.getCourse().getLabHrs() : 0);
+    //                 grade.setGradePoint(creditHours * interval.getGivenValue());
+    //             }
+    //         }
             
-            recentGrades.add(grade);
-        }
+    //         recentGrades.add(grade);
+    //     }
         
-        return recentGrades;
-    }
+    //     return recentGrades;
+    // }
 
     /**
      * Builds document status information.

@@ -1,5 +1,7 @@
 package Henok.example.DeutscheCollageBack_endAPI.DTO.Student;
 
+import Henok.example.DeutscheCollageBack_endAPI.DTO.Students.RemainingCourseDTO;
+import Henok.example.DeutscheCollageBack_endAPI.DTO.Students.TakenCourseDTO;
 import Henok.example.DeutscheCollageBack_endAPI.Enums.ExitExamPassStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,8 +16,7 @@ import java.util.List;
 public class StudentDashboardDTO {
     private StudentProfileSummary profileSummary;
     private AcademicProgressSnapshot academicProgress;
-    private List<CurrentSemesterCourse> currentSemesterCourses;
-    private List<RecentGrade> recentGrades;
+    private CourseProgress courseProgress;
     private DocumentStatusInfo documentStatus;
     private ExitExamAndGraduationInfo exitExamAndGraduation;
 
@@ -45,22 +46,13 @@ public class StudentDashboardDTO {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class CurrentSemesterCourse {
-        private String courseCode;
-        private String courseTitle;
-        private Integer creditHours;
-    }
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class RecentGrade {
-        private String classYear;
-        private String semester;
-        private String courseCode;
-        private String courseTitle;
-        private String letterGrade;
-        private Double gradePoint;
+    public static class CourseProgress {
+        private List<TakenCourseDTO> takenCourses;
+        private int totalTakenCourses;
+        private int totalTakenCreditHours;
+        private List<RemainingCourseDTO> remainingCourses;
+        private int totalRemainingCourses;
+        private int totalRemainingCreditHours;
     }
 
     @Data
