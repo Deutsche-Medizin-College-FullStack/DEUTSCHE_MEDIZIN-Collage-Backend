@@ -140,6 +140,7 @@ public class StudentCopyService {
                 else
                     passed = score.getScore() >= MINIMUM_PASSFAIL_SCORE;   // Pass if score meets/exceeds threshold
 
+                cg.setScore(score.getScore()); // Optional: include raw score in DTO for reference
                 cg.setLetterGrade(passed ? "P" : "F");
                 cg.setGradePoint(0.0);           // Pass/Fail courses usually do NOT affect GPA
                 if (!passed) {
@@ -163,6 +164,7 @@ public class StudentCopyService {
                 if (score.getCourseSource().getSourceID() == 2) suffix = "**";
                 else if (score.getCourseSource().getSourceID() == 3) suffix = "*";
 
+                cg.setScore(score.getScore());
                 cg.setLetterGrade(letterGrade + suffix);
                 cg.setGradePoint(gradePoint);
             }

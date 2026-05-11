@@ -14,6 +14,7 @@ public class CourseGradeDTO {
     private String courseCode;
     private String courseTitle;
     private Integer totalCrHrs; // lecture + lab
+    private Double score;
     private String letterGrade;
     private Double gradePoint; // totalCrHr * givenValue
 }

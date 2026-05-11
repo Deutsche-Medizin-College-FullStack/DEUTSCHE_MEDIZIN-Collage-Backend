@@ -196,4 +196,13 @@ public interface StudentCourseScoreRepo extends JpaRepository<StudentCourseScore
             "JOIN FETCH scs.batchClassYearSemester bcys " +
             "WHERE scs.student.id = :studentId")
     List<StudentCourseScore> findByStudentWithCourseAndSourceAndBcys(@Param("studentId") Long studentId);
+
+    /**
+     * Finds all released student course scores for a specific BCYS.
+     * Used for academic summary reports to get all students in a given BCYS.
+     *
+     * @param batchClassYearSemester The BCYS
+     * @return List of released StudentCourseScore records
+     */
+    List<StudentCourseScore> findByBatchClassYearSemesterAndIsReleasedTrue(BatchClassYearSemester batchClassYearSemester);
 }
