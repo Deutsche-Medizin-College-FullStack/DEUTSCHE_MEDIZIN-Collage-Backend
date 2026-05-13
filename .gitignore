@@ -34,3 +34,5 @@ build/
 
 #Docker
 Dockerfile
+
+.env

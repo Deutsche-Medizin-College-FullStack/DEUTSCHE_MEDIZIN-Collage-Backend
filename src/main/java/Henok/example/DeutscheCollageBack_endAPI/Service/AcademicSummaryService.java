@@ -123,7 +123,7 @@ System.out.println("Found " + uniqueStudents.size() + " unique students with rel
                 studentSummaries.add(summary);
             } catch (Exception e) {
                 // Skip students that have errors (e.g., no valid copy for this BCYS)
-                System.out.println("Skipping studentId " + student.getId() + " due to: " + e.getMessage());
+                System.out.println("Skipping studentId " + student.getUsername() + " due to: " + e.getMessage());
                 continue;
             }
         }
