@@ -18,6 +18,9 @@ public class AcademicSummaryResponseDTO {
     @AllArgsConstructor
     public static class HeaderInfo {
         private String departmentBcysDisplay;  // e.g., "Medicine - 1-1-S1"
+        private String departmentName;
+        private String departmentCode;
+        private String batchName;           // e.g., "Batch 2020"
         private String classYearName;           // e.g., "1st Year"
         private String semesterName;            // e.g., "First Semester"
         private AcademicYearInfo academicYear;

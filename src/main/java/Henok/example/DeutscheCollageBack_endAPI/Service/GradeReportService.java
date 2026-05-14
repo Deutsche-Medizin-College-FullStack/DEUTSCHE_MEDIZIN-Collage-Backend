@@ -4,6 +4,7 @@ import Henok.example.DeutscheCollageBack_endAPI.DTO.GradeReport.GradeReportDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.GradeReport.GradeReportRequestDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.GradeReport.GradeReportResponseDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.StudentCopy.SimplifiedStudentCopyDTO;
+import Henok.example.DeutscheCollageBack_endAPI.DTO.StudentCopy.StudentCopyOptions;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.StudentCopy.StudentCopyRequestDTO;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.*;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.MOE_Data.ProgramLevel;
@@ -85,6 +86,7 @@ public class GradeReportService {
      */
     @Transactional(readOnly = true)
     private GradeReportDTO generateGradeReportForStudent(Long studentId) {
+//        System.out.println("Generating grade report for student ID: " + studentId);
         StudentDetails student = studentDetailsRepository.findById(studentId).orElse(null);
         if (student == null || student.getUser() == null) {
             return null;
@@ -99,7 +101,7 @@ public class GradeReportService {
         if (allReleasedScores.isEmpty()) {
             return null;
         }
-
+//        System.out.println("\tfound " + allReleasedScores.size() + " released scores for student " + studentId);
         // Group by ClassYear + Semester combination (NOT by BatchClassYearSemester)
         // This prevents duplicate entries when student repeats the same year/semester in different batches
         Map<String, List<StudentCourseScore>> scoresByClassYearSemester = allReleasedScores.stream()
@@ -107,14 +109,18 @@ public class GradeReportService {
                     score.getBatchClassYearSemester().getClassYear().getId() + "_" +
                     score.getBatchClassYearSemester().getSemester().getAcademicPeriodCode()
                 ));
-
+//        System.out.println("\tfound " + scoresByClassYearSemester.size() + " unique ClassYear+Semester combinations for student " + studentId);
         // Prepare simplified copies - one per unique ClassYear + Semester
         List<SimplifiedStudentCopyDTO> studentCopies = new ArrayList<>(scoresByClassYearSemester.size());
 
-        Department studentDept = student.getDepartmentEnrolled();
+
+        Department department = student.getDepartmentEnrolled();
+        GradingSystem gradingSystem = gradingSystemService.findApplicableGradingSystem(department);
+
+        // Prepare options once (reuse grading system)
+        StudentCopyOptions simplifiedOptions = StudentCopyOptions.forTranscript(gradingSystem);
 
         for (Map.Entry<String, List<StudentCourseScore>> entry : scoresByClassYearSemester.entrySet()) {
-            // Take any score from this group to extract classYear and semester (they are the same within group)
             StudentCourseScore anyScore = entry.getValue().get(0);
             BatchClassYearSemester anyBCYS = anyScore.getBatchClassYearSemester();
 
@@ -124,23 +130,31 @@ public class GradeReportService {
                 request.setClassYearId(anyBCYS.getClassYear().getId());
                 request.setSemesterId(anyBCYS.getSemester().getAcademicPeriodCode());
 
-                SimplifiedStudentCopyDTO copy = studentCopyService.generateSimplifiedStudentCopy(request);
+                // Pass options with pre-fetched gradingSystem
+                SimplifiedStudentCopyDTO copy = studentCopyService
+                        .generateSimplifiedStudentCopy(request, simplifiedOptions);
+
                 if (copy != null) {
                     studentCopies.add(copy);
                 }
-            } catch (RuntimeException e) {
-                throw e;
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("Failed to generate simplified copy for student " + studentId, e);
             }
         }
 
+//        System.out.println("\tfinished generating copies for student " + studentId + ", total copies: " + studentCopies.size());
         // Sort using ProgressionSequence (department-aware)
-        studentCopies.sort(Comparator.comparingInt(copy ->
-                getProgressionSequenceNumber(studentDept,
-                        copy.getClassyear().getId(),
-                        copy.getSemester().getId())
-        ));
+        // Safe sorting - handles null classyear/semester gracefully
+        studentCopies.sort(Comparator.comparingInt(copy -> {
+            if (copy.getClassyear() == null || copy.getSemester() == null) {
+                System.out.println("\tWARNING: Missing classyear or semester for a copy of student " + studentId + ", treating as lowest priority in sorting");
+                return 0; // put at beginning or handle as needed
+            }
+            return getProgressionSequenceNumber(department,
+                    copy.getClassyear().getId(),
+                    copy.getSemester().getId());
+        }));
+        System.out.println("\tfinished sorting copies using progression sequence for student " + studentId);
 
         // Build GradeReportDTO
         GradeReportDTO gradeReport = new GradeReportDTO();
@@ -160,7 +174,7 @@ public class GradeReportService {
         programModalityInfo.setName(student.getProgramModality().getModality());
         gradeReport.setProgramModality(programModalityInfo);
 
-        Department department = student.getDepartmentEnrolled();
+//        Department department = student.getDepartmentEnrolled();
         GradeReportDTO.ProgramLevelInfo programLevelInfo = new GradeReportDTO.ProgramLevelInfo();
         ProgramLevel programLevel = department.getProgramLevel();
         if (programLevel != null) {
@@ -179,8 +193,6 @@ public class GradeReportService {
 
         // ──────────────────────────────────────────────
         // Add footer text here
-        GradingSystem gradingSystem = gradingSystemService.findApplicableGradingSystem(department);
-
         StringBuilder footer = new StringBuilder();
 
         // 1. Grading intervals in one line

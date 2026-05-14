@@ -5,6 +5,7 @@ import Henok.example.DeutscheCollageBack_endAPI.DTO.Reports.AcademicSummaryBulkR
 import Henok.example.DeutscheCollageBack_endAPI.DTO.Reports.AcademicSummaryResponseDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.StudentCopy.StudentCopyDTO;
 import Henok.example.DeutscheCollageBack_endAPI.DTO.StudentCopy.StudentCopyRequestDTO;
+import Henok.example.DeutscheCollageBack_endAPI.DTO.StudentCopy.StudentCopyOptions;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.*;
 import Henok.example.DeutscheCollageBack_endAPI.Entity.MOE_Data.AcademicYear;
 import Henok.example.DeutscheCollageBack_endAPI.Error.ResourceNotFoundException;
@@ -36,6 +37,10 @@ public class AcademicSummaryService {
     @Autowired
     private StudentCopyService studentCopyService;
 
+    @Autowired
+    private GradingSystemService gradingSystemService;
+
+
     public AcademicSummaryBulkResponseDTO generateAcademicSummaries(List<AcademicSummaryRequestDTO> requests) {
         List<AcademicSummaryBulkResponseDTO.Item> results = new ArrayList<>();
 
@@ -66,6 +71,9 @@ public class AcademicSummaryService {
      * @return AcademicSummaryResponseDTO with header info and all students' academic data
      * @throws ResourceNotFoundException if department, BCYS, or DepartmentBCYS not found
      */
+    /**
+     * Generates an academic summary report for all students in a given department and BCYS.
+     */
     public AcademicSummaryResponseDTO generateAcademicSummary(AcademicSummaryRequestDTO request) {
         // 1. Validate and fetch department, BCYS
         Department department = departmentRepository.findById(request.getDepartmentId())
@@ -77,59 +85,60 @@ public class AcademicSummaryService {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "BatchClassYearSemester not found with id: " + request.getBcysId()
                 ));
-        System.out.println("Generating academic summary for Department: " + department.getDeptName() + ", BCYS: " + bcys.getDisplayName());
 
-        // 2. Get DepartmentBCYS (contains displayName and academicYear)
+        // 2. Get DepartmentBCYS
         DepartmentBCYS deptBCYS = departmentBCYSRepository.findByBcysAndDepartment(bcys, department)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "No cohort record found for department " + department.getDeptName() +
-                        " and BCYS " + bcys.getDisplayName()
+                                " and BCYS " + bcys.getDisplayName()
                 ));
-System.out.println("Found DepartmentBCYS");
-        // 3. Get all distinct students with released scores in this department + BCYS
+
+        // 3. Pre-fetch GradingSystem once (optimization)
+        GradingSystem gradingSystem = gradingSystemService.findApplicableGradingSystem(department);
+
+        // 4. Get all distinct students with released scores in this department + BCYS
         List<StudentCourseScore> allScoresInBCYS = studentCourseScoreRepo
                 .findByBatchClassYearSemesterAndIsReleasedTrue(bcys);
 
-        // Filter to only students in this department
-        Set<User> uniqueStudents = new HashSet<>();
+        Map<User, StudentDetails> studentDetailsMap = new HashMap<>();
         for (StudentCourseScore score : allScoresInBCYS) {
             StudentDetails studentDetails = studentDetailsRepository.findByUser(score.getStudent())
                     .orElse(null);
-            if (studentDetails != null && 
-                studentDetails.getDepartmentEnrolled().getDptID().equals(department.getDptID())) {
-                uniqueStudents.add(score.getStudent());
+            if (studentDetails != null &&
+                    studentDetails.getDepartmentEnrolled().getDptID().equals(department.getDptID())) {
+                studentDetailsMap.put(score.getStudent(), studentDetails);
             }
         }
-System.out.println("Found " + uniqueStudents.size() + " unique students with released scores in this department and BCYS");
 
-        // 4. Build header info
+        // 5. Build header info
         AcademicSummaryResponseDTO.HeaderInfo headerInfo = buildHeaderInfo(deptBCYS, bcys);
 
-        // 5. Generate student summaries
+        // 6. Generate student summaries using optimized options
         List<AcademicSummaryResponseDTO.StudentSummary> studentSummaries = new ArrayList<>();
-        System.out.println("Generating summaries for " + uniqueStudents.size() + " students");
-        for (User student : uniqueStudents) {
+
+        StudentCopyOptions summaryOptions = StudentCopyOptions.forAcademicSummary(gradingSystem);
+
+        for (Map.Entry<User, StudentDetails> entry : studentDetailsMap.entrySet()) {
+            User student = entry.getKey();
+            StudentDetails studentDetails = entry.getValue();
             try {
-                // Call generateStudentCopy to get full academic data
                 StudentCopyRequestDTO copyRequest = new StudentCopyRequestDTO();
-                copyRequest.setStudentId(student.getId());
+                copyRequest.setStudentId(studentDetails.getId());
                 copyRequest.setClassYearId(bcys.getClassYear().getId());
                 copyRequest.setSemesterId(bcys.getSemester().getAcademicPeriodCode());
 
-                StudentCopyDTO studentCopy = studentCopyService.generateStudentCopy(copyRequest);
+                // Use optimized full StudentCopy with pre-fetched grading system
+                StudentCopyDTO studentCopy = studentCopyService.generateStudentCopy(copyRequest, summaryOptions);
 
-                // Extract and convert to summary
-                AcademicSummaryResponseDTO.StudentSummary summary = convertToStudentSummary(studentCopy);
+                AcademicSummaryResponseDTO.StudentSummary summary = convertToStudentSummary(studentCopy, student.getUsername());
                 studentSummaries.add(summary);
             } catch (Exception e) {
-                // Skip students that have errors (e.g., no valid copy for this BCYS)
-                System.out.println("Skipping studentId " + student.getUsername() + " due to: " + e.getMessage());
+                System.out.println("Skipping student " + student.getUsername() + " due to: " + e.getMessage());
                 continue;
             }
         }
-        System.out.println("Generated summaries for " + studentSummaries.size() + " students");
 
-        // 6. Build and return response
+        // 7. Build and return response
         AcademicSummaryResponseDTO response = new AcademicSummaryResponseDTO();
         response.setHeader(headerInfo);
         response.setStudents(studentSummaries);
@@ -146,7 +155,16 @@ System.out.println("Found " + uniqueStudents.size() + " unique students with rel
         // DepartmentBCYS has displayName
         header.setDepartmentBcysDisplay(deptBCYS.getDisplayName());
 
-        // ClassYear and Semester info
+        // Department info
+        if (deptBCYS.getDepartment() != null) {
+            header.setDepartmentName(deptBCYS.getDepartment().getDeptName());
+            header.setDepartmentCode(deptBCYS.getDepartment().getDepartmentCode());
+        }
+
+        // Batch, ClassYear and Semester info
+        if (bcys.getBatch() != null) {
+            header.setBatchName(bcys.getBatch().getBatchName());
+        }   
         if (bcys.getClassYear() != null) {
             header.setClassYearName(bcys.getClassYear().getClassYear());
         }
@@ -169,10 +187,10 @@ System.out.println("Found " + uniqueStudents.size() + " unique students with rel
     /**
      * Helper: Converts StudentCopyDTO to StudentSummary
      */
-    private AcademicSummaryResponseDTO.StudentSummary convertToStudentSummary(StudentCopyDTO studentCopy) {
+    private AcademicSummaryResponseDTO.StudentSummary convertToStudentSummary(StudentCopyDTO studentCopy, String studentId) {
         AcademicSummaryResponseDTO.StudentSummary summary = new AcademicSummaryResponseDTO.StudentSummary();
 
-        summary.setStudentId(studentCopy.getIdNumber());
+        summary.setStudentId(studentId);
 
         // Convert course grades
         List<AcademicSummaryResponseDTO.CourseInfo> courses = studentCopy.getCourses().stream()
