@@ -851,6 +851,7 @@ public class DepartmentHeadService {
                         info.setDueDate(a.getDueDate());
                         info.setStatus(a.getAssStatus());
                         info.setHeadApproval(a.getHeadApproval());
+                        info.setDeanApproval(a.getDeanApproval());
                         info.setRegistrarApproval(a.getRegistrarApproval());
                         return info;
                     })

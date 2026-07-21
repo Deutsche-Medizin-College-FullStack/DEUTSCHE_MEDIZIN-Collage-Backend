@@ -154,7 +154,7 @@ public class GradeReportService {
                     copy.getClassyear().getId(),
                     copy.getSemester().getId());
         }));
-        System.out.println("\tfinished sorting copies using progression sequence for student " + studentId);
+//        System.out.println("\tfinished sorting copies using progression sequence for student " + studentId);
 
         // Build GradeReportDTO
         GradeReportDTO gradeReport = new GradeReportDTO();
