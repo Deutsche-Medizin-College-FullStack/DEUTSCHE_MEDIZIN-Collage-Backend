@@ -748,6 +748,10 @@ public class DeanViceDeanService {
             if (status == AssessmentStatus.REJECTED) {
                 assessment.setHeadApproval(AssessmentStatus.PENDING);
             }
+            // If dean APPROVES → revert registrar approval to PENDING
+            if (status == AssessmentStatus.ACCEPTED) {
+                assessment.setRegistrarApproval(AssessmentStatus.PENDING);
+            }
 
             updatedAssessments.add(assessmentRepository.save(assessment));
         }

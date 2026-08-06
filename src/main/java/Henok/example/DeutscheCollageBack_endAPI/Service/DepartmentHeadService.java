@@ -962,6 +962,10 @@ public class DepartmentHeadService {
             if (status == AssessmentStatus.REJECTED) {
                 assessment.setAssStatus(AssessmentStatus.PENDING);
             }
+            // If rejected → revert deanApproval back to PENDING
+            if (status == AssessmentStatus.ACCEPTED) {
+                assessment.setDeanApproval(AssessmentStatus.PENDING);
+            }
             // If accepted → assStatus remains ACCEPTED (already set by teacher)
 
             updatedAssessments.add(assessmentRepository.save(assessment));
