@@ -967,12 +967,12 @@ public class DepartmentHeadService {
             updatedAssessments.add(assessmentRepository.save(assessment));
         }
 
-        // If approved → create one notification for the entire assignment
+        // If approved → create one notification about the entire assignment for registrar
         if (status == AssessmentStatus.ACCEPTED) {
             String message = createBulkNotificationMessage(course, tca, assessments.size());
 
             notificationService.createNotification(
-                    List.of(Role.REGISTRAR),
+                    List.of(Role.DEAN),
                     null,
                     Role.DEPARTMENT_HEAD,
                     message
