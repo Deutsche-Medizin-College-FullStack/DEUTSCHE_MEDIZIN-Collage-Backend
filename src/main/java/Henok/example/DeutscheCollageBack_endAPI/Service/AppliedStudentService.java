@@ -337,18 +337,18 @@ public class AppliedStudentService {
         if (request.getGrandfatherNameENG() == null || request.getGrandfatherNameENG().isEmpty()) {
             throw new IllegalArgumentException("Grandfather name (English) cannot be empty");
         }
-        if (request.getMotherNameAMH() == null || request.getMotherNameAMH().isEmpty()) {
-            throw new IllegalArgumentException("Mother name (Amharic) cannot be empty");
-        }
-        if (request.getMotherNameENG() == null || request.getMotherNameENG().isEmpty()) {
-            throw new IllegalArgumentException("Mother name (English) cannot be empty");
-        }
-        if (request.getMotherFatherNameAMH() == null || request.getMotherFatherNameAMH().isEmpty()) {
-            throw new IllegalArgumentException("Mother's father name (Amharic) cannot be empty");
-        }
-        if (request.getMotherFatherNameENG() == null || request.getMotherFatherNameENG().isEmpty()) {
-            throw new IllegalArgumentException("Mother's father name (English) cannot be empty");
-        }
+        // if (request.getMotherNameAMH() == null || request.getMotherNameAMH().isEmpty()) {
+        //     throw new IllegalArgumentException("Mother name (Amharic) cannot be empty");
+        // }
+        // if (request.getMotherNameENG() == null || request.getMotherNameENG().isEmpty()) {
+        //     throw new IllegalArgumentException("Mother name (English) cannot be empty");
+        // }
+        // if (request.getMotherFatherNameAMH() == null || request.getMotherFatherNameAMH().isEmpty()) {
+        //     throw new IllegalArgumentException("Mother's father name (Amharic) cannot be empty");
+        // }
+        // if (request.getMotherFatherNameENG() == null || request.getMotherFatherNameENG().isEmpty()) {
+        //     throw new IllegalArgumentException("Mother's father name (English) cannot be empty");
+        // }
         if (request.getGender() == null) {
             throw new IllegalArgumentException("Gender cannot be null");
         }
@@ -358,9 +358,9 @@ public class AppliedStudentService {
         if (request.getPhoneNumber() == null || request.getPhoneNumber().isEmpty()) {
             throw new IllegalArgumentException("Phone number cannot be empty");
         }
-        if (request.getDateOfBirthEC() == null || request.getDateOfBirthEC().isEmpty()) {
-            throw new IllegalArgumentException("Date of birth (EC) cannot be empty");
-        }
+        // if (request.getDateOfBirthEC() == null || request.getDateOfBirthEC().isEmpty()) {
+        //     throw new IllegalArgumentException("Date of birth (EC) cannot be empty");
+        // }
         if (request.getDateOfBirthGC() == null) {
             throw new IllegalArgumentException("Date of birth (GC) cannot be null");
         }
@@ -403,10 +403,10 @@ public class AppliedStudentService {
         if (request.getContactPersonFirstNameENG() == null || request.getContactPersonFirstNameENG().isEmpty()) {
             throw new IllegalArgumentException("Contact person first name (English) cannot be empty");
         }
-        if (request.getContactPersonLastNameAMH() == null || request.getContactPersonLastNameAMH().isEmpty()) {
+        if (request.getContactPersonLastNameAMH() == null) {
             throw new IllegalArgumentException("Contact person last name (Amharic) cannot be empty");
         }
-        if (request.getContactPersonLastNameENG() == null || request.getContactPersonLastNameENG().isEmpty()) {
+        if (request.getContactPersonLastNameENG() == null ) {
             throw new IllegalArgumentException("Contact person last name (English) cannot be empty");
         }
         if (request.getContactPersonPhoneNumber() == null || request.getContactPersonPhoneNumber().isEmpty()) {
