@@ -26,7 +26,6 @@ public class AcceptApplicationRequest {
 
     private String academicYearCode;
 
-    @NotNull(message = "Batch ID is required")
     private Long batchId;
 
     @NotNull(message = "Batch class year semester ID is required")

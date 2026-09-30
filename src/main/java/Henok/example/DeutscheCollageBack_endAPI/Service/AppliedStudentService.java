@@ -237,6 +237,7 @@ public class AppliedStudentService {
         dto.setDepartmentEnrolledName(applicant.getDepartmentEnrolled().getDeptName());
         dto.setClassYearName(applicant.getClassYear().getClassYear());
         dto.setSemesterName(applicant.getSemester().getAcademicPeriod());
+        dto.setApplicationStatus(applicant.getApplicationStatus());
         return dto;
     }
 

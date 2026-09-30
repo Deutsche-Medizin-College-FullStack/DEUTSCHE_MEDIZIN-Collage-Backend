@@ -1,6 +1,7 @@
 package Henok.example.DeutscheCollageBack_endAPI.DTO;
 
 import Henok.example.DeutscheCollageBack_endAPI.Enums.Gender;
+import Henok.example.DeutscheCollageBack_endAPI.Enums.ApplicationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,4 +23,5 @@ public class AppliedStudentListResponseDTO {
     private String departmentEnrolledName;
     private String classYearName;
     private String semesterName;
+    private ApplicationStatus applicationStatus;
 }

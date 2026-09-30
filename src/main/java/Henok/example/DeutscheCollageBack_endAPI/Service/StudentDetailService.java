@@ -1083,11 +1083,21 @@ public StudentDetails acceptAppliedStudent(
         MultipartFile studentPhoto,
         MultipartFile document) throws IOException {
 
-    if (request.getBatchId() == null) {
-        throw new IllegalArgumentException("Batch ID is required");
+    Long batchId = request.getBatchId();
+    if (batchId == null) {
+        BatchClassYearSemester batchClassYearSemester = batchClassYearSemesterRepository
+                .findById(request.getBatchClassYearSemesterId())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "BatchClassYearSemester not found with id: " + request.getBatchClassYearSemesterId()));
+
+        if (batchClassYearSemester.getBatch() == null) {
+            throw new ResourceNotFoundException("Batch not found for BatchClassYearSemester with id: "
+                    + request.getBatchClassYearSemesterId());
+        }
+        batchId = batchClassYearSemester.getBatch().getId();
     }
-    if (!batchRepository.existsById(request.getBatchId())) {
-        throw new ResourceNotFoundException("Batch not found with id: " + request.getBatchId());
+    if (!batchRepository.existsById(batchId)) {
+        throw new ResourceNotFoundException("Batch not found with id: " + batchId);
     }
 
     // Fetch applied student
@@ -1158,7 +1168,7 @@ public StudentDetails acceptAppliedStudent(
     registerRequest.setDateEnrolledEC(request.getDateEnrolledEC());
     registerRequest.setDateEnrolledGC(request.getDateEnrolledGC());
     registerRequest.setAcademicYearCode(request.getAcademicYearCode());
-    registerRequest.setBatchId(request.getBatchId());
+    registerRequest.setBatchId(batchId);
     registerRequest.setBatchClassYearSemesterId(request.getBatchClassYearSemesterId());
     registerRequest.setStudentRecentStatusId(request.getStudentRecentStatusId());
 
