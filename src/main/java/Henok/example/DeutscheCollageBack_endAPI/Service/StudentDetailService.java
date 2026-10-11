@@ -210,6 +210,13 @@ public class StudentDetailService {
         }
     }
 
+    // Retrieves the uploaded document for a student by student ID.
+    public byte[] getStudentDocument(Long id) {
+        StudentDetails student = studentDetailsRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id: " + id));
+        return student.getDocument();
+    }
+
     public List<StudentsListForSlipDTO> getStudentsForSlipProduction() {
         return studentDetailsRepository.findAll().stream()
                 .map(student -> {

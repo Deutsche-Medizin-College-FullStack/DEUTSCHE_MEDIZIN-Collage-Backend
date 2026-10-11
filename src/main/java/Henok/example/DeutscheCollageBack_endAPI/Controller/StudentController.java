@@ -91,6 +91,27 @@ public class StudentController {
         }
     }
 
+    @GetMapping("/{id}/document")
+    public ResponseEntity<?> getStudentDocument(@PathVariable Long id) {
+        try {
+            byte[] document = studentDetailsService.getStudentDocument(id);
+            if (document == null || document.length == 0) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(new ErrorResponse("No document found for student with id: " + id));
+            }
+
+            return ResponseEntity.ok()
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .body(document);
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ErrorResponse(e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorResponse("Failed to retrieve student document: " + e.getMessage()));
+        }
+    }
+
     // ------------[Get Authenticated Student's Full Profile] --------
     @GetMapping("/profile")
     public ResponseEntity<?> getMyStudentProfile() {
