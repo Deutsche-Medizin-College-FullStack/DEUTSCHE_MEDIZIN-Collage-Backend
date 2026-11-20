@@ -466,6 +466,12 @@ public class StudentCourseScoreService {
             if (scoreOpt.isPresent()) {
                 studentCourseScoreRepo.deleteById(id);
                 deletedCount++;
+
+                // Publish event AFTER successful save
+                Long studentUserId = scoreOpt.get().getStudent().getId();
+                applicationEventPublisher.publishEvent(
+                        new ScoreUpdatedEvent(this, studentUserId)
+                );
             }
             // If not found → silently skip (partial success pattern)
         }
@@ -568,6 +574,11 @@ public class StudentCourseScoreService {
                 }
                 throw new RuntimeException("Failed to update student's current semester after slip generation: " + updateEx.getMessage(), updateEx);
             }
+
+            // Publish event AFTER successful enrollment (notifies listener using the User ID)
+            applicationEventPublisher.publishEvent(
+                    new ScoreUpdatedEvent(this, student.getUser().getId())
+            );
 
             return tempRecords.size();
 
